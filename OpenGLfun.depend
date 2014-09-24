@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1410809162 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.cpp
+	"Utils.h"
+
+1410809109 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	<GL/glew.h>
+	<GL/freeglut.h>
+
+1411521089 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
+	"Utils.h"
+

@@ -28,6 +28,7 @@ void RenderFunction(void);
 void TimerFunction(int);
 void IdleFunction(void);
 void keyboardFunction(unsigned char, int, int);
+void mouseMove(int, int);
 void createCube(void);
 void destroyCube(void);
 void drawCube(void);
@@ -107,6 +108,7 @@ void InitWindow(int argc, char* argv[])
     glutTimerFunc(0, TimerFunction, 0);
     glutCloseFunc(destroyCube);
     glutKeyboardFunc(keyboardFunction);
+    glutMotionFunc(mouseMove);
 }
 
 void keyboardFunction(unsigned char key, int x, int y) {
@@ -121,9 +123,33 @@ void keyboardFunction(unsigned char key, int x, int y) {
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
             break;
         }
+
+        case '<':
+        case ',': {
+            translateMatrix(&viewMatrix, 0, 0, -1);
+            break;
+        }
+
+        case 'O':
+        case 'o': {
+            translateMatrix(&viewMatrix, 0, 0, 1);
+            break;
+        }
+
+        case 27: {
+            glutDestroyWindow(WindowHandle);
+            exit(0);
+            break;
+        }
+
         default:
             break;
     }
+}
+
+void mouseMove(int x, int y) {
+    fprintf(stderr, "x: %d, y: %d", x, y);
+    glutWarpPointer(CurrentWidth / 2, CurrentHeight / 2);
 }
 
 void ResizeFunction(int Width, int Height)
@@ -137,7 +163,7 @@ void ResizeFunction(int Width, int Height)
   Matrix pvMatrix = multiplyMatrices(&projectionMatrix, &viewMatrix);
 
   glUseProgram(shaderIds[0]);
-  glUniformMatrix4fv(projectionMatrixUniformLocation, 1, GL_FALSE, viewMatrix.m);
+  glUniformMatrix4fv(projectionMatrixUniformLocation, 1, GL_FALSE, projectionMatrix.m);
   glUseProgram(0);
 }
 
@@ -216,6 +242,7 @@ void createCube() {
     glLinkProgram(shaderIds[0]);
     exitOnGLError("ERROR: Could not link the shader program");
 
+    glUseProgram(shaderIds[0]);
     modelMatrixUniformLocation = glGetUniformLocation(shaderIds[0], "ModelMatrix");
     projectionMatrixUniformLocation = glGetUniformLocation(shaderIds[0], "ProjectionMatrix");
     viewMatrixUniformLocation = glGetUniformLocation(shaderIds[0], "ViewMatrix");

@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include <unistd.h>
 
 const Matrix IDENTITY_MATRIX = { {
   1, 0, 0, 0,
@@ -138,13 +139,28 @@ void exitOnGLError(const char* error_message)
 
 GLuint loadShader(const char* filename, GLenum shader_type)
 {
+
+    char cwd[1024];
+       if (getcwd(cwd, sizeof(cwd)) != NULL)
+           fprintf(stdout, "\n\nCurrent working dir: %s\n", cwd);
+       else
+           perror("getcwd() error");
+
+
   GLuint shader_id = 0;
   FILE* file;
   long file_size = -1;
   char* glsl_source;
 
-  if (NULL != (file = fopen(filename, "rb")) &&
-    0 == fseek(file, 0, SEEK_END) &&
+    file = fopen(filename, "rb");
+
+    if (file == NULL) {
+        fprintf(stderr, "ERROR: Could not get file handle.\n");
+        perror("Error:");
+        return 0;
+    }
+
+  if (0 == fseek(file, 0, SEEK_END) &&
     -1 != (file_size = ftell(file)))
   {
     rewind(file);

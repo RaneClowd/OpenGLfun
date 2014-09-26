@@ -2,10 +2,7 @@
 
 #define WINDOW_TITLE_PREFIX "Playground"
 
-int
-  CurrentWidth = 600,
-  CurrentHeight = 600,
-  WindowHandle = 0;
+int winWidth = 600, winHeight = 600;
 
 unsigned frameCount = 0;
 
@@ -16,12 +13,14 @@ GLuint
     bufferIds[3] = { 0 },
     shaderIds[3] = { 0 };
 
+SDL_Window *screen;
+
 Matrix projectionMatrix, viewMatrix, modelMatrix;
 
 float cubeRotation = 0;
 clock_t lastTime = 0;
 
-void Initialize(int, char*[]);
+void initialize(int, char*[]);
 void InitWindow(int, char*[]);
 void ResizeFunction(int, int);
 void RenderFunction(void);
@@ -33,16 +32,48 @@ void createCube(void);
 void destroyCube(void);
 void drawCube(void);
 
-int main(int argc, char* argv[])
-{
-  Initialize(argc, argv);
+int main(int argc, char* argv[]) {
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
 
-  glutMainLoop();
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 6);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
-  exit(EXIT_SUCCESS);
+    screen = SDL_CreateWindow("My Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, winWidth, winHeight, SDL_WINDOW_OPENGL);
+    //SDL_Surface *surface = SDL_SetVideoMode(winWidth, winHeight, 16, SDL_OPENGL);
+    if (screen == NULL) {
+        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    SDL_GLContext glContext = SDL_GL_CreateContext(screen);
+    if (glContext == NULL) {
+        printf("Could not create GL context! SDL_Error: %s\n", SDL_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    SDL_GL_MakeCurrent(screen, glContext);
+
+    //SDL_WM_SetCaption("OpenGL SDL Test", "Test");
+
+    initialize(argc, argv);
+
+    drawCube();
+
+    SDL_Delay(4000);
+    destroyCube();
+    SDL_Quit();
+    exit(EXIT_SUCCESS);
 }
 
-void Initialize(int argc, char* argv[])
+void initialize(int argc, char* argv[])
 {
     GLenum glewInitResult;
 
@@ -81,7 +112,7 @@ void Initialize(int argc, char* argv[])
 
 void InitWindow(int argc, char* argv[])
 {
-    glutInit(&argc, argv);
+    /*glutInit(&argc, argv);
 
     glutInitContextVersion(3, 3);
     glutInitContextProfile(GLUT_CORE_PROFILE);
@@ -108,11 +139,11 @@ void InitWindow(int argc, char* argv[])
     glutTimerFunc(0, TimerFunction, 0);
     glutCloseFunc(destroyCube);
     glutKeyboardFunc(keyboardFunction);
-    glutMotionFunc(mouseMove);
+    glutMotionFunc(mouseMove);*/
 }
 
 void keyboardFunction(unsigned char key, int x, int y) {
-    switch (key) {
+    /*switch (key) {
         case 'F' :
         case 'f' : {
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -144,17 +175,17 @@ void keyboardFunction(unsigned char key, int x, int y) {
 
         default:
             break;
-    }
+    }*/
 }
 
 void mouseMove(int x, int y) {
-    fprintf(stderr, "x: %d, y: %d", x, y);
-    glutWarpPointer(CurrentWidth / 2, CurrentHeight / 2);
+    /*fprintf(stderr, "x: %d, y: %d", x, y);
+    glutWarpPointer(CurrentWidth / 2, CurrentHeight / 2);*/
 }
 
 void ResizeFunction(int Width, int Height)
 {
-  CurrentWidth = Width;
+  /*CurrentWidth = Width;
   CurrentHeight = Height;
   glViewport(0, 0, CurrentWidth, CurrentHeight);
 
@@ -164,19 +195,19 @@ void ResizeFunction(int Width, int Height)
 
   glUseProgram(shaderIds[0]);
   glUniformMatrix4fv(projectionMatrixUniformLocation, 1, GL_FALSE, projectionMatrix.m);
-  glUseProgram(0);
+  glUseProgram(0);*/
 }
 
 void RenderFunction(void)
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    /*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     drawCube();
 
     glutSwapBuffers();
     glutPostRedisplay();
 
-    ++frameCount;
+    ++frameCount;*/
 }
 
 void createCube() {
@@ -276,7 +307,7 @@ void createCube() {
 }
 
 void destroyCube(void) {
-    glDetachShader(shaderIds[0], shaderIds[1]);
+    /*glDetachShader(shaderIds[0], shaderIds[1]);
     glDetachShader(shaderIds[0], shaderIds[2]);
     glDeleteShader(shaderIds[1]);
     glDeleteShader(shaderIds[2]);
@@ -285,7 +316,7 @@ void destroyCube(void) {
 
     glDeleteBuffers(2, &bufferIds[1]);
     glDeleteVertexArrays(1, &bufferIds[0]);
-    exitOnGLError("ERROR: Could not destroy the buffer objects");
+    exitOnGLError("ERROR: Could not destroy the buffer objects");*/
 }
 
 void drawCube(void) {
@@ -315,14 +346,16 @@ void drawCube(void) {
 
     glBindVertexArray(0);
     glUseProgram(0);
+
+    SDL_GL_SwapWindow(screen);
 }
 
 void IdleFunction(void) {
-    glutPostRedisplay();
+    //glutPostRedisplay();
 }
 
 void TimerFunction(int value) {
-    if (0 != value) {
+    /*if (0 != value) {
         char *tempString = (char*) malloc(512 + strlen(WINDOW_TITLE_PREFIX));
 
         sprintf(tempString, "%s: %d frames per second @ %d x %d", WINDOW_TITLE_PREFIX, frameCount * 4, CurrentWidth, CurrentHeight);
@@ -332,5 +365,5 @@ void TimerFunction(int value) {
     }
 
     frameCount = 0;
-    glutTimerFunc(250, TimerFunction, 1);
+    glutTimerFunc(250, TimerFunction, 1);*/
 }

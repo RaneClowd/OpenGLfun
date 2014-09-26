@@ -6,7 +6,7 @@
 #include <math.h>
 #include <time.h>
 #include <GL/glew.h>
-#include <GL/freeglut.h>
+#include <SDL2/SDL.h>
 
 static const double PI = 3.14159265358979323846;
 

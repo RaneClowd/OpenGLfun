@@ -43,5 +43,6 @@ Matrix createProjectionMatrix(
 
 void exitOnGLError(const char* error_message);
 GLuint loadShader(const char* filename, GLenum shader_type);
+void printWorkingDirectory(void);
 
 #endif

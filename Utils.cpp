@@ -139,18 +139,10 @@ void exitOnGLError(const char* error_message)
 
 GLuint loadShader(const char* filename, GLenum shader_type)
 {
-
-    char cwd[1024];
-       if (getcwd(cwd, sizeof(cwd)) != NULL)
-           fprintf(stdout, "\n\nCurrent working dir: %s\n", cwd);
-       else
-           perror("getcwd() error");
-
-
-  GLuint shader_id = 0;
-  FILE* file;
-  long file_size = -1;
-  char* glsl_source;
+    GLuint shader_id = 0;
+    FILE* file;
+    long file_size = -1;
+    char* glsl_source;
 
     file = fopen(filename, "rb");
 
@@ -160,42 +152,43 @@ GLuint loadShader(const char* filename, GLenum shader_type)
         return 0;
     }
 
-  if (0 == fseek(file, 0, SEEK_END) &&
-    -1 != (file_size = ftell(file)))
-  {
-    rewind(file);
+    if (0 == fseek(file, 0, SEEK_END) && -1 != (file_size = ftell(file))) {
+        rewind(file);
 
-    if (NULL != (glsl_source = (char*)malloc(file_size + 1)))
-    {
-      if (file_size == (long)fread(glsl_source, sizeof(char), file_size, file))
-      {
-        glsl_source[file_size] = '\0';
+        if (NULL != (glsl_source = (char*)malloc(file_size + 1))) {
+            if (file_size == (long)fread(glsl_source, sizeof(char), file_size, file)) {
+                glsl_source[file_size] = '\0';
 
-        if (0 != (shader_id = glCreateShader(shader_type)))
-        {
-          glShaderSource(shader_id, 1, (const GLchar **)&glsl_source, NULL);
-          glCompileShader(shader_id);
-          exitOnGLError("Could not compile a shader");
+                if (0 != (shader_id = glCreateShader(shader_type))) {
+                    glShaderSource(shader_id, 1, (const GLchar **)&glsl_source, NULL);
+                    glCompileShader(shader_id);
+                    exitOnGLError("Could not compile a shader");
+                } else {
+                    fprintf(stderr, "ERROR: Could not create a shader.\n");
+                }
+            } else {
+                fprintf(stderr, "ERROR: Could not read file %s\n", filename);
+            }
+
+            free(glsl_source);
+        } else {
+            fprintf(stderr, "ERROR: Could not allocate %i bytes.\n", (int)file_size);
         }
-        else
-          fprintf(stderr, "ERROR: Could not create a shader.\n");
-      }
-      else
-        fprintf(stderr, "ERROR: Could not read file %s\n", filename);
 
-      free(glsl_source);
+        fclose(file);
+    } else {
+        if (NULL != file) fclose(file);
+        fprintf(stderr, "ERROR: Could not open file %s\n", filename);
     }
-    else
-      fprintf(stderr, "ERROR: Could not allocate %i bytes.\n", (int)file_size);
 
-    fclose(file);
-  }
-  else
-  {
-    if (NULL != file)
-      fclose(file);
-    fprintf(stderr, "ERROR: Could not open file %s\n", filename);
-  }
+    return shader_id;
+}
 
-  return shader_id;
+void printWorkingDirectory(void) {
+    char cwd[1024];
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        fprintf(stdout, "\nCurrent working dir: %s\n\n", cwd);
+    } else {
+        perror("getcwd() error");
+    }
 }

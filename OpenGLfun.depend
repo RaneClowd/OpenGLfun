@@ -3,7 +3,7 @@
 	"Utils.h"
 	<unistd.h>
 
-1411774422 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
+1411824150 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -12,8 +12,9 @@
 	<GL/glew.h>
 	<SDL2/SDL.h>
 
-1411776010 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
+1411823943 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
 	"Utils.h"
+	"Player.h"
 
 1409205520 /usr/include/stdlib.h
 	<features.h>
@@ -1992,4 +1993,10 @@
 1409205526 /usr/include/bits/confname.h
 
 1409205526 /usr/include/bits/unistd.h
+
+1411823946 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.h
+	"Utils.h"
+
+1411820936 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
+	"Player.h"
 

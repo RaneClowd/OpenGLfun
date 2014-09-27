@@ -16,6 +16,14 @@ typedef struct Vertex
   float Color[4];
 } Vertex;
 
+typedef enum {
+    NONE,
+    FORWARD,
+    BACKWARD,
+    LEFT,
+    RIGHT
+} MoveDirection;
+
 typedef struct Matrix
 {
   float m[16];

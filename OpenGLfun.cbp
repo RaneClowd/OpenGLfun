@@ -56,6 +56,8 @@
 			<Add directory="/usr/lib" />
 		</Linker>
 		<Unit filename="Main.cpp" />
+		<Unit filename="Player.cpp" />
+		<Unit filename="Player.h" />
 		<Unit filename="SimpleShader.fragment.glsl" />
 		<Unit filename="SimpleShader.vertex.glsl" />
 		<Unit filename="Utils.cpp" />

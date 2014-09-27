@@ -1,4 +1,5 @@
 #include "Utils.h"
+#include "Player.h"
 
 #define WINDOW_TITLE_PREFIX "Playground"
 
@@ -44,17 +45,12 @@ int main(int argc, char* argv[]) {
 
     setUpProjectionMatrix();
 
-    char gameLoopRunning = 1;
-    while (gameLoopRunning) {
-        SDL_Event event;
-        if (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                gameLoopRunning = 0;
-            } else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE) {
-                gameLoopRunning = 0;
-            }
-        }
+    initPlayerInput();
+    while (!userQuit()) {
+        checkForPlayerInput();
+        viewMatrix = updatePlayerView();
 
+        SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
         drawCube();
     }
 
@@ -126,7 +122,7 @@ void initGlew(void)
 void setUpProjectionMatrix() {
     glViewport(0, 0, winWidth, winHeight);
 
-    projectionMatrix = createProjectionMatrix(60, (float)winWidth/winHeight, 1.0f, 100.0f);
+    projectionMatrix = createProjectionMatrix(60, (float)winWidth/winHeight, 0.4f, 100.0f);
 
     glUseProgram(shaderIds[0]);
     glUniformMatrix4fv(projectionMatrixUniformLocation, 1, GL_FALSE, projectionMatrix.m);
@@ -135,8 +131,6 @@ void setUpProjectionMatrix() {
 
 void initShapeData(void) {
     modelMatrix = IDENTITY_MATRIX;
-    viewMatrix = IDENTITY_MATRIX;
-    translateMatrix(&viewMatrix, 0, 0, -2);
 
     createCube();
 }

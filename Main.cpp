@@ -189,7 +189,7 @@ void RenderFunction(void)
 }
 
 void createCube() {
-    const Vertex VERTICES[24] = {
+    const Vertex VERTICES[36] = {
         // Lower front left
         { { -.5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } }, //0
         { { -.5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } },
@@ -203,11 +203,11 @@ void createCube() {
         // Upper front left
         { { -.5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } }, // 6
         { { -.5f,  .5f, -.5f, 1 }, { 0, 1, 0, 1 } },
-        { { -.5f,  .5f, -.5f, 1 }, { 0, 1, 1, 1 } },
+        { { -.5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } },
 
         // Upper front right
         { {  .5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } }, // 9
-        { {  .5f,  .5f, -.5f, 1 }, { 0, 1, 1, 1 } },
+        { {  .5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } },
         { {  .5f,  .5f, -.5f, 1 }, { 1, 1, 0, 1 } },
 
         // Lower back left
@@ -222,22 +222,46 @@ void createCube() {
 
         // Upper back left
         { { -.5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } }, // 18
-        { { -.5f,  .5f,  .5f, 1 }, { 0, 1, 1, 1 } },
+        { { -.5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } },
         { { -.5f,  .5f,  .5f, 1 }, { 0, 1, 0, 1 } },
 
         // Upper back right
         { {  .5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } }, // 21
-        { {  .5f,  .5f,  .5f, 1 }, { 0, 1, 1, 1 } },
-        { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } }
+        { {  .5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } },
+        { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } },
+
+        // Ground
+        { {  -.5f, .0f, -.5f, 1 }, { 0, .6, 0, 1 } }, // 24
+        { {   .5f, .0f, -.5f, 1 }, { 0, .6, 0, 1 } },
+        { {   .5f, .0f,  .5f, 1 }, { 0, .6, 0, 1 } },
+        { {  -.5f, .0f,  .5f, 1 }, { 0, .6, 0, 1 } },
+
+        // Sky box
+        { { -.5f,  .0f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Lower back left         28
+        { {  .5f,  .0f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Lower back right
+        { { -.5f,  .5f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Upper back left         30
+        { {  .5f,  .5f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Upper back right
+        { { -.5f,  .0f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Lower front left        32
+        { {  .5f,  .0f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Lower front right
+        { { -.5f,  .5f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Upper front left        34
+        { {  .5f,  .5f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Upper front right
     };
 
-    const GLuint INDICES[36] = {
+    const GLuint INDICES[72] = {
         4, 1, 9,  1, 6, 9,  // Red
         0, 3,17, 17,14, 0,  // Blue
         2,13,20, 20, 7, 2,  // Green
         8,22,10,  8,19,22,  // Cyan
        16, 5,11, 16,11,23,  // Yellow
-       15,18,12, 15,21,18   // Purple
+       15,18,12, 15,21,18,  // Purple
+
+       25,24,27, 27,26,25,  // ground
+
+       34,32,30, 32,28,30,
+       31,28,29, 31,30,28,
+       35,33,32, 32,34,35,
+       29,35,31, 29,33,35,
+       34,30,35, 30,31,35
     };
 
     shaderIds[0] = glCreateProgram();
@@ -301,6 +325,19 @@ void clearToBlack(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+void drawScene(void) {
+    Matrix groundModel = IDENTITY_MATRIX;
+    scaleMatrix(&groundModel, 30, 1, 30);
+    glUniformMatrix4fv(modelMatrixUniformLocation, 1, GL_FALSE, groundModel.m);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(36 * sizeof(GLuint)));
+
+    scaleMatrix(&groundModel, 1, 30, 1);
+    glUniformMatrix4fv(modelMatrixUniformLocation, 1, GL_FALSE, groundModel.m);
+
+    glDrawElements(GL_TRIANGLES, 30, GL_UNSIGNED_INT, (void*)(42 * sizeof(GLuint)));
+}
+
 void drawCube(void) {
     clearToBlack();
 
@@ -314,6 +351,7 @@ void drawCube(void) {
     modelMatrix = IDENTITY_MATRIX;
     rotateAboutY(&modelMatrix, cubeAngle);
     rotateAboutX(&modelMatrix, cubeAngle);
+    translateMatrix(&modelMatrix, 0, 1, 0);
 
     glUseProgram(shaderIds[0]);
     exitOnGLError("ERROR: Could not use the shader program");
@@ -327,6 +365,8 @@ void drawCube(void) {
 
     glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, NULL);
     exitOnGLError("ERROR: Could not draw the cube");
+
+    drawScene();
 
     glBindVertexArray(0);
     glUseProgram(0);

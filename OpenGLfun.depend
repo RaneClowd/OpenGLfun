@@ -12,7 +12,7 @@
 	<GL/glew.h>
 	<SDL2/SDL.h>
 
-1411823943 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
+1411842978 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
 	"Utils.h"
 	"Player.h"
 
@@ -1997,6 +1997,6 @@
 1411836572 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.h
 	"Utils.h"
 
-1411836324 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
+1411839689 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
 	"Player.h"
 

@@ -1,14 +1,15 @@
 #include "Player.h"
 
+#define INITIAL_HEIGHT 2
 
 unsigned char walkDirection = NONE;
-float locationX=0, locationY=0, locationZ=-2;
-#define MOVE_SPEED .1f;
+float xWorldShift=0, yWorldShift=-INITIAL_HEIGHT, zWorldShift=-2; // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
+#define MOVE_SPEED .1f
 
 float horizontalAngle = 0.0f, verticalAngle = 0.0f;
-#define LOOK_SPEED .01f;
+#define LOOK_SPEED .01f
 
-float fallAccel = -9.8, upVelocity = 0.0f;
+float fallAccel = -25.8, jumpVelocity = 0.0f;
 clock_t lastClock = 0;
 char jumpDetected = 0;
 
@@ -22,40 +23,39 @@ void initPlayerInput(void) {
 
 Matrix updatePlayerView(void) {
     if (walkDirection & FORWARD) {
-        locationZ += cos(horizontalAngle) * MOVE_SPEED;
-        locationX -= sin(horizontalAngle) * MOVE_SPEED;
+        zWorldShift += cos(horizontalAngle) * MOVE_SPEED;
+        xWorldShift -= sin(horizontalAngle) * MOVE_SPEED;
     }
     if (walkDirection & BACKWARD) {
-        locationZ -= cos(horizontalAngle) * MOVE_SPEED;
-        locationX += sin(horizontalAngle) * MOVE_SPEED;
+        zWorldShift -= cos(horizontalAngle) * MOVE_SPEED;
+        xWorldShift += sin(horizontalAngle) * MOVE_SPEED;
     }
 
     if (walkDirection & LEFT) {
-        locationX += cos(horizontalAngle) * MOVE_SPEED;
-        locationZ += sin(horizontalAngle) * MOVE_SPEED;
+        xWorldShift += cos(horizontalAngle) * MOVE_SPEED;
+        zWorldShift += sin(horizontalAngle) * MOVE_SPEED;
     }
     if (walkDirection & RIGHT) {
-        locationX -= cos(horizontalAngle) * MOVE_SPEED;
-        locationZ -= sin(horizontalAngle) * MOVE_SPEED;
+        xWorldShift -= cos(horizontalAngle) * MOVE_SPEED;
+        zWorldShift -= sin(horizontalAngle) * MOVE_SPEED;
     }
 
     clock_t nowClock = clock();
-    if (lastClock != 0 && (upVelocity != 0 || locationY != 0)) {
+    if (lastClock != 0 && (jumpVelocity != 0 || yWorldShift != 0)) {
         float seconds = ((float)(nowClock - lastClock) / CLOCKS_PER_SEC);
-        locationY -= upVelocity;
+        yWorldShift -= jumpVelocity;
 
-        printf("%f\t+\t%f\t=\n", upVelocity, fallAccel * seconds);
-        upVelocity += fallAccel * seconds;
+        jumpVelocity += fallAccel * seconds;
 
-        if (locationY > 0) {
-            locationY = 0;
-            upVelocity = 0;
+        if (yWorldShift > -INITIAL_HEIGHT) {
+            yWorldShift = -INITIAL_HEIGHT; // at rest, the world is pushed down by how tall you are. because zero is defined by where your eyes are
+            jumpVelocity = 0;
         }
     }
     lastClock = nowClock;
 
     Matrix viewMatrix = IDENTITY_MATRIX;
-    translateMatrix(&viewMatrix, locationX, locationY, locationZ);
+    translateMatrix(&viewMatrix, xWorldShift, yWorldShift, zWorldShift);
     rotateAboutY(&viewMatrix, horizontalAngle);
     rotateAboutX(&viewMatrix, verticalAngle);
 
@@ -87,8 +87,8 @@ void checkForPlayerInput(void) {
                     break;
                 }
                 case SDL_SCANCODE_SPACE: {
-                    if (!jumpDetected && locationY == 0) {
-                        upVelocity = .1;
+                    if (yWorldShift == -INITIAL_HEIGHT) {
+                        jumpVelocity = .3;
                         jumpDetected = 1;
                     }
                     break;
@@ -113,7 +113,7 @@ void checkForPlayerInput(void) {
                     break;
                 }
                 case SDL_SCANCODE_SPACE: {
-                    if (locationY == 0) jumpDetected = 0;
+                    jumpDetected = 0;
                     break;
                 }
             }

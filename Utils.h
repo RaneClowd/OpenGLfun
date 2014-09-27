@@ -17,12 +17,12 @@ typedef struct Vertex
 } Vertex;
 
 typedef enum {
-    NONE,
-    FORWARD,
-    BACKWARD,
-    LEFT,
-    RIGHT
-} MoveDirection;
+    NONE = 0,
+    FORWARD = 1,
+    BACKWARD = 1<<1,
+    LEFT = 1<<2,
+    RIGHT = 1<<3
+} Direction;
 
 typedef struct Matrix
 {

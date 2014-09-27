@@ -6,7 +6,7 @@
 void initPlayerInput(void);
 
 Matrix updatePlayerView(void);
-void setPlayerMovement(MoveDirection movement);
+
 void checkForPlayerInput(void);
 char userQuit(void);
 

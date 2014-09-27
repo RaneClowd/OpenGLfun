@@ -23,6 +23,15 @@ float radiansToDegrees(float radians)
   return radians * (float)(180 / PI);
 }
 
+void verticesForCircle(Vertex *vertexArray, int vertexStart, int numVertices, float color[4]) {
+    float radianIncrement = numVertices / 2.0f * PI;
+    float radians = 0.0f;
+    for (int i = 0; i < numVertices; i++) {
+        vertexArray[i+vertexStart] = { { cos(radians), 0.0f, sin(radians), 1 }, *color};
+        radians += radianIncrement;
+    }
+}
+
 Matrix multiplyMatrices(const Matrix* m1, const Matrix* m2)
 {
   Matrix out = IDENTITY_MATRIX;

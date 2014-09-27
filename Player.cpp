@@ -3,7 +3,7 @@
 #define INITIAL_HEIGHT 2
 
 unsigned char walkDirection = NONE;
-float xWorldShift=0, yWorldShift=-INITIAL_HEIGHT, zWorldShift=-2; // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
+float xWorldShift=0, yWorldShift=-INITIAL_HEIGHT, zWorldShift=-4; // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
 #define MOVE_SPEED .1f
 
 float horizontalAngle = 0.0f, verticalAngle = 0.0f;

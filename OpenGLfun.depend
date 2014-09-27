@@ -1,9 +1,9 @@
 # depslib dependency file v1.0
-1411774793 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.cpp
+1411860194 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.cpp
 	"Utils.h"
 	<unistd.h>
 
-1411835734 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
+1411859752 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -12,7 +12,7 @@
 	<GL/glew.h>
 	<SDL2/SDL.h>
 
-1411842978 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
+1411860747 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
 	"Utils.h"
 	"Player.h"
 
@@ -1997,6 +1997,6 @@
 1411836572 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.h
 	"Utils.h"
 
-1411839689 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
+1411858332 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
 	"Player.h"
 

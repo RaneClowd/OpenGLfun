@@ -35,6 +35,8 @@ float cotangent(float angle);
 float degreesToRadians(float degrees);
 float radiansToDegrees(float radians);
 
+void verticesForCircle(Vertex *vertexArray, int vertexStart, int numVertices, float color[4]);
+
 Matrix multiplyMatrices(const Matrix* m1, const Matrix* m2);
 void rotateAboutX(Matrix* m, float angle);
 void rotateAboutY(Matrix* m, float angle);
@@ -51,6 +53,8 @@ Matrix createProjectionMatrix(
 
 void exitOnGLError(const char* error_message);
 GLuint loadShader(const char* filename, GLenum shader_type);
+
+// For debugging help
 void printWorkingDirectory(void);
 
 #endif

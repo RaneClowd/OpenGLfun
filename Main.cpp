@@ -3,7 +3,7 @@
 
 #define WINDOW_TITLE_PREFIX "Playground"
 
-int winWidth = 600, winHeight = 600;
+int winWidth = 800, winHeight = 800;
 
 unsigned frameCount = 0;
 
@@ -27,12 +27,6 @@ void initGlew(void);
 void initShapeData(void);
 void setUpProjectionMatrix(void);
 void createCube(void);
-
-void RenderFunction(void);
-void TimerFunction(int);
-void IdleFunction(void);
-void keyboardFunction(unsigned char, int, int);
-void mouseMove(int, int);
 void destroyCube(void);
 void drawCube(void);
 
@@ -135,117 +129,64 @@ void initShapeData(void) {
     createCube();
 }
 
-void keyboardFunction(unsigned char key, int x, int y) {
-    /*switch (key) {
-        case 'F' :
-        case 'f' : {
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-            break;
-        }
-        case 'L' :
-        case 'l' : {
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-            break;
-        }
-
-        case '<':
-        case ',': {
-            translateMatrix(&viewMatrix, 0, 0, -1);
-            break;
-        }
-
-        case 'O':
-        case 'o': {
-            translateMatrix(&viewMatrix, 0, 0, 1);
-            break;
-        }
-
-        case 27: {
-            glutDestroyWindow(WindowHandle);
-            exit(0);
-            break;
-        }
-
-        default:
-            break;
-    }*/
-}
-
-void mouseMove(int x, int y) {
-    /*fprintf(stderr, "x: %d, y: %d", x, y);
-    glutWarpPointer(CurrentWidth / 2, CurrentHeight / 2);*/
-}
-
-void RenderFunction(void)
-{
-    /*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    drawCube();
-
-    glutSwapBuffers();
-    glutPostRedisplay();
-
-    ++frameCount;*/
-}
-
 void createCube() {
-    const Vertex VERTICES[36] = {
-        // Lower front left
-        { { -.5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } }, //0
-        { { -.5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } },
-        { { -.5f, -.5f, -.5f, 1 }, { 0, 1, 0, 1 } },
+    Vertex VERTICES[36];
 
-        // Lower front right
-        { {  .5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } }, // 3
-        { {  .5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } },
-        { {  .5f, -.5f, -.5f, 1 }, { 1, 1, 0, 1 } },
+    // Lower front left
+    VERTICES[0] = { { -.5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } };
+    VERTICES[1] = { { -.5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } };
+    VERTICES[2] = { { -.5f, -.5f, -.5f, 1 }, { 0, 1, 0, 1 } };
 
-        // Upper front left
-        { { -.5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } }, // 6
-        { { -.5f,  .5f, -.5f, 1 }, { 0, 1, 0, 1 } },
-        { { -.5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } },
+    // Lower front right
+    VERTICES[3] = { {  .5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } };
+    VERTICES[4] = { {  .5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } };
+    VERTICES[5] = { {  .5f, -.5f, -.5f, 1 }, { 1, 1, 0, 1 } };
 
-        // Upper front right
-        { {  .5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } }, // 9
-        { {  .5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } },
-        { {  .5f,  .5f, -.5f, 1 }, { 1, 1, 0, 1 } },
+    // Upper front left
+    VERTICES[6] = { { -.5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } };
+    VERTICES[7] = { { -.5f,  .5f, -.5f, 1 }, { 0, 1, 0, 1 } };
+    VERTICES[8] = { { -.5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } };
 
-        // Lower back left
-        { { -.5f, -.5f,  .5f, 1 }, { 1, 0, 1, 1 } }, // 12
-        { { -.5f, -.5f,  .5f, 1 }, { 0, 1, 0, 1 } },
-        { { -.5f, -.5f,  .5f, 1 }, { 0, 0, 1, 1 } },
+    // Upper front right
+    VERTICES[9] = { {  .5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } };
+    VERTICES[10] = { {  .5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } };
+    VERTICES[11] = { {  .5f,  .5f, -.5f, 1 }, { 1, 1, 0, 1 } };
 
-        // Lower back right
-        { {  .5f, -.5f,  .5f, 1 }, { 1, 0, 1, 1 } }, // 15
-        { {  .5f, -.5f,  .5f, 1 }, { 1, 1, 0, 1 } },
-        { {  .5f, -.5f,  .5f, 1 }, { 0, 0, 1, 1 } },
+    // Lower back left
+    VERTICES[12] = { { -.5f, -.5f,  .5f, 1 }, { 1, 0, 1, 1 } };
+    VERTICES[13] = { { -.5f, -.5f,  .5f, 1 }, { 0, 1, 0, 1 } };
+    VERTICES[14] = { { -.5f, -.5f,  .5f, 1 }, { 0, 0, 1, 1 } };
 
-        // Upper back left
-        { { -.5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } }, // 18
-        { { -.5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } },
-        { { -.5f,  .5f,  .5f, 1 }, { 0, 1, 0, 1 } },
+    // Lower back right
+    VERTICES[15] = { {  .5f, -.5f,  .5f, 1 }, { 1, 0, 1, 1 } };
+    VERTICES[16] = { {  .5f, -.5f,  .5f, 1 }, { 1, 1, 0, 1 } };
+    VERTICES[17] = { {  .5f, -.5f,  .5f, 1 }, { 0, 0, 1, 1 } };
 
-        // Upper back right
-        { {  .5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } }, // 21
-        { {  .5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } },
-        { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } },
+    // Upper back left
+    VERTICES[18] = { { -.5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } };
+    VERTICES[19] = { { -.5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } };
+    VERTICES[20] = { { -.5f,  .5f,  .5f, 1 }, { 0, 1, 0, 1 } };
+
+    // Upper back right
+    VERTICES[21] = { {  .5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } };
+    VERTICES[22] = { {  .5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } };
+    VERTICES[23] = { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } };
 
         // Ground
-        { {  -.5f, .0f, -.5f, 1 }, { 0, .6, 0, 1 } }, // 24
-        { {   .5f, .0f, -.5f, 1 }, { 0, .6, 0, 1 } },
-        { {   .5f, .0f,  .5f, 1 }, { 0, .6, 0, 1 } },
-        { {  -.5f, .0f,  .5f, 1 }, { 0, .6, 0, 1 } },
+    VERTICES[24] = { {  -.5f, .0f, -.5f, 1 }, { 0, .6, 0, 1 } };
+    VERTICES[25] = { {   .5f, .0f, -.5f, 1 }, { 0, .6, 0, 1 } };
+    VERTICES[26] = { {   .5f, .0f,  .5f, 1 }, { 0, .6, 0, 1 } };
+    VERTICES[27] = { {  -.5f, .0f,  .5f, 1 }, { 0, .6, 0, 1 } };
 
         // Sky box
-        { { -.5f,  .0f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Lower back left         28
-        { {  .5f,  .0f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Lower back right
-        { { -.5f,  .5f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Upper back left         30
-        { {  .5f,  .5f, -.5f, 1 }, { 0, .7, .9, 1 } }, // Upper back right
-        { { -.5f,  .0f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Lower front left        32
-        { {  .5f,  .0f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Lower front right
-        { { -.5f,  .5f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Upper front left        34
-        { {  .5f,  .5f,  .5f, 1 }, { 0, .7, .9, 1 } }, // Upper front right
-    };
+    VERTICES[28] = { { -.5f,  .0f, -.5f, 1 }, { 0, .7, .9, 1 } };
+    VERTICES[29] = { {  .5f,  .0f, -.5f, 1 }, { 0, .7, .9, 1 } };
+    VERTICES[30] = { { -.5f,  .5f, -.5f, 1 }, { 0, .4, .9, 1 } };
+    VERTICES[31] = { {  .5f,  .5f, -.5f, 1 }, { 0, .4, .9, 1 } };
+    VERTICES[32] = { { -.5f,  .0f,  .5f, 1 }, { 0, .7, .9, 1 } };
+    VERTICES[33] = { {  .5f,  .0f,  .5f, 1 }, { 0, .7, .9, 1 } };
+    VERTICES[34] = { { -.5f,  .5f,  .5f, 1 }, { 0, .4, .9, 1 } };
+    VERTICES[35] = { {  .5f,  .5f,  .5f, 1 }, { 0, .4, .9, 1 } };
 
     const GLuint INDICES[72] = {
         4, 1, 9,  1, 6, 9,  // Red
@@ -373,22 +314,4 @@ void drawCube(void) {
 
     SDL_GL_SwapWindow(window);
     SDL_Delay(20);
-}
-
-void IdleFunction(void) {
-    //glutPostRedisplay();
-}
-
-void TimerFunction(int value) {
-    /*if (0 != value) {
-        char *tempString = (char*) malloc(512 + strlen(WINDOW_TITLE_PREFIX));
-
-        sprintf(tempString, "%s: %d frames per second @ %d x %d", WINDOW_TITLE_PREFIX, frameCount * 4, CurrentWidth, CurrentHeight);
-
-        glutSetWindowTitle(tempString);
-        free(tempString);
-    }
-
-    frameCount = 0;
-    glutTimerFunc(250, TimerFunction, 1);*/
 }

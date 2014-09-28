@@ -1,7 +1,8 @@
 #include "Utils.h"
 #include "Player.h"
+#include <sys/time.h>
 
-#define WINDOW_TITLE_PREFIX "Playground"
+#define MICROS_PER_FRAME 33000 // 33ms/frame * 30frames == 990ms (so about 30 frames a second)
 
 int winWidth = 800, winHeight = 800;
 
@@ -20,7 +21,7 @@ SDL_GLContext glContext;
 Matrix projectionMatrix, viewMatrix, modelMatrix;
 
 float cubeRotation = 0;
-clock_t lastTime = 0;
+timeval lastTime = NULL;
 
 void initSDLWithOpenGL(void);
 void initGlew(void);
@@ -40,19 +41,43 @@ int main(int argc, char* argv[]) {
     setUpProjectionMatrix();
 
     initPlayerInput();
-    while (!userQuit()) {
-        checkForPlayerInput();
-        viewMatrix = updatePlayerView();
 
-        SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
-        drawCube();
-    }
-
+    gameLoop();
 
     destroyCube();
     SDL_GL_DeleteContext(glContext);
     SDL_Quit();
     exit(EXIT_SUCCESS);
+}
+
+long microsDifference(timeval oldest, timeval latest) {
+    long seconds = latest.tv_sec - oldest.tv_sec;
+    long micros = latest.tv_usec - oldest.tv_usec;
+
+    return (seconds * 1000000) + micros;
+}
+
+void gameLoop(void) {
+    while (!userQuit()) {
+        timeval timeStart;
+        gettimeofday(&timeStart, NULL);
+
+        if (lastTime == NULL) lastTime = timeStart;
+
+        long microsPassed = microsDifference(lastTime, timeStart);
+
+        checkForPlayerInput();
+        viewMatrix = updatePlayerView(microsPassed);
+
+        SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
+        drawCube();
+
+        timeval timeAfterWork;
+        gettimeofday(&timeAfterWork, NULL);
+        long microsSpent = microsDifference(timeStart, timeAfterWork);
+
+        SDL_Delay(MICROS_PER_FRAME - microsSpent);
+    }
 }
 
 void initSDLWithOpenGL (void) {
@@ -313,5 +338,4 @@ void drawCube(void) {
     glUseProgram(0);
 
     SDL_GL_SwapWindow(window);
-    SDL_Delay(20);
 }

@@ -5,7 +5,7 @@
 
 void initPlayerInput(void);
 
-Matrix updatePlayerView(void);
+Matrix updatedPlayerView(long microsPassed);
 
 void checkForPlayerInput(void);
 char userQuit(void);

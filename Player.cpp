@@ -4,14 +4,13 @@
 
 unsigned char walkDirection = NONE;
 float xWorldShift=0, yWorldShift=-INITIAL_HEIGHT, zWorldShift=-4; // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
-#define MOVE_SPEED .1f
+#define MOVE_SPEED_PER_MICRO .001f
 
 float horizontalAngle = 0.0f, verticalAngle = 0.0f;
-#define LOOK_SPEED .01f
+#define LOOK_SPEED_PER_MICRO .001f
 
-float fallAccel = -25.8, jumpVelocity = 0.0f;
-clock_t lastClock = 0;
-char jumpDetected = 0;
+const float fallAccelPerMicro = -9.8 / 1000000;
+float jumpVelocityPerMicro = 0.0f, xMouseMotion = 0.0f, yMouseMotion = 0.0f];
 
 char userQuitFlag = 0;
 
@@ -21,38 +20,38 @@ void initPlayerInput(void) {
     }
 }
 
-Matrix updatePlayerView(void) {
+Matrix updatedPlayerView(long microsPassed) {
     if (walkDirection & FORWARD) {
-        zWorldShift += cos(horizontalAngle) * MOVE_SPEED;
-        xWorldShift -= sin(horizontalAngle) * MOVE_SPEED;
+        zWorldShift += cos(horizontalAngle) * MOVE_SPEED * microsPassed;
+        xWorldShift -= sin(horizontalAngle) * MOVE_SPEED * microsPassed;
     }
     if (walkDirection & BACKWARD) {
-        zWorldShift -= cos(horizontalAngle) * MOVE_SPEED;
-        xWorldShift += sin(horizontalAngle) * MOVE_SPEED;
+        zWorldShift -= cos(horizontalAngle) * MOVE_SPEED * microsPassed;
+        xWorldShift += sin(horizontalAngle) * MOVE_SPEED * microsPassed;
     }
 
     if (walkDirection & LEFT) {
-        xWorldShift += cos(horizontalAngle) * MOVE_SPEED;
-        zWorldShift += sin(horizontalAngle) * MOVE_SPEED;
+        xWorldShift += cos(horizontalAngle) * MOVE_SPEED * microsPassed;
+        zWorldShift += sin(horizontalAngle) * MOVE_SPEED * microsPassed;
     }
     if (walkDirection & RIGHT) {
-        xWorldShift -= cos(horizontalAngle) * MOVE_SPEED;
-        zWorldShift -= sin(horizontalAngle) * MOVE_SPEED;
+        xWorldShift -= cos(horizontalAngle) * MOVE_SPEED * microsPassed;
+        zWorldShift -= sin(horizontalAngle) * MOVE_SPEED * microsPassed;
     }
 
-    clock_t nowClock = clock();
-    if (lastClock != 0 && (jumpVelocity != 0 || yWorldShift != 0)) {
-        float seconds = ((float)(nowClock - lastClock) / CLOCKS_PER_SEC);
-        yWorldShift -= jumpVelocity;
+    if (jumpVelocity != 0 || yWorldShift != 0) {
+        yWorldShift -= jumpVelocityPerMicro * microsPassed;
 
-        jumpVelocity += fallAccel * seconds;
+        jumpVelocity += fallAccelPerMicro * microsPassed;
 
         if (yWorldShift > -INITIAL_HEIGHT) {
             yWorldShift = -INITIAL_HEIGHT; // at rest, the world is pushed down by how tall you are. because zero is defined by where your eyes are
-            jumpVelocity = 0;
+            jumpVelocityPerMicro = 0;
         }
     }
-    lastClock = nowClock;
+
+    horizontalAngle += xMouseMotion * LOOK_SPEED_PER_MICRO * MICROS_PER_FRAME;
+    verticalAngle -= yMouseMotion * LOOK_SPEED_PER_MICRO * MICROS_PER_FRAME;
 
     Matrix viewMatrix = IDENTITY_MATRIX;
     translateMatrix(&viewMatrix, xWorldShift, yWorldShift, zWorldShift);
@@ -89,7 +88,6 @@ void checkForPlayerInput(void) {
                 case SDL_SCANCODE_SPACE: {
                     if (yWorldShift == -INITIAL_HEIGHT) {
                         jumpVelocity = .3;
-                        jumpDetected = 1;
                     }
                     break;
                 }
@@ -112,14 +110,10 @@ void checkForPlayerInput(void) {
                     walkDirection &= ~LEFT;
                     break;
                 }
-                case SDL_SCANCODE_SPACE: {
-                    jumpDetected = 0;
-                    break;
-                }
             }
         } else if (event.type == SDL_MOUSEMOTION) {
-            horizontalAngle += event.motion.xrel * LOOK_SPEED;
-            verticalAngle -= event.motion.yrel * LOOK_SPEED;
+            xMouseMotion = event.motion.xrel;
+            yMouseMotion = event.motion.yrel;
         }
     }
 }

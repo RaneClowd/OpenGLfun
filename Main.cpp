@@ -21,7 +21,7 @@ SDL_GLContext glContext;
 Matrix projectionMatrix, viewMatrix, modelMatrix;
 
 float cubeRotation = 0;
-timeval lastTime = NULL;
+timeval lastTime = (timeval){0};
 
 void initSDLWithOpenGL(void);
 void initGlew(void);
@@ -30,6 +30,7 @@ void setUpProjectionMatrix(void);
 void createCube(void);
 void destroyCube(void);
 void drawCube(void);
+void gameLoop(void);
 
 int main(int argc, char* argv[]) {
     printWorkingDirectory();
@@ -62,7 +63,7 @@ void gameLoop(void) {
         timeval timeStart;
         gettimeofday(&timeStart, NULL);
 
-        if (lastTime == NULL) lastTime = timeStart;
+        if (lastTime.tv_sec == 0) lastTime = timeStart;
 
         long microsPassed = microsDifference(lastTime, timeStart);
 
@@ -77,6 +78,7 @@ void gameLoop(void) {
         long microsSpent = microsDifference(timeStart, timeAfterWork);
 
         SDL_Delay(MICROS_PER_FRAME - microsSpent);
+        lastTime = timeStart;
     }
 }
 

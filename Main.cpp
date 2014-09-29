@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
     initPlayerInput();
 
     gameLoop();
-
+    
     destroyCube();
     SDL_GL_DeleteContext(glContext);
     SDL_Quit();
@@ -68,16 +68,15 @@ void gameLoop(void) {
         long microsPassed = microsDifference(lastTime, timeStart);
 
         checkForPlayerInput();
-        viewMatrix = updatePlayerView(microsPassed);
+        viewMatrix = updatedPlayerView(microsPassed);
 
-        SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
         drawCube();
 
         timeval timeAfterWork;
         gettimeofday(&timeAfterWork, NULL);
         long microsSpent = microsDifference(timeStart, timeAfterWork);
-
-        SDL_Delay(MICROS_PER_FRAME - microsSpent);
+        
+        SDL_Delay((uint)(MICROS_PER_FRAME - microsSpent) / 1000 );
         lastTime = timeStart;
     }
 }

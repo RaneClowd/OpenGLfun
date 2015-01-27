@@ -1,139 +1,51 @@
 #include "Utils.h"
 #include <unistd.h>
 
-const Matrix IDENTITY_MATRIX = { {
+const glm::mat4 IDENTITY_MATRIX = glm::mat4(
   1, 0, 0, 0,
   0, 1, 0, 0,
   0, 0, 1, 0,
-  0, 0, 0, 1
-} };
-
-float cotangent(float angle)
-{
-  return (float)(1.0 / tan(angle));
-}
+  0, 0, 0, 1);
 
 float degreesToRadians(float degrees)
 {
   return degrees * (float)(PI / 180);
 }
 
-float radiansToDegrees(float radians)
-{
-  return radians * (float)(180 / PI);
-}
-
-void verticesForCircle(Vertex *vertexArray, int vertexStart, int numVertices, float color[4]) {
+void verticesForCircle(Vertex *vertexArray, int vertexStart, int numVertices) {
     float radianIncrement = numVertices / 2.0f * PI;
     float radians = 0.0f;
     for (int i = 0; i < numVertices; i++) {
-        vertexArray[i+vertexStart] = { { cos(radians), 0.0f, sin(radians), 1 }, *color};
+        vertexArray[i+vertexStart] = { { cos(radians), 0.0f, sin(radians), 1 }, {1,0,0,1}};
         radians += radianIncrement;
     }
 }
 
-Matrix multiplyMatrices(const Matrix* m1, const Matrix* m2)
-{
-  Matrix out = IDENTITY_MATRIX;
-  unsigned int row, column, row_offset;
+Vertex* verticesForSphere(int& count, float radius, int slices, int stacks, glm::vec4 color) {
+    count = stacks * slices;
 
-  for (row = 0, row_offset = row * 4; row < 4; ++row, row_offset = row * 4)
-    for (column = 0; column < 4; ++column)
-      out.m[row_offset + column] =
-        (m1->m[row_offset + 0] * m2->m[column + 0]) +
-        (m1->m[row_offset + 1] * m2->m[column + 4]) +
-        (m1->m[row_offset + 2] * m2->m[column + 8]) +
-        (m1->m[row_offset + 3] * m2->m[column + 12]);
+    Vertex *vertexArray = new Vertex[count];
+    int vertexIndex = 0;
 
-  return out;
+    for (int stack = 0; stack < stacks; ++stack) {
+        for (int slice = 0; slice < slices; ++slice) {
+            float y = -cos(PI * stack / stacks);
+            /* for better performance, use y = 2.0 * stack / STACKS - 1.0 */
+
+            float r = sqrt(1 - pow(y, 2));
+            float x = r * sin(2.0 * PI * slice / slices);
+            float z = r * cos(2.0 * PI * slice / slices);
+
+
+            vertexArray[vertexIndex].Position = glm::vec4(x*radius, y*radius, z*radius, 1);
+            vertexArray[vertexIndex].Color = color;
+
+            vertexIndex += 1;
+        }
+    }
 }
 
-void scaleMatrix(Matrix* m, float x, float y, float z)
-{
-  Matrix scale = IDENTITY_MATRIX;
 
-  scale.m[0] = x;
-  scale.m[5] = y;
-  scale.m[10] = z;
-
-  memcpy(m->m, &multiplyMatrices(m, &scale).m[0], sizeof(m->m));
-}
-
-void translateMatrix(Matrix* m, float x, float y, float z)
-{
-  Matrix translation = IDENTITY_MATRIX;
-
-  translation.m[12] = x;
-  translation.m[13] = y;
-  translation.m[14] = z;
-
-  memcpy(m->m, &multiplyMatrices(m, &translation).m[0], sizeof(m->m));
-}
-
-void rotateAboutX(Matrix* m, float angle)
-{
-  Matrix rotation = IDENTITY_MATRIX;
-  float sine = (float)sin(angle);
-  float cosine = (float)cos(angle);
-
-  rotation.m[5] = cosine;
-  rotation.m[6] = -sine;
-  rotation.m[9] = sine;
-  rotation.m[10] = cosine;
-
-  memcpy(m->m, &multiplyMatrices(m, &rotation).m[0], sizeof(m->m));
-}
-
-void rotateAboutY(Matrix* m, float angle)
-{
-  Matrix rotation = IDENTITY_MATRIX;
-  float sine = (float)sin(angle);
-  float cosine = (float)cos(angle);
-
-  rotation.m[0] = cosine;
-  rotation.m[8] = sine;
-  rotation.m[2] = -sine;
-  rotation.m[10] = cosine;
-
-  memcpy(m->m, &multiplyMatrices(m, &rotation).m[0], sizeof(m->m));
-}
-
-void rotateAboutZ(Matrix* m, float angle)
-{
-  Matrix rotation = IDENTITY_MATRIX;
-  float sine = (float)sin(angle);
-  float cosine = (float)cos(angle);
-
-  rotation.m[0] = cosine;
-  rotation.m[1] = -sine;
-  rotation.m[4] = sine;
-  rotation.m[5] = cosine;
-
-  memcpy(m->m, &multiplyMatrices(m, &rotation).m[0], sizeof(m->m));
-}
-
-Matrix createProjectionMatrix(
-  float fovy,
-  float aspect_ratio,
-  float near_plane,
-  float far_plane
-)
-{
-  Matrix out = { { 0 } };
-
-  const float
-    y_scale = cotangent(degreesToRadians(fovy / 2)),
-    x_scale = y_scale / aspect_ratio,
-    frustum_length = far_plane - near_plane;
-
-  out.m[0] = x_scale;
-  out.m[5] = y_scale;
-  out.m[10] = -((far_plane + near_plane) / frustum_length);
-  out.m[11] = -1;
-  out.m[14] = -((2 * near_plane * far_plane) / frustum_length);
-
-  return out;
-}
 
 void exitOnGLError(const char* error_message)
 {

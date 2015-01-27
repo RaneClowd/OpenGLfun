@@ -5,7 +5,7 @@
 
 void initPlayerInput(void);
 
-Matrix updatePlayerView(void);
+glm::mat4 updatePlayerView(float timeLapsed);
 
 void checkForPlayerInput(void);
 char userQuit(void);

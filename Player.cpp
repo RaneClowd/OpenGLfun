@@ -1,16 +1,15 @@
 #include "Player.h"
 
-#define INITIAL_HEIGHT 2
+
+const int INITIAL_HEIGHT = 2;
+const float MOVE_SPEED = .1f, LOOK_SPEED = .01f, GRAVITY_FORCE = -25.8;
 
 unsigned char walkDirection = NONE;
-float xWorldShift=0, yWorldShift=-INITIAL_HEIGHT, zWorldShift=-4; // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
-#define MOVE_SPEED .1f
+glm::vec3 worldShift = glm::vec3(0, -INITIAL_HEIGHT, -4); // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
 
-float horizontalAngle = 0.0f, verticalAngle = 0.0f;
-#define LOOK_SPEED .01f
+glm::vec3 angle = glm::vec3(0, -0.5, 0);
 
-float fallAccel = -25.8, jumpVelocity = 0.0f;
-clock_t lastClock = 0;
+float jumpVelocity = 0.0f;
 char jumpDetected = 0;
 
 char userQuitFlag = 0;
@@ -21,45 +20,42 @@ void initPlayerInput(void) {
     }
 }
 
-Matrix updatePlayerView(void) {
+glm::mat4 updatePlayerView(float timeLapsed) {
     if (walkDirection & FORWARD) {
-        zWorldShift += cos(horizontalAngle) * MOVE_SPEED;
-        xWorldShift -= sin(horizontalAngle) * MOVE_SPEED;
+        worldShift.z += cosf(angle.x) * MOVE_SPEED;
+        worldShift.x -= sinf(angle.x) * MOVE_SPEED;
     }
     if (walkDirection & BACKWARD) {
-        zWorldShift -= cos(horizontalAngle) * MOVE_SPEED;
-        xWorldShift += sin(horizontalAngle) * MOVE_SPEED;
+        worldShift.z -= cosf(angle.x) * MOVE_SPEED;
+        worldShift.x += sinf(angle.x) * MOVE_SPEED;
     }
 
     if (walkDirection & LEFT) {
-        xWorldShift += cos(horizontalAngle) * MOVE_SPEED;
-        zWorldShift += sin(horizontalAngle) * MOVE_SPEED;
+        worldShift.x += cosf(angle.x) * MOVE_SPEED;
+        worldShift.z += sinf(angle.x) * MOVE_SPEED;
     }
     if (walkDirection & RIGHT) {
-        xWorldShift -= cos(horizontalAngle) * MOVE_SPEED;
-        zWorldShift -= sin(horizontalAngle) * MOVE_SPEED;
+        worldShift.x -= cosf(angle.x) * MOVE_SPEED;
+        worldShift.z -= sinf(angle.x) * MOVE_SPEED;
     }
 
-    clock_t nowClock = clock();
-    if (lastClock != 0 && (jumpVelocity != 0 || yWorldShift != 0)) {
-        float seconds = ((float)(nowClock - lastClock) / CLOCKS_PER_SEC);
-        yWorldShift -= jumpVelocity;
+    if (timeLapsed != 0 && (jumpVelocity != 0 || worldShift.y != 0)) {
+        worldShift.y -= jumpVelocity;
 
-        jumpVelocity += fallAccel * seconds;
+        jumpVelocity += GRAVITY_FORCE * timeLapsed;
 
-        if (yWorldShift > -INITIAL_HEIGHT) {
-            yWorldShift = -INITIAL_HEIGHT; // at rest, the world is pushed down by how tall you are. because zero is defined by where your eyes are
+        if (worldShift.y > -INITIAL_HEIGHT) {
+            worldShift.y = -INITIAL_HEIGHT; // at rest, the world is pushed down by how tall you are. because zero is defined by where your eyes are
             jumpVelocity = 0;
         }
     }
-    lastClock = nowClock;
 
-    Matrix viewMatrix = IDENTITY_MATRIX;
-    translateMatrix(&viewMatrix, xWorldShift, yWorldShift, zWorldShift);
-    rotateAboutY(&viewMatrix, horizontalAngle);
-    rotateAboutX(&viewMatrix, verticalAngle);
 
-    return viewMatrix;
+    glm::mat4 view = glm::rotate(IDENTITY_MATRIX, angle.y, glm::vec3(-1, 0, 0));
+    view = glm::rotate(view, angle.x, glm::vec3(0, 1, 0));
+    view = glm::translate(view, worldShift);
+
+    return view;
 }
 
 void checkForPlayerInput(void) {
@@ -87,12 +83,13 @@ void checkForPlayerInput(void) {
                     break;
                 }
                 case SDL_SCANCODE_SPACE: {
-                    if (yWorldShift == -INITIAL_HEIGHT) {
+                    if (worldShift.y == -INITIAL_HEIGHT) {
                         jumpVelocity = .3;
                         jumpDetected = 1;
                     }
                     break;
                 }
+                default: {}
             }
         } else if (event.type == SDL_KEYUP) {
             switch (event.key.keysym.scancode) {
@@ -116,10 +113,11 @@ void checkForPlayerInput(void) {
                     jumpDetected = 0;
                     break;
                 }
+                default: {}
             }
         } else if (event.type == SDL_MOUSEMOTION) {
-            horizontalAngle += event.motion.xrel * LOOK_SPEED;
-            verticalAngle -= event.motion.yrel * LOOK_SPEED;
+            angle.x += event.motion.xrel * LOOK_SPEED;
+            angle.y -= event.motion.yrel * LOOK_SPEED;
         }
     }
 }

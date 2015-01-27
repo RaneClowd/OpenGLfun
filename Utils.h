@@ -8,12 +8,18 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
+#include <glm/vec3.hpp>
+#include <glm/vec4.hpp>
+#include <glm/mat4x4.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 static const double PI = 3.14159265358979323846;
 
 typedef struct Vertex
 {
-  float Position[4];
-  float Color[4];
+  glm::vec4 Position;
+  glm::vec4 Color;
 } Vertex;
 
 typedef enum {
@@ -24,32 +30,11 @@ typedef enum {
     RIGHT = 1<<3
 } Direction;
 
-typedef struct Matrix
-{
-  float m[16];
-} Matrix;
+extern const glm::mat4 IDENTITY_MATRIX;
 
-extern const Matrix IDENTITY_MATRIX;
-
-float cotangent(float angle);
 float degreesToRadians(float degrees);
-float radiansToDegrees(float radians);
 
-void verticesForCircle(Vertex *vertexArray, int vertexStart, int numVertices, float color[4]);
-
-Matrix multiplyMatrices(const Matrix* m1, const Matrix* m2);
-void rotateAboutX(Matrix* m, float angle);
-void rotateAboutY(Matrix* m, float angle);
-void rotateAboutZ(Matrix* m, float angle);
-void scaleMatrix(Matrix* m, float x, float y, float z);
-void translateMatrix(Matrix* m, float x, float y, float z);
-
-Matrix createProjectionMatrix(
-  float fovy,
-  float aspect_ratio,
-  float near_plane,
-  float far_plane
-);
+Vertex* verticesForSphere(int& count, float radius, int slices, int stacks, glm::vec4 color);
 
 void exitOnGLError(const char* error_message);
 GLuint loadShader(const char* filename, GLenum shader_type);

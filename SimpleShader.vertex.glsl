@@ -1,14 +1,11 @@
 #version 330
 
-layout(location=0) in vec4 in_Position;
-layout(location=1) in vec4 in_Color;
-out vec4 ex_Color;
+layout(location=0) in vec4 coord;
+out vec4 texcoord;
 
-uniform mat4 ModelMatrix;
-uniform mat4 ViewMatrix;
-uniform mat4 ProjectionMatrix;
+uniform mat4 mvp;
 
 void main(void) {
-    gl_Position = (ProjectionMatrix * ViewMatrix * ModelMatrix) * in_Position;
-    ex_Color = in_Color;
+    texcoord = coord;
+    gl_Position = mvp * vec4(coord.xyz, 1);
 }

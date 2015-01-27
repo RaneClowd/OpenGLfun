@@ -64,6 +64,18 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="GLHelpers/GLShader.cpp">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="GLHelpers/GLShader.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
+		<Unit filename="GLShader.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+		</Unit>
 		<Unit filename="Main.cpp" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
@@ -71,10 +83,6 @@
 		<Unit filename="SimpleShader.vertex.glsl" />
 		<Unit filename="Utils.cpp" />
 		<Unit filename="Utils.h" />
-		<Unit filename="shadercode/GLShader.cpp">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
 		<Unit filename="shadercode/GLShader.h">
 			<Option target="Debug" />
 			<Option target="Release" />

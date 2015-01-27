@@ -1,9 +1,8 @@
 #include "Utils.h"
 #include "Player.h"
+
 #include "Chunk.h"
 #include "texture.c"
-
-#define WINDOW_TITLE_PREFIX "Playground"
 
 int winWidth = 800, winHeight = 800;
 

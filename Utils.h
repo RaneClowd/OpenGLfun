@@ -1,7 +1,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include <time.h>
@@ -37,7 +36,6 @@ float degreesToRadians(float degrees);
 Vertex* verticesForSphere(int& count, float radius, int slices, int stacks, glm::vec4 color);
 
 void exitOnGLError(const char* error_message);
-GLuint loadShader(const char* filename, GLenum shader_type);
 
 // For debugging help
 void printWorkingDirectory(void);

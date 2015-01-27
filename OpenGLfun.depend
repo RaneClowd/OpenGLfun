@@ -1,11 +1,10 @@
 # depslib dependency file v1.0
-1422055541 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.cpp
+1422321188 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.cpp
 	"Utils.h"
 	<unistd.h>
 
-1422055547 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
+1422323430 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Utils.h
 	<stdlib.h>
-	<stdio.h>
 	<string.h>
 	<math.h>
 	<time.h>
@@ -17,7 +16,8 @@
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 
-1422209323 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
+1422360685 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Main.cpp
+	"GLShader.h"
 	"Utils.h"
 	"Player.h"
 	"Chunk.h"
@@ -2001,10 +2001,10 @@
 
 1417721342 /usr/include/bits/unistd.h
 
-1422052560 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.h
+1422320257 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.h
 	"Utils.h"
 
-1422146182 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
+1422320395 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
 	"Player.h"
 
 1417390282 /usr/local/include/glm/vec4.hpp
@@ -2386,4 +2386,28 @@
 1422206647 /home/mayken/CodeBlocksWorkspace/OpenGLfun/texture.c
 
 1422206647 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/texture.c
+
+1422323351 /home/mayken/CodeBlocksWorkspace/OpenGLfun/shadercode/GLShader.h
+	<GL/glew.h>
+	<string>
+
+1422323508 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/shadercode/GLShader.cpp
+	"GLShader.h"
+	<stdio.h>
+	<vector>
+	"../Utils.h"
+
+1422323351 /home/mayken/CodeBlocksWorkspace/OpenGLfun/GLShader.h
+	<GL/glew.h>
+	<string>
+
+1422361000 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/GLHelpers/GLShader.cpp
+	"GLShader.h"
+	<stdio.h>
+	<vector>
+	"../Utils.h"
+
+1422360962 /home/mayken/CodeBlocksWorkspace/OpenGLfun/GLHelpers/GLShader.h
+	<GL/glew.h>
+	<string>
 

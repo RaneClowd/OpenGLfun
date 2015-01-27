@@ -1,3 +1,5 @@
+#include "GLShader.h"
+
 #include "Utils.h"
 #include "Player.h"
 
@@ -17,6 +19,8 @@ GLuint
 
 SDL_Window *window;
 SDL_GLContext glContext;
+
+GLShader vertexShader, fragmentShader;
 
 glm::mat4 viewMatrix, projectionMatrix;
 
@@ -85,10 +89,10 @@ void initShaders() {
     shaderIds[0] = glCreateProgram();
     exitOnGLError("ERROR: Could not create the shader program");
 
-    shaderIds[1] = loadShader("SimpleShader.fragment.glsl", GL_FRAGMENT_SHADER);
-    shaderIds[2] = loadShader("SimpleShader.vertex.glsl", GL_VERTEX_SHADER);
-    glAttachShader(shaderIds[0], shaderIds[1]);
-    glAttachShader(shaderIds[0], shaderIds[2]);
+    vertexShader.loadShader("SimpleShader.vertex.glsl", GL_VERTEX_SHADER);
+    fragmentShader.loadShader("SimpleShader.fragment.glsl", GL_FRAGMENT_SHADER);
+    glAttachShader(shaderIds[0], vertexShader.getShaderID());
+    glAttachShader(shaderIds[0], fragmentShader.getShaderID());
 
     glLinkProgram(shaderIds[0]);
     exitOnGLError("ERROR: Could not link the shader program");

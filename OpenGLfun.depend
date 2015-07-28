@@ -23,7 +23,7 @@
 	"Chunk.h"
 	"texture.c"
 
-1417721338 /usr/include/stdlib.h
+1424883884 /usr/include/stdlib.h
 	<features.h>
 	<stddef.h>
 	<bits/waitflags.h>
@@ -36,60 +36,60 @@
 	<bits/stdlib.h>
 	<bits/stdlib-ldbl.h>
 
-1417721321 /usr/include/features.h
+1424883865 /usr/include/features.h
 	<stdc-predef.h>
 	<sys/cdefs.h>
 	<gnu/stubs.h>
 
-1417721321 /usr/include/stdc-predef.h
+1424883865 /usr/include/stdc-predef.h
 
-1417721344 /usr/include/sys/cdefs.h
+1424883893 /usr/include/sys/cdefs.h
 	<features.h>
 	<bits/wordsize.h>
 
-1417721338 /usr/include/bits/wordsize.h
+1424883884 /usr/include/bits/wordsize.h
 
-1417721321 /usr/include/gnu/stubs.h
+1424883865 /usr/include/gnu/stubs.h
 	<gnu/stubs-32.h>
 	<gnu/stubs-64.h>
 	<gnu/stubs-x32.h>
 
-1417721434 /usr/include/gnu/stubs-32.h
+1424884009 /usr/include/gnu/stubs-32.h
 
-1417721364 /usr/include/gnu/stubs-64.h
+1424883917 /usr/include/gnu/stubs-64.h
 
-1417721503 /usr/include/gnu/stubs-x32.h
+1424884097 /usr/include/gnu/stubs-x32.h
 
-1417721342 /usr/include/bits/waitflags.h
+1424883891 /usr/include/bits/waitflags.h
 
-1417721342 /usr/include/bits/waitstatus.h
+1424883891 /usr/include/bits/waitstatus.h
 	<endian.h>
 
-1417721340 /usr/include/endian.h
+1424883888 /usr/include/endian.h
 	<features.h>
 	<bits/endian.h>
 	<bits/byteswap.h>
 
-1417721340 /usr/include/bits/endian.h
+1424883888 /usr/include/bits/endian.h
 
-1417721340 /usr/include/bits/byteswap.h
+1424883888 /usr/include/bits/byteswap.h
 	<features.h>
 	<bits/types.h>
 	<bits/wordsize.h>
 	<bits/byteswap-16.h>
 
-1417721342 /usr/include/bits/types.h
+1424883891 /usr/include/bits/types.h
 	<features.h>
 	<bits/wordsize.h>
 	<bits/typesizes.h>
 
-1417721342 /usr/include/bits/typesizes.h
+1424883891 /usr/include/bits/typesizes.h
 
-1417721340 /usr/include/bits/byteswap-16.h
+1424883888 /usr/include/bits/byteswap-16.h
 
-1417721322 /usr/include/xlocale.h
+1424883866 /usr/include/xlocale.h
 
-1417721342 /usr/include/sys/types.h
+1424883891 /usr/include/sys/types.h
 	<features.h>
 	<bits/types.h>
 	<time.h>
@@ -99,7 +99,7 @@
 	<sys/sysmacros.h>
 	<bits/pthreadtypes.h>
 
-1417721341 /usr/include/time.h
+1424883889 /usr/include/time.h
 	<features.h>
 	<stddef.h>
 	<bits/time.h>
@@ -110,15 +110,15 @@
 	<bits/types.h>
 	<xlocale.h>
 
-1417721341 /usr/include/bits/time.h
+1424883889 /usr/include/bits/time.h
 	<bits/types.h>
 	<bits/types.h>
 	<bits/timex.h>
 
-1417721341 /usr/include/bits/timex.h
+1424883889 /usr/include/bits/timex.h
 	<bits/types.h>
 
-1417721344 /usr/include/sys/select.h
+1424883893 /usr/include/sys/select.h
 	<features.h>
 	<bits/types.h>
 	<bits/select.h>
@@ -127,32 +127,32 @@
 	<bits/time.h>
 	<bits/select2.h>
 
-1417721344 /usr/include/bits/select.h
+1424883893 /usr/include/bits/select.h
 	<bits/wordsize.h>
 
-1417721337 /usr/include/bits/sigset.h
+1424883884 /usr/include/bits/sigset.h
 
-1417721344 /usr/include/bits/select2.h
+1424883893 /usr/include/bits/select2.h
 
-1417721342 /usr/include/sys/sysmacros.h
+1424883891 /usr/include/sys/sysmacros.h
 	<features.h>
 
-1417721342 /usr/include/bits/pthreadtypes.h
+1424883891 /usr/include/bits/pthreadtypes.h
 	<bits/wordsize.h>
 
-1417721338 /usr/include/alloca.h
+1424883884 /usr/include/alloca.h
 	<features.h>
 	<stddef.h>
 
-1417721338 /usr/include/bits/stdlib-bsearch.h
+1424883884 /usr/include/bits/stdlib-bsearch.h
 
-1417721338 /usr/include/bits/stdlib-float.h
+1424883884 /usr/include/bits/stdlib-float.h
 
-1417721338 /usr/include/bits/stdlib.h
+1424883884 /usr/include/bits/stdlib.h
 
-1417721338 /usr/include/bits/stdlib-ldbl.h
+1424883884 /usr/include/bits/stdlib-ldbl.h
 
-1417721339 /usr/include/stdio.h
+1424883886 /usr/include/stdio.h
 	<features.h>
 	<stddef.h>
 	<bits/types.h>
@@ -165,7 +165,7 @@
 	<bits/stdio2.h>
 	<bits/stdio-ldbl.h>
 
-1417721339 /usr/include/libio.h
+1424883886 /usr/include/libio.h
 	<_G_config.h>
 	<stdarg.h>
 	<sys/cdefs.h>
@@ -173,13 +173,13 @@
 	<shlib-compat.h>
 	<bits/libio-ldbl.h>
 
-1417721339 /usr/include/_G_config.h
+1424883886 /usr/include/_G_config.h
 	<bits/types.h>
 	<stddef.h>
 	<wchar.h>
 	<gconv.h>
 
-1417721341 /usr/include/wchar.h
+1424883889 /usr/include/wchar.h
 	<features.h>
 	<stdio.h>
 	<stdarg.h>
@@ -193,39 +193,34 @@
 	<bits/wchar2.h>
 	<bits/wchar-ldbl.h>
 
-1417721341 /usr/include/bits/wchar.h
+1424883889 /usr/include/bits/wchar.h
 
-1417721345 /usr/include/wctype.h
+1424883895 /usr/include/wctype.h
 	<features.h>
 	<bits/types.h>
 	<wchar.h>
 	<endian.h>
 	<xlocale.h>
 
-1417721341 /usr/include/bits/wchar2.h
+1424883889 /usr/include/bits/wchar2.h
 
-1417721341 /usr/include/bits/wchar-ldbl.h
+1424883889 /usr/include/bits/wchar-ldbl.h
 
-1417721321 /usr/include/gconv.h
+1424883865 /usr/include/gconv.h
 	<features.h>
 	<wchar.h>
 	<stddef.h>
 
-1417721339 /usr/include/bits/stdio-lock.h
+1424883886 /usr/include/bits/stdio-lock.h
 	<bits/libc-lock.h>
 	<lowlevellock.h>
 
-1417721321 /usr/include/bits/libc-lock.h
+1424883865 /usr/include/bits/libc-lock.h
 	<pthread.h>
 	<stddef.h>
-	<lowlevellock.h>
-	<tls.h>
-	<pthread-functions.h>
-	<errno.h>
-	<gnu/option-groups.h>
 	"libc-lockP.h"
 
-1417721350 /usr/include/pthread.h
+1424883900 /usr/include/pthread.h
 	<features.h>
 	<endian.h>
 	<sched.h>
@@ -234,16 +229,16 @@
 	<bits/setjmp.h>
 	<bits/wordsize.h>
 
-1417721342 /usr/include/sched.h
+1424883891 /usr/include/sched.h
 	<features.h>
 	<bits/types.h>
 	<stddef.h>
 	<time.h>
 	<bits/sched.h>
 
-1417721342 /usr/include/bits/sched.h
+1424883891 /usr/include/bits/sched.h
 
-1417721337 /usr/include/bits/setjmp.h
+1424883883 /usr/include/bits/setjmp.h
 	<bits/wordsize.h>
 
 1417721338 /usr/include/errno.h
@@ -266,28 +261,28 @@
 
 1417721359 /usr/include/gnu/option-groups.h
 
-1417721339 /usr/include/bits/libio-ldbl.h
+1424883886 /usr/include/bits/libio-ldbl.h
 
-1417721338 /usr/include/bits/stdio_lim.h
+1424883885 /usr/include/bits/stdio_lim.h
 
-1417721339 /usr/include/bits/sys_errlist.h
+1424883886 /usr/include/bits/sys_errlist.h
 
-1417721342 /usr/include/getopt.h
+1424883891 /usr/include/getopt.h
 	<ctype.h>
 
-1417721334 /usr/include/ctype.h
+1424883880 /usr/include/ctype.h
 	<features.h>
 	<bits/types.h>
 	<endian.h>
 	<xlocale.h>
 
-1417721339 /usr/include/bits/stdio.h
+1424883886 /usr/include/bits/stdio.h
 
-1417721339 /usr/include/bits/stdio2.h
+1424883886 /usr/include/bits/stdio2.h
 
-1417721339 /usr/include/bits/stdio-ldbl.h
+1424883886 /usr/include/bits/stdio-ldbl.h
 
-1417721340 /usr/include/string.h
+1424883888 /usr/include/string.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
@@ -295,16 +290,16 @@
 	<bits/string2.h>
 	<bits/string3.h>
 
-1417721340 /usr/include/bits/string.h
+1424883888 /usr/include/bits/string.h
 
-1417721340 /usr/include/bits/string2.h
+1424883888 /usr/include/bits/string2.h
 	<endian.h>
 	<bits/types.h>
 	<stdlib.h>
 
-1417721340 /usr/include/bits/string3.h
+1424883888 /usr/include/bits/string3.h
 
-1417721336 /usr/include/math.h
+1424883882 /usr/include/math.h
 	<features.h>
 	<bits/huge_val.h>
 	<bits/huge_valf.h>
@@ -318,25 +313,25 @@
 	<bits/mathinline.h>
 	<bits/math-finite.h>
 
-1417721336 /usr/include/bits/huge_val.h
+1424883882 /usr/include/bits/huge_val.h
 	<endian.h>
 
-1417721336 /usr/include/bits/huge_valf.h
+1424883882 /usr/include/bits/huge_valf.h
 
-1417721336 /usr/include/bits/huge_vall.h
+1424883882 /usr/include/bits/huge_vall.h
 
-1417721336 /usr/include/bits/inf.h
+1424883882 /usr/include/bits/inf.h
 
-1417721336 /usr/include/bits/nan.h
+1424883882 /usr/include/bits/nan.h
 	<endian.h>
 
-1417721336 /usr/include/bits/mathdef.h
+1424883882 /usr/include/bits/mathdef.h
 
-1417721336 /usr/include/bits/mathcalls.h
+1424883882 /usr/include/bits/mathcalls.h
 
-1417721336 /usr/include/bits/mathinline.h
+1424883882 /usr/include/bits/mathinline.h
 
-1417721336 /usr/include/bits/math-finite.h
+1424883882 /usr/include/bits/math-finite.h
 
 1388645418 /usr/include/GL/glew.h
 	<stddef.h>
@@ -346,12 +341,12 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1417721338 /usr/include/inttypes.h
+1424883884 /usr/include/inttypes.h
 	<features.h>
 	<stdint.h>
 	<stddef.h>
 
-1417721338 /usr/include/stdint.h
+1424883884 /usr/include/stdint.h
 	<features.h>
 	<bits/wchar.h>
 	<bits/wordsize.h>
@@ -362,14 +357,14 @@
 
 1382363599 /usr/include/GL/glu_mangle.h
 
-1413902251 /usr/include/GL/gl.h
+1416331060 /usr/include/GL/gl.h
 	"gl_mangle.h"
 	<windows.h>
 	<GL/glext.h>
 
-1413902251 /usr/include/GL/gl_mangle.h
+1416331060 /usr/include/GL/gl_mangle.h
 
-1413902251 /usr/include/GL/glext.h
+1416331060 /usr/include/GL/glext.h
 	<windows.h>
 	<stddef.h>
 	<inttypes.h>
@@ -1616,7 +1611,7 @@
 1411750109 source:/Users/kennyskaggs/Projects/OpenGLfun/Main.cpp
 	"Utils.h"
 
-1400119779 /usr/include/SDL2/SDL.h
+1399473415 /usr/include/SDL2/SDL.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -1647,12 +1642,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_main.h
+1399473415 /usr/include/SDL2/SDL_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_stdinc.h
+1399473416 /usr/include/SDL2/SDL_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -1679,44 +1674,44 @@
 	<stdlib.h>
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_config.h
+1399473416 /usr/include/SDL2/SDL_config.h
 	"SDL_platform.h"
 
-1400119779 /usr/include/SDL2/SDL_platform.h
+1399473415 /usr/include/SDL2/SDL_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/begin_code.h
+1399473416 /usr/include/SDL2/begin_code.h
 
-1400119779 /usr/include/SDL2/close_code.h
+1399473416 /usr/include/SDL2/close_code.h
 
-1417721340 /usr/include/malloc.h
+1424883887 /usr/include/malloc.h
 	<features.h>
 	<stddef.h>
 	<stdio.h>
 
-1417721340 /usr/include/memory.h
+1424883888 /usr/include/memory.h
 	<features.h>
 	<string.h>
 
-1417721340 /usr/include/strings.h
+1424883888 /usr/include/strings.h
 	<features.h>
 	<stddef.h>
 	<xlocale.h>
 
-1417721321 /usr/include/iconv.h
+1424883865 /usr/include/iconv.h
 	<features.h>
 	<stddef.h>
 
-1400119779 /usr/include/SDL2/SDL_assert.h
+1399473415 /usr/include/SDL2/SDL_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1417721337 /usr/include/signal.h
+1424883884 /usr/include/signal.h
 	<features.h>
 	<bits/sigset.h>
 	<bits/types.h>
@@ -1731,31 +1726,31 @@
 	<bits/pthreadtypes.h>
 	<bits/sigthread.h>
 
-1417721337 /usr/include/bits/signum.h
+1424883884 /usr/include/bits/signum.h
 
-1417721337 /usr/include/bits/siginfo.h
+1424883884 /usr/include/bits/siginfo.h
 	<bits/wordsize.h>
 
-1417721337 /usr/include/bits/sigaction.h
+1424883884 /usr/include/bits/sigaction.h
 
-1417721337 /usr/include/bits/sigcontext.h
+1424883884 /usr/include/bits/sigcontext.h
 
-1417721337 /usr/include/bits/sigstack.h
+1424883884 /usr/include/bits/sigstack.h
 
-1417721338 /usr/include/sys/ucontext.h
+1424883884 /usr/include/sys/ucontext.h
 	<features.h>
 	<signal.h>
 	<bits/sigcontext.h>
 
-1417721337 /usr/include/bits/sigthread.h
+1424883884 /usr/include/bits/sigthread.h
 
-1400119779 /usr/include/SDL2/SDL_atomic.h
+1399473415 /usr/include/SDL2/SDL_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_audio.h
+1399473415 /usr/include/SDL2/SDL_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -1765,24 +1760,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_error.h
+1399473415 /usr/include/SDL2/SDL_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_endian.h
+1399473415 /usr/include/SDL2/SDL_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_mutex.h
+1399473415 /usr/include/SDL2/SDL_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_thread.h
+1399473416 /usr/include/SDL2/SDL_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -1791,18 +1786,18 @@
 	<process.h>
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_rwops.h
+1399473416 /usr/include/SDL2/SDL_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_clipboard.h
+1399473415 /usr/include/SDL2/SDL_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_cpuinfo.h
+1399473415 /usr/include/SDL2/SDL_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -1814,7 +1809,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_events.h
+1399473415 /usr/include/SDL2/SDL_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1828,7 +1823,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_video.h
+1399473416 /usr/include/SDL2/SDL_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1836,12 +1831,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_pixels.h
+1399473415 /usr/include/SDL2/SDL_pixels.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_rect.h
+1399473416 /usr/include/SDL2/SDL_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -1849,7 +1844,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_surface.h
+1399473416 /usr/include/SDL2/SDL_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -1858,11 +1853,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_blendmode.h
+1399473415 /usr/include/SDL2/SDL_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_keyboard.h
+1399473415 /usr/include/SDL2/SDL_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -1870,27 +1865,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_keycode.h
+1399473415 /usr/include/SDL2/SDL_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1400119779 /usr/include/SDL2/SDL_scancode.h
+1399473416 /usr/include/SDL2/SDL_scancode.h
 	"SDL_stdinc.h"
 
-1400119779 /usr/include/SDL2/SDL_mouse.h
+1399473415 /usr/include/SDL2/SDL_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_joystick.h
+1399473415 /usr/include/SDL2/SDL_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_gamecontroller.h
+1399473415 /usr/include/SDL2/SDL_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -1898,11 +1893,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_quit.h
+1399473416 /usr/include/SDL2/SDL_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1400119779 /usr/include/SDL2/SDL_gesture.h
+1399473415 /usr/include/SDL2/SDL_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -1910,60 +1905,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_touch.h
+1399473416 /usr/include/SDL2/SDL_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_filesystem.h
+1399473415 /usr/include/SDL2/SDL_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_haptic.h
+1399473415 /usr/include/SDL2/SDL_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_hints.h
+1399473415 /usr/include/SDL2/SDL_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_loadso.h
+1399473415 /usr/include/SDL2/SDL_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_log.h
+1399473415 /usr/include/SDL2/SDL_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_messagebox.h
+1399473415 /usr/include/SDL2/SDL_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_power.h
+1399473415 /usr/include/SDL2/SDL_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_render.h
+1399473416 /usr/include/SDL2/SDL_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_system.h
+1399473416 /usr/include/SDL2/SDL_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -1971,13 +1966,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_timer.h
+1399473416 /usr/include/SDL2/SDL_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1400119779 /usr/include/SDL2/SDL_version.h
+1399473416 /usr/include/SDL2/SDL_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -2007,10 +2002,10 @@
 1422320395 source:/home/mayken/CodeBlocksWorkspace/OpenGLfun/Player.cpp
 	"Player.h"
 
-1417390282 /usr/local/include/glm/vec4.hpp
+1420280585 /usr/local/include/glm/vec4.hpp
 	"detail/type_vec4.hpp"
 
-1418079323 /usr/local/include/glm/detail/type_vec4.hpp
+1424001528 /usr/local/include/glm/detail/type_vec4.hpp
 	"setup.hpp"
 	"type_vec.hpp"
 	"_swizzle.hpp"
@@ -2018,7 +2013,7 @@
 	<cstddef>
 	"type_vec4.inl"
 
-1418242137 /usr/local/include/glm/detail/setup.hpp
+1424013748 /usr/local/include/glm/detail/setup.hpp
 	<cassert>
 	<cstddef>
 	<cuda.h>
@@ -2029,48 +2024,48 @@
 	<pmmintrin.h>
 	<emmintrin.h>
 
-1417390282 /usr/local/include/glm/detail/type_vec.hpp
+1420280585 /usr/local/include/glm/detail/type_vec.hpp
 	"precision.hpp"
 	"type_int.hpp"
 
-1417390282 /usr/local/include/glm/detail/precision.hpp
+1420280585 /usr/local/include/glm/detail/precision.hpp
 
-1418175329 /usr/local/include/glm/detail/type_int.hpp
+1420280585 /usr/local/include/glm/detail/type_int.hpp
 	"setup.hpp"
 	<type_traits>
 	<cstdint>
 
-1417390282 /usr/local/include/glm/detail/_swizzle.hpp
+1420280585 /usr/local/include/glm/detail/_swizzle.hpp
 
-1417390282 /usr/local/include/glm/detail/_swizzle_func.hpp
+1420280585 /usr/local/include/glm/detail/_swizzle_func.hpp
 
-1418079323 /usr/local/include/glm/detail/type_vec4.inl
+1424001528 /usr/local/include/glm/detail/type_vec4.inl
 	"type_vec4_sse2.inl"
 	"type_vec4_avx.inl"
 	"type_vec4_avx2.inl"
 
-1418079323 /usr/local/include/glm/detail/type_vec4_sse2.inl
+1420280585 /usr/local/include/glm/detail/type_vec4_sse2.inl
 
-1418079323 /usr/local/include/glm/detail/type_vec4_avx.inl
+1420280585 /usr/local/include/glm/detail/type_vec4_avx.inl
 
-1418079323 /usr/local/include/glm/detail/type_vec4_avx2.inl
+1420280585 /usr/local/include/glm/detail/type_vec4_avx2.inl
 
-1417390282 /usr/local/include/glm/vec3.hpp
+1420280585 /usr/local/include/glm/vec3.hpp
 	"detail/type_vec3.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_vec3.hpp
+1424001528 /usr/local/include/glm/detail/type_vec3.hpp
 	"type_vec.hpp"
 	"_swizzle.hpp"
 	"_swizzle_func.hpp"
 	<cstddef>
 	"type_vec3.inl"
 
-1417390282 /usr/local/include/glm/detail/type_vec3.inl
+1424001528 /usr/local/include/glm/detail/type_vec3.inl
 
-1417390282 /usr/local/include/glm/mat4x4.hpp
+1420280585 /usr/local/include/glm/mat4x4.hpp
 	"detail/type_mat4x4.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat4x4.hpp
+1424001528 /usr/local/include/glm/detail/type_mat4x4.hpp
 	"../fwd.hpp"
 	"type_vec4.hpp"
 	"type_mat.hpp"
@@ -2078,21 +2073,21 @@
 	<cstddef>
 	"type_mat4x4.inl"
 
-1417390282 /usr/local/include/glm/fwd.hpp
+1420280585 /usr/local/include/glm/fwd.hpp
 	"detail/type_int.hpp"
 	"detail/type_float.hpp"
 	"detail/type_vec.hpp"
 	"detail/type_mat.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_float.hpp
+1420280585 /usr/local/include/glm/detail/type_float.hpp
 	"setup.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat.hpp
+1420280585 /usr/local/include/glm/detail/type_mat.hpp
 	"precision.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat4x4.inl
+1424001528 /usr/local/include/glm/detail/type_mat4x4.inl
 
-1417390282 /usr/local/include/glm/gtc/matrix_transform.hpp
+1420280585 /usr/local/include/glm/gtc/matrix_transform.hpp
 	"../mat4x4.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -2100,45 +2095,45 @@
 	"../gtc/constants.hpp"
 	"matrix_transform.inl"
 
-1417390282 /usr/local/include/glm/vec2.hpp
+1420280585 /usr/local/include/glm/vec2.hpp
 	"detail/type_vec2.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_vec2.hpp
+1424001528 /usr/local/include/glm/detail/type_vec2.hpp
 	"type_vec.hpp"
 	"_swizzle.hpp"
 	"_swizzle_func.hpp"
 	<cstddef>
 	"type_vec2.inl"
 
-1417390282 /usr/local/include/glm/detail/type_vec2.inl
+1424001528 /usr/local/include/glm/detail/type_vec2.inl
 
-1417390282 /usr/local/include/glm/gtc/constants.hpp
+1420280585 /usr/local/include/glm/gtc/constants.hpp
 	"../detail/setup.hpp"
 	"constants.inl"
 
-1417390282 /usr/local/include/glm/gtc/constants.inl
+1420280585 /usr/local/include/glm/gtc/constants.inl
 	<limits>
 
-1417390282 /usr/local/include/glm/gtc/matrix_transform.inl
+1420829383 /usr/local/include/glm/gtc/matrix_transform.inl
 	"../geometric.hpp"
 	"../trigonometric.hpp"
 	"../matrix.hpp"
 
-1417390282 /usr/local/include/glm/geometric.hpp
+1420280585 /usr/local/include/glm/geometric.hpp
 	"detail/func_geometric.hpp"
 
-1417390282 /usr/local/include/glm/detail/func_geometric.hpp
+1420280585 /usr/local/include/glm/detail/func_geometric.hpp
 	"type_vec3.hpp"
 	"func_geometric.inl"
 
-1417390282 /usr/local/include/glm/detail/func_geometric.inl
+1420280585 /usr/local/include/glm/detail/func_geometric.inl
 	"func_exponential.hpp"
 	"func_common.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
 	"type_float.hpp"
 
-1417390282 /usr/local/include/glm/detail/func_exponential.hpp
+1420280585 /usr/local/include/glm/detail/func_exponential.hpp
 	"type_vec1.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -2146,7 +2141,7 @@
 	<cmath>
 	"func_exponential.inl"
 
-1417390282 /usr/local/include/glm/detail/type_vec1.hpp
+1424001528 /usr/local/include/glm/detail/type_vec1.hpp
 	"../fwd.hpp"
 	"type_vec.hpp"
 	"_swizzle.hpp"
@@ -2154,40 +2149,40 @@
 	<cstddef>
 	"type_vec1.inl"
 
-1417390282 /usr/local/include/glm/detail/type_vec1.inl
+1424001528 /usr/local/include/glm/detail/type_vec1.inl
 
-1418156144 /usr/local/include/glm/detail/func_exponential.inl
+1420280585 /usr/local/include/glm/detail/func_exponential.inl
 	"func_vector_relational.hpp"
 	"_vectorize.hpp"
 	<limits>
 	<cmath>
 	<cassert>
 
-1417390282 /usr/local/include/glm/detail/func_vector_relational.hpp
+1420280585 /usr/local/include/glm/detail/func_vector_relational.hpp
 	"precision.hpp"
 	"setup.hpp"
 	"func_vector_relational.inl"
 
-1417390282 /usr/local/include/glm/detail/func_vector_relational.inl
+1420280585 /usr/local/include/glm/detail/func_vector_relational.inl
 	<limits>
 
-1417390282 /usr/local/include/glm/detail/_vectorize.hpp
+1420280585 /usr/local/include/glm/detail/_vectorize.hpp
 	"type_vec1.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
 
-1417390282 /usr/local/include/glm/detail/func_common.hpp
+1420280585 /usr/local/include/glm/detail/func_common.hpp
 	"setup.hpp"
 	"precision.hpp"
 	"type_int.hpp"
 	"_fixes.hpp"
 	"func_common.inl"
 
-1417390282 /usr/local/include/glm/detail/_fixes.hpp
+1420280585 /usr/local/include/glm/detail/_fixes.hpp
 	<cmath>
 
-1418156195 /usr/local/include/glm/detail/func_common.inl
+1423994623 /usr/local/include/glm/detail/func_common.inl
 	"func_vector_relational.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -2195,23 +2190,23 @@
 	"_vectorize.hpp"
 	<limits>
 
-1417390282 /usr/local/include/glm/trigonometric.hpp
+1420280585 /usr/local/include/glm/trigonometric.hpp
 	"detail/func_trigonometric.hpp"
 
-1417390282 /usr/local/include/glm/detail/func_trigonometric.hpp
+1420280585 /usr/local/include/glm/detail/func_trigonometric.hpp
 	"setup.hpp"
 	"precision.hpp"
 	"func_trigonometric.inl"
 
-1418155753 /usr/local/include/glm/detail/func_trigonometric.inl
+1420280585 /usr/local/include/glm/detail/func_trigonometric.inl
 	"_vectorize.hpp"
 	<cmath>
 	<limits>
 
-1417390282 /usr/local/include/glm/matrix.hpp
+1420280585 /usr/local/include/glm/matrix.hpp
 	"detail/func_matrix.hpp"
 
-1417390282 /usr/local/include/glm/detail/func_matrix.hpp
+1420280585 /usr/local/include/glm/detail/func_matrix.hpp
 	"../detail/precision.hpp"
 	"../detail/setup.hpp"
 	"../detail/type_mat.hpp"
@@ -2229,10 +2224,10 @@
 	"../mat4x4.hpp"
 	"func_matrix.inl"
 
-1417390282 /usr/local/include/glm/mat2x2.hpp
+1420280585 /usr/local/include/glm/mat2x2.hpp
 	"detail/type_mat2x2.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat2x2.hpp
+1424001528 /usr/local/include/glm/detail/type_mat2x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_mat.hpp"
@@ -2240,12 +2235,12 @@
 	<cstddef>
 	"type_mat2x2.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat2x2.inl
+1424001528 /usr/local/include/glm/detail/type_mat2x2.inl
 
-1417390282 /usr/local/include/glm/mat2x3.hpp
+1420280585 /usr/local/include/glm/mat2x3.hpp
 	"detail/type_mat2x3.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat2x3.hpp
+1424001528 /usr/local/include/glm/detail/type_mat2x3.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -2254,12 +2249,12 @@
 	<cstddef>
 	"type_mat2x3.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat2x3.inl
+1424001528 /usr/local/include/glm/detail/type_mat2x3.inl
 
-1417390282 /usr/local/include/glm/mat2x4.hpp
+1420280585 /usr/local/include/glm/mat2x4.hpp
 	"detail/type_mat2x4.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat2x4.hpp
+1424001528 /usr/local/include/glm/detail/type_mat2x4.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
@@ -2268,12 +2263,12 @@
 	<cstddef>
 	"type_mat2x4.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat2x4.inl
+1424001528 /usr/local/include/glm/detail/type_mat2x4.inl
 
-1417390282 /usr/local/include/glm/mat3x2.hpp
+1420280585 /usr/local/include/glm/mat3x2.hpp
 	"detail/type_mat3x2.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat3x2.hpp
+1424001528 /usr/local/include/glm/detail/type_mat3x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -2282,12 +2277,12 @@
 	<cstddef>
 	"type_mat3x2.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat3x2.inl
+1424001528 /usr/local/include/glm/detail/type_mat3x2.inl
 
-1417390282 /usr/local/include/glm/mat3x3.hpp
+1420280585 /usr/local/include/glm/mat3x3.hpp
 	"detail/type_mat3x3.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat3x3.hpp
+1424001528 /usr/local/include/glm/detail/type_mat3x3.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_mat.hpp"
@@ -2295,12 +2290,12 @@
 	<cstddef>
 	"type_mat3x3.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat3x3.inl
+1424001528 /usr/local/include/glm/detail/type_mat3x3.inl
 
-1417390282 /usr/local/include/glm/mat3x4.hpp
+1420280585 /usr/local/include/glm/mat3x4.hpp
 	"detail/type_mat3x4.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat3x4.hpp
+1424001528 /usr/local/include/glm/detail/type_mat3x4.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -2309,12 +2304,12 @@
 	<cstddef>
 	"type_mat3x4.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat3x4.inl
+1424001528 /usr/local/include/glm/detail/type_mat3x4.inl
 
-1417390282 /usr/local/include/glm/mat4x2.hpp
+1420280585 /usr/local/include/glm/mat4x2.hpp
 	"detail/type_mat4x2.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat4x2.hpp
+1424001528 /usr/local/include/glm/detail/type_mat4x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
@@ -2323,12 +2318,12 @@
 	<cstddef>
 	"type_mat4x2.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat4x2.inl
+1424001528 /usr/local/include/glm/detail/type_mat4x2.inl
 
-1417390282 /usr/local/include/glm/mat4x3.hpp
+1420280585 /usr/local/include/glm/mat4x3.hpp
 	"detail/type_mat4x3.hpp"
 
-1417390282 /usr/local/include/glm/detail/type_mat4x3.hpp
+1424001528 /usr/local/include/glm/detail/type_mat4x3.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -2337,13 +2332,13 @@
 	<cstddef>
 	"type_mat4x3.inl"
 
-1417390282 /usr/local/include/glm/detail/type_mat4x3.inl
+1424001528 /usr/local/include/glm/detail/type_mat4x3.inl
 
-1417390282 /usr/local/include/glm/detail/func_matrix.inl
+1420280585 /usr/local/include/glm/detail/func_matrix.inl
 	"../geometric.hpp"
 	<limits>
 
-1417390282 /usr/local/include/glm/gtc/type_ptr.hpp
+1420280585 /usr/local/include/glm/gtc/type_ptr.hpp
 	"../gtc/quaternion.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -2360,7 +2355,7 @@
 	<cstring>
 	"type_ptr.inl"
 
-1418200501 /usr/local/include/glm/gtc/quaternion.hpp
+1424001528 /usr/local/include/glm/gtc/quaternion.hpp
 	"../mat3x3.hpp"
 	"../mat4x4.hpp"
 	"../vec3.hpp"
@@ -2368,16 +2363,16 @@
 	"../gtc/constants.hpp"
 	"quaternion.inl"
 
-1418200517 /usr/local/include/glm/gtc/quaternion.inl
+1424001528 /usr/local/include/glm/gtc/quaternion.inl
 	"../trigonometric.hpp"
 	"../geometric.hpp"
 	"../exponential.hpp"
 	<limits>
 
-1417390282 /usr/local/include/glm/exponential.hpp
+1420280585 /usr/local/include/glm/exponential.hpp
 	"detail/func_exponential.hpp"
 
-1417390282 /usr/local/include/glm/gtc/type_ptr.inl
+1420280585 /usr/local/include/glm/gtc/type_ptr.inl
 	<cstring>
 
 1422210392 /home/mayken/CodeBlocksWorkspace/OpenGLfun/Chunk.h
@@ -2410,4 +2405,377 @@
 1422360962 /home/mayken/CodeBlocksWorkspace/OpenGLfun/GLHelpers/GLShader.h
 	<GL/glew.h>
 	<string>
+
+1430531445 source:/home/mayken/Projects/OpenGLfun/GLHelpers/GLShader.cpp
+	"GLShader.h"
+	<stdio.h>
+	<vector>
+	"../Utils.h"
+
+1430531445 /home/mayken/Projects/OpenGLfun/GLHelpers/GLShader.h
+	<GL/glew.h>
+	<string>
+
+1437995643 /home/mayken/Projects/OpenGLfun/Utils.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<time.h>
+	<GL/glew.h>
+	<SDL2/SDL.h>
+	<glm/vec3.hpp>
+	<glm/vec4.hpp>
+	<glm/mat4x4.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtc/type_ptr.hpp>
+
+1389483480 /usr/include/glm/vec3.hpp
+	"detail/type_vec3.hpp"
+
+1395793554 /usr/include/glm/detail/type_vec3.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1389483480 /usr/include/glm/detail/type_vec.hpp
+	"precision.hpp"
+	"type_int.hpp"
+
+1389483480 /usr/include/glm/detail/precision.hpp
+
+1389483480 /usr/include/glm/detail/type_int.hpp
+	"setup.hpp"
+	<cstdint>
+
+1396306860 /usr/include/glm/detail/setup.hpp
+	<cassert>
+	<cuda.h>
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1389483480 /usr/include/glm/detail/_swizzle.hpp
+
+1389483480 /usr/include/glm/detail/_swizzle_func.hpp
+
+1393357678 /usr/include/glm/detail/type_vec3.inl
+
+1389483480 /usr/include/glm/vec4.hpp
+	"detail/type_vec4.hpp"
+
+1395793554 /usr/include/glm/detail/type_vec4.hpp
+	"setup.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1395793554 /usr/include/glm/detail/type_vec4.inl
+
+1389483480 /usr/include/glm/mat4x4.hpp
+	"detail/type_mat4x4.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat4x4.hpp
+	"../fwd.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x4.inl"
+
+1389483480 /usr/include/glm/fwd.hpp
+	"detail/type_int.hpp"
+	"detail/type_float.hpp"
+	"detail/type_vec.hpp"
+	"detail/type_mat.hpp"
+
+1389483480 /usr/include/glm/detail/type_float.hpp
+	"setup.hpp"
+
+1389483480 /usr/include/glm/detail/type_mat.hpp
+	"precision.hpp"
+
+1393355594 /usr/include/glm/detail/type_mat4x4.inl
+
+1389483480 /usr/include/glm/gtc/matrix_transform.hpp
+	"../mat4x4.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"matrix_transform.inl"
+
+1389483480 /usr/include/glm/vec2.hpp
+	"detail/type_vec2.hpp"
+
+1395793554 /usr/include/glm/detail/type_vec2.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1393357678 /usr/include/glm/detail/type_vec2.inl
+
+1394938748 /usr/include/glm/gtc/matrix_transform.inl
+	"../geometric.hpp"
+	"../trigonometric.hpp"
+	"../matrix.hpp"
+
+1389483480 /usr/include/glm/geometric.hpp
+	"detail/func_geometric.hpp"
+
+1389483480 /usr/include/glm/detail/func_geometric.hpp
+	"type_vec3.hpp"
+	"func_geometric.inl"
+
+1396307136 /usr/include/glm/detail/func_geometric.inl
+	"func_exponential.hpp"
+	"func_common.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_float.hpp"
+
+1393355594 /usr/include/glm/detail/func_exponential.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	<cmath>
+	"func_exponential.inl"
+
+1395793554 /usr/include/glm/detail/type_vec1.hpp
+	"../fwd.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1393357678 /usr/include/glm/detail/type_vec1.inl
+
+1396307706 /usr/include/glm/detail/func_exponential.inl
+	"func_vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cassert>
+
+1389483480 /usr/include/glm/detail/func_vector_relational.hpp
+	"precision.hpp"
+	"setup.hpp"
+	"func_vector_relational.inl"
+
+1389483480 /usr/include/glm/detail/func_vector_relational.inl
+	<limits>
+
+1393355594 /usr/include/glm/detail/_vectorize.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+
+1391894902 /usr/include/glm/detail/func_common.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"type_int.hpp"
+	"_fixes.hpp"
+	"func_common.inl"
+
+1389483480 /usr/include/glm/detail/_fixes.hpp
+	<cmath>
+
+1393355594 /usr/include/glm/detail/func_common.inl
+	"func_vector_relational.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+
+1389483480 /usr/include/glm/trigonometric.hpp
+	"detail/func_trigonometric.hpp"
+
+1389483480 /usr/include/glm/detail/func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1389483480 /usr/include/glm/detail/func_trigonometric.inl
+	"_vectorize.hpp"
+	<cmath>
+	<limits>
+
+1389483480 /usr/include/glm/matrix.hpp
+	"detail/func_matrix.hpp"
+
+1389483480 /usr/include/glm/detail/func_matrix.hpp
+	"../detail/precision.hpp"
+	"../detail/setup.hpp"
+	"../detail/type_mat.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"func_matrix.inl"
+
+1389483480 /usr/include/glm/mat2x2.hpp
+	"detail/type_mat2x2.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat2x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat2x2.inl"
+
+1395793554 /usr/include/glm/detail/type_mat2x2.inl
+
+1389483480 /usr/include/glm/mat2x3.hpp
+	"detail/type_mat2x3.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat2x3.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat2x3.inl"
+
+1393355594 /usr/include/glm/detail/type_mat2x3.inl
+
+1389483480 /usr/include/glm/mat2x4.hpp
+	"detail/type_mat2x4.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat2x4.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat2x4.inl"
+
+1393355594 /usr/include/glm/detail/type_mat2x4.inl
+
+1389483480 /usr/include/glm/mat3x2.hpp
+	"detail/type_mat3x2.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat3x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat3x2.inl"
+
+1393355594 /usr/include/glm/detail/type_mat3x2.inl
+
+1389483480 /usr/include/glm/mat3x3.hpp
+	"detail/type_mat3x3.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat3x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat3x3.inl"
+
+1395793554 /usr/include/glm/detail/type_mat3x3.inl
+
+1389483480 /usr/include/glm/mat3x4.hpp
+	"detail/type_mat3x4.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat3x4.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat3x4.inl"
+
+1393355594 /usr/include/glm/detail/type_mat3x4.inl
+
+1389483480 /usr/include/glm/mat4x2.hpp
+	"detail/type_mat4x2.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat4x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat4x2.inl"
+
+1393355594 /usr/include/glm/detail/type_mat4x2.inl
+
+1389483480 /usr/include/glm/mat4x3.hpp
+	"detail/type_mat4x3.hpp"
+
+1395793554 /usr/include/glm/detail/type_mat4x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	"type_mat4x3.inl"
+
+1393355594 /usr/include/glm/detail/type_mat4x3.inl
+
+1395793554 /usr/include/glm/detail/func_matrix.inl
+	"../geometric.hpp"
+	<limits>
+
+1389483480 /usr/include/glm/gtc/type_ptr.hpp
+	"../gtc/quaternion.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1393355594 /usr/include/glm/gtc/quaternion.hpp
+	"../mat3x3.hpp"
+	"../mat4x4.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1393355594 /usr/include/glm/gtc/constants.hpp
+	"../detail/setup.hpp"
+	"constants.inl"
+
+1389483480 /usr/include/glm/gtc/constants.inl
+	<limits>
+
+1393355594 /usr/include/glm/gtc/quaternion.inl
+	"../trigonometric.hpp"
+	"../geometric.hpp"
+	"../exponential.hpp"
+	<limits>
+
+1389483480 /usr/include/glm/exponential.hpp
+	"detail/func_exponential.hpp"
+
+1389483480 /usr/include/glm/gtc/type_ptr.inl
+	<cstring>
 

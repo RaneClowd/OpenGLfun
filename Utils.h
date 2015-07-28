@@ -4,10 +4,10 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
-#include <GL/glew.h>
-#include <SDL2/SDL.h>
+#include <GL/glew.h> // libglew-dev
+#include <SDL2/SDL.h> // libsdl2-dev
 
-#include <glm/vec3.hpp>
+#include <glm/vec3.hpp> // libglm-dev
 #include <glm/vec4.hpp>
 #include <glm/mat4x4.hpp>
 #include <glm/gtc/matrix_transform.hpp>

@@ -1,4 +1,4 @@
-#include "GLShader.h"
+#include "GLHelpers/GLShader.h"
 
 #include "Utils.h"
 #include "Player.h"

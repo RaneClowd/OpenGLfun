@@ -60,7 +60,6 @@ glm::mat4 updatePlayerView(float timeLapsed) {
 
 void checkForPlayerInput(void) {
     SDL_Event event;
-    char debugMouseEventProcessed = 0;
 
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)) {

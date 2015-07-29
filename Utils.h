@@ -1,5 +1,6 @@
 #ifndef UTILS_H
 #define UTILS_H
+
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -33,7 +34,7 @@ extern const glm::mat4 IDENTITY_MATRIX;
 
 float degreesToRadians(float degrees);
 
-Vertex* verticesForSphere(int& count, float radius, int slices, int stacks, glm::vec4 color);
+void verticesForSphere(int granularity, Vertex** vertexArray, int* indexArray);
 
 void exitOnGLError(const char* error_message);
 

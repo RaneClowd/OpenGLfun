@@ -83,10 +83,14 @@
 		<Unit filename="SimpleShader.vertex.glsl" />
 		<Unit filename="Utils.cpp" />
 		<Unit filename="Utils.h" />
+		<Unit filename="include/Cube.h" />
+		<Unit filename="include/Object.h" />
 		<Unit filename="shadercode/GLShader.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="src/Cube.cpp" />
+		<Unit filename="src/Object.cpp" />
 		<Unit filename="texture.c">
 			<Option compilerVar="CC" />
 			<Option target="Debug" />

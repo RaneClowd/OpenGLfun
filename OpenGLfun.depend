@@ -2416,7 +2416,7 @@
 	<GL/glew.h>
 	<string>
 
-1438128396 /home/mayken/Projects/OpenGLfun/Utils.h
+1438131759 /home/mayken/Projects/OpenGLfun/Utils.h
 	<stdlib.h>
 	<string.h>
 	<math.h>
@@ -2779,14 +2779,14 @@
 1389483480 /usr/include/glm/gtc/type_ptr.inl
 	<cstring>
 
-1437995704 source:/home/mayken/Projects/OpenGLfun/Main.cpp
+1438131759 source:/home/mayken/Projects/OpenGLfun/Main.cpp
 	"GLHelpers/GLShader.h"
 	"Utils.h"
 	"Player.h"
 	"Chunk.h"
 	"texture.c"
 
-1430531445 /home/mayken/Projects/OpenGLfun/Player.h
+1438131759 /home/mayken/Projects/OpenGLfun/Player.h
 	"Utils.h"
 
 1430531445 /home/mayken/Projects/OpenGLfun/Chunk.h
@@ -2794,12 +2794,21 @@
 
 1430531445 /home/mayken/Projects/OpenGLfun/texture.c
 
-1438128410 source:/home/mayken/Projects/OpenGLfun/Player.cpp
+1438131759 source:/home/mayken/Projects/OpenGLfun/Player.cpp
 	"Player.h"
 
 1430531445 source:/home/mayken/Projects/OpenGLfun/texture.c
 
-1438128368 source:/home/mayken/Projects/OpenGLfun/Utils.cpp
+1438131759 source:/home/mayken/Projects/OpenGLfun/Utils.cpp
 	"Utils.h"
 	<unistd.h>
+
+1438168484 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
+	"Cube.h"
+
+1438168451 /home/mayken/Projects/OpenGLfun/include/Cube.h
+	"Object.h"
+
+1438284227 /home/mayken/Projects/OpenGLfun/include/Object.h
+	"../Utils.h"
 

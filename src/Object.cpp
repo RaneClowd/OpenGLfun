@@ -1,7 +1,7 @@
 #include "Object.h"
 
 Object::Object() {
-    initShapeData();
+    defineShapeData();
 }
 
 Object::~Object() {
@@ -9,19 +9,25 @@ Object::~Object() {
 }
 
 void Object::drawToGL(void) {
+    // TODO: load color to uniform
+
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
 
     glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, NULL);
 
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
     exitOnGLError("ERROR: Could not draw an object");
 }
 
-void
+Range Object::addVertexData(Vertex* vertexData, int size) {
+    // add vertices to static vertexData mutable array
+}
 
-void Object::initShapeData() {
+Range Object::addIndexData(GLuint* indexData, int size) {
+    // add indices to static indexData mutable array
+    numIndices += size;
+}
 
+void Object::initGLBuffers(void) {
+    // init buffer objects with OpenGL
 }

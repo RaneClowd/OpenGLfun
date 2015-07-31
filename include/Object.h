@@ -3,6 +3,21 @@
 
 #include "../Utils.h"
 
+/*
+
+Every new cube in the world will need vertex/index data, color, model/transform matrices
+
+
+Every instance of a cube should load its own color and model transform before drawing
+
+The cube class should be responsible for the shared vertex/index data
+
+
+Static members on the base class are used on derived classes, they aren't inherited :(
+
+*/
+
+
 typedef struct {
     GLuint index;
     GLuint length;

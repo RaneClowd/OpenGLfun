@@ -9,7 +9,8 @@ Object::~Object() {
 }
 
 void Object::drawToGL(void) {
-    // TODO: load color to uniform
+    glUniformMatrix4fv(modelMatrixUniformLocation, 1, GL_FALSE, modelMatrix);
+    // TODO: uniform in color value
 
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
@@ -19,15 +20,12 @@ void Object::drawToGL(void) {
     exitOnGLError("ERROR: Could not draw an object");
 }
 
-Range Object::addVertexData(Vertex* vertexData, int size) {
-    // add vertices to static vertexData mutable array
-}
-
-Range Object::addIndexData(GLuint* indexData, int size) {
-    // add indices to static indexData mutable array
-    numIndices += size;
-}
-
 void Object::initGLBuffers(void) {
-    // init buffer objects with OpenGL
+    defineShapeData();
+    
+    glGenBuffers(1, )
+    glGenBuffers(1, &vertexBufferID);
+    glGenBuffers(1, &indexBufferID);
+    
+    
 }

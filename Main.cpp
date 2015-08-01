@@ -2,9 +2,8 @@
 
 #include "Utils.h"
 #include "Player.h"
+#include "Cube.h"
 
-#include "Chunk.h"
-#include "texture.c"
 
 int winWidth = 800, winHeight = 800;
 
@@ -19,6 +18,8 @@ GLuint
 
 SDL_Window *window;
 SDL_GLContext glContext;
+
+Cube myCube;
 
 GLShader vertexShader, fragmentShader;
 
@@ -99,14 +100,15 @@ void initShaders() {
 
     glUseProgram(shaderIds[0]);
     exitOnGLError("ERROR: Problem using compiled program");
-    mvpUniform = glGetUniformLocation(shaderIds[0], "mvp");
+    Cube::mvpUniformLocation = glGetUniformLocation(shaderIds[0], "mvp");
+    Cube::colorUniformLocation = glGetUniformLocation(shaderIds[0], "color");
     exitOnGLError("ERROR: Could not get the shader uniform locations");
 
     glGenVertexArrays(1, &bufferIds[0]);
     glBindVertexArray(bufferIds[0]);
 }
 
-void initTexture() {
+/*void initTexture() {
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
@@ -115,8 +117,8 @@ void initTexture() {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textures.width, textures.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textures.pixel_data);
 
     textureUniform = glGetUniformLocation(shaderIds[0], "texture");
-    glUniform1i(textureUniform, /*GL_TEXTURE*/0);
-}
+    glUniform1i(textureUniform, 0);
+}*/
 
 void freeResources(void) {
     glDetachShader(shaderIds[0], shaderIds[1]);
@@ -126,26 +128,24 @@ void freeResources(void) {
     glDeleteProgram(shaderIds[0]);
     exitOnGLError("ERROR: Could not destroy the shaders");
 
-    glDeleteBuffers(2, &bufferIds[1]);
-    glDeleteVertexArrays(1, &bufferIds[0]);
+    Cube::freeGLResources();
     exitOnGLError("ERROR: Could not destroy the buffer objects");
-
-    glDeleteTextures(1, &texture);
-    exitOnGLError("ERROR: Could not destroy texture");
 }
 
 void clearGraphics(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void render(float timeLapsed, Chunk *scene) {
-    glm::mat4 mvp = projectionMatrix * viewMatrix;
-    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
+void render(float timeLapsed) {
+    glm::mat4 vpMat = projectionMatrix * viewMatrix;
+    Cube::viewProjectionMatrix = &vpMat;
 
     clearGraphics();
 
     exitOnGLError("error before scene render");
-    scene->render();
+    printf("drawing cube\n");
+    myCube.drawToGL();
+    printf("drawn\n");
     exitOnGLError("error after scene render");
 
     SDL_GL_SwapWindow(window);
@@ -157,23 +157,19 @@ int main(int argc, char* argv[]) {
     initSDLWithOpenGL();
     initGlew();
     initShaders();
-    initTexture();
+
+    printf("getting cube ready\n");
+    Cube::initGLResources();
+    printf("cube ready\n");
 
     projectionMatrix = glm::perspective(45.0f, ((float)winWidth)/winHeight, .01f, 1000.0f);
 
-    Chunk scene;
-    for (int x=0; x<8; x++) {
-        scene.set(x, 0, 0, 1);
-        scene.set(0, x, 0, 1);
-        scene.set(0, 0, x, 1);
-    }
-    scene.set(15, 1, 15, 3);
-    scene.set(15, -5, 15, 3);
-    scene.set(15, 6, 15, 3);
     exitOnGLError("error after init");
 
     initPlayerInput();
     exitOnGLError("error before while");
+
+    printf("starting run loop\n");
     while (!userQuit()) {
 
         exitOnGLError("error before time check");
@@ -182,21 +178,22 @@ int main(int argc, char* argv[]) {
         float timeLapsed = ((float)(now - lastTime) / CLOCKS_PER_SEC);
         lastTime = now;
 
-        exitOnGLError("error before player input");
+        exitOnGLError("error before player input proccessed");
         checkForPlayerInput();
         viewMatrix = updatePlayerView(timeLapsed);
 
         SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
-        exitOnGLError("error before render");
-        render(timeLapsed, &scene);
 
+        exitOnGLError("error before render");
+        printf("rendering\n");
+        render(timeLapsed);
+        printf("rendered\n");
         exitOnGLError("error after render");
 
         SDL_Delay(20 - (timeLapsed * 1000));
     }
 
     freeResources();
-    scene.~Chunk();
 
     SDL_GL_DeleteContext(glContext);
     SDL_Quit();

@@ -74,7 +74,7 @@ void initGlew(void)
 
     glGetError();
 
-    glClearColor(0.9f, 0.4f, 0.0f, 0.0f);
+    glClearColor(0.0f, 0.6f, 0.8f, 0.0f);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -143,9 +143,7 @@ void render(float timeLapsed) {
     clearGraphics();
 
     exitOnGLError("error before scene render");
-    printf("drawing cube\n");
     myCube.drawToGL();
-    printf("drawn\n");
     exitOnGLError("error after scene render");
 
     SDL_GL_SwapWindow(window);
@@ -185,9 +183,7 @@ int main(int argc, char* argv[]) {
         SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
 
         exitOnGLError("error before render");
-        printf("rendering\n");
         render(timeLapsed);
-        printf("rendered\n");
         exitOnGLError("error after render");
 
         SDL_Delay(20 - (timeLapsed * 1000));

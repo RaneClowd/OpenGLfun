@@ -103,7 +103,7 @@ void exitOnGLError(const char* error_message)
 
   if (ErrorValue != GL_NO_ERROR)
   {
-    fprintf(stderr, "%s: %s\n", error_message, glewGetErrorString(ErrorValue));
+    fprintf(stderr, "%s: %s (%d)\n", error_message, glewGetErrorString(ErrorValue), ErrorValue);
     exit(EXIT_FAILURE);
   }
 }

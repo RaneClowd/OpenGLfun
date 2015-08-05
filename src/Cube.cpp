@@ -61,12 +61,12 @@ void Cube::initGLResources(void) {
     VERTICES[23] = { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } };
 
     const GLuint INDICES[Cube::numIndices] = {
-        4, 1, 9,  1, 6, 9,
-        0, 3,17, 17,14, 0,
-        2,13,20, 20, 7, 2,
-        8,22,10,  8,19,22,
-        16, 5,11, 16,11,23,
-        15,18,12, 15,21,18,
+        4, 9, 1,  1, 9, 6,      // front
+        0,17, 3, 17, 0,14,      // bottom
+        2,20,13, 20, 2, 7,      // left side
+        8,10,22,  8,22,19,      // top
+        16,11, 5, 16,23,11,     // right side
+        15,12,18, 15,18,21,     // back
     };
 
     glGenBuffers(1, &Cube::vertexBufferID);
@@ -82,7 +82,7 @@ void Cube::initGLResources(void) {
     glBindBuffer(GL_ARRAY_BUFFER, Cube::vertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(VERTICES), VERTICES, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VERTICES[0]), NULL);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(VERTICES[0]), NULL);
 
 
     // Set up index data
@@ -104,7 +104,7 @@ void Cube::drawToGL(void) {
 
     glUniform3fv(Cube::colorUniformLocation, 1, glm::value_ptr(this->color));
 
-    glBindVertexArray(vertexArrayObjectID);
+    glBindVertexArray(Cube::vertexArrayObjectID);
     glDrawElements(GL_TRIANGLES, Cube::numIndices, GL_UNSIGNED_INT, NULL);
 
     exitOnGLError("ERROR: Could not draw an object");

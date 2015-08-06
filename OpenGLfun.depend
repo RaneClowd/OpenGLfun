@@ -2779,7 +2779,7 @@
 1389483480 /usr/include/glm/gtc/type_ptr.inl
 	<cstring>
 
-1438772993 source:/home/mayken/Projects/OpenGLfun/Main.cpp
+1438858671 source:/home/mayken/Projects/OpenGLfun/Main.cpp
 	"GLHelpers/GLShader.h"
 	"Utils.h"
 	"Player.h"
@@ -2793,7 +2793,7 @@
 
 1430531445 /home/mayken/Projects/OpenGLfun/texture.c
 
-1438131759 source:/home/mayken/Projects/OpenGLfun/Player.cpp
+1438859048 source:/home/mayken/Projects/OpenGLfun/Player.cpp
 	"Player.h"
 
 1430531445 source:/home/mayken/Projects/OpenGLfun/texture.c
@@ -2802,12 +2802,695 @@
 	"Utils.h"
 	<unistd.h>
 
-1438772544 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
+1438860851 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
 	"Cube.h"
+	<glm/ext.hpp>
+	<iostream>
 
-1438470243 /home/mayken/Projects/OpenGLfun/include/Cube.h
+1438858680 /home/mayken/Projects/OpenGLfun/include/Cube.h
 	"../Utils.h"
 
 1438340726 /home/mayken/Projects/OpenGLfun/include/Object.h
 	"../Utils.h"
+
+1420280585 /usr/local/include/glm/ext.hpp
+	"./gtc/bitfield.hpp"
+	"./gtc/constants.hpp"
+	"./gtc/epsilon.hpp"
+	"./gtc/integer.hpp"
+	"./gtc/matrix_access.hpp"
+	"./gtc/matrix_integer.hpp"
+	"./gtc/matrix_inverse.hpp"
+	"./gtc/matrix_transform.hpp"
+	"./gtc/noise.hpp"
+	"./gtc/packing.hpp"
+	"./gtc/quaternion.hpp"
+	"./gtc/random.hpp"
+	"./gtc/reciprocal.hpp"
+	"./gtc/round.hpp"
+	"./gtc/type_precision.hpp"
+	"./gtc/type_ptr.hpp"
+	"./gtc/ulp.hpp"
+	"./gtc/vec1.hpp"
+	"./gtx/associated_min_max.hpp"
+	"./gtx/bit.hpp"
+	"./gtx/closest_point.hpp"
+	"./gtx/color_space.hpp"
+	"./gtx/color_space_YCoCg.hpp"
+	"./gtx/compatibility.hpp"
+	"./gtx/component_wise.hpp"
+	"./gtx/dual_quaternion.hpp"
+	"./gtx/euler_angles.hpp"
+	"./gtx/extend.hpp"
+	"./gtx/extented_min_max.hpp"
+	"./gtx/fast_exponential.hpp"
+	"./gtx/fast_square_root.hpp"
+	"./gtx/fast_trigonometry.hpp"
+	"./gtx/gradient_paint.hpp"
+	"./gtx/handed_coordinate_space.hpp"
+	"./gtx/integer.hpp"
+	"./gtx/intersect.hpp"
+	"./gtx/log_base.hpp"
+	"./gtx/matrix_cross_product.hpp"
+	"./gtx/matrix_interpolation.hpp"
+	"./gtx/matrix_major_storage.hpp"
+	"./gtx/matrix_operation.hpp"
+	"./gtx/matrix_query.hpp"
+	"./gtx/mixed_product.hpp"
+	"./gtx/norm.hpp"
+	"./gtx/normal.hpp"
+	"./gtx/normalize_dot.hpp"
+	"./gtx/number_precision.hpp"
+	"./gtx/optimum_pow.hpp"
+	"./gtx/orthonormalize.hpp"
+	"./gtx/perpendicular.hpp"
+	"./gtx/polar_coordinates.hpp"
+	"./gtx/projection.hpp"
+	"./gtx/quaternion.hpp"
+	"./gtx/raw_data.hpp"
+	"./gtx/rotate_vector.hpp"
+	"./gtx/spline.hpp"
+	"./gtx/std_based_type.hpp"
+	"./gtx/string_cast.hpp"
+	"./gtx/transform.hpp"
+	"./gtx/transform2.hpp"
+	"./gtx/type_aligned.hpp"
+	"./gtx/vector_angle.hpp"
+	"./gtx/vector_query.hpp"
+	"./gtx/wrap.hpp"
+	"./gtx/scalar_multiplication.hpp"
+	"./gtx/range.hpp"
+	"./gtx/simd_vec4.hpp"
+	"./gtx/simd_mat4.hpp"
+
+1420280585 /usr/local/include/glm/gtc/bitfield.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/type_int.hpp"
+	"../detail/_vectorize.hpp"
+	<limits>
+	"bitfield.inl"
+
+1420280585 /usr/local/include/glm/gtc/bitfield.inl
+
+1420280585 /usr/local/include/glm/gtc/epsilon.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"epsilon.inl"
+
+1420280585 /usr/local/include/glm/gtc/epsilon.inl
+	"quaternion.hpp"
+	"../vector_relational.hpp"
+	"../common.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+
+1420280585 /usr/local/include/glm/vector_relational.hpp
+	"detail/func_vector_relational.hpp"
+
+1420280585 /usr/local/include/glm/common.hpp
+	"detail/func_common.hpp"
+
+1420280585 /usr/local/include/glm/gtc/integer.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/func_common.hpp"
+	"../detail/func_integer.hpp"
+	"../detail/func_exponential.hpp"
+	<limits>
+	"integer.inl"
+
+1420280585 /usr/local/include/glm/detail/func_integer.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_common.hpp"
+	"func_vector_relational.hpp"
+	"func_integer.inl"
+
+1420280585 /usr/local/include/glm/detail/func_integer.inl
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_int.hpp"
+	"_vectorize.hpp"
+	<intrin.h>
+	<limits>
+
+1424001528 /usr/local/include/glm/gtc/integer.inl
+
+1420280585 /usr/local/include/glm/gtc/matrix_access.hpp
+	"../detail/setup.hpp"
+	"matrix_access.inl"
+
+1420280585 /usr/local/include/glm/gtc/matrix_access.inl
+
+1420280585 /usr/local/include/glm/gtc/matrix_integer.hpp
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+
+1420280585 /usr/local/include/glm/gtc/matrix_inverse.hpp
+	"../detail/setup.hpp"
+	"../matrix.hpp"
+	"../mat2x2.hpp"
+	"../mat3x3.hpp"
+	"../mat4x4.hpp"
+	"matrix_inverse.inl"
+
+1420280585 /usr/local/include/glm/gtc/matrix_inverse.inl
+
+1420280585 /usr/local/include/glm/gtc/noise.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/_noise.hpp"
+	"../geometric.hpp"
+	"../common.hpp"
+	"../vector_relational.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"noise.inl"
+
+1420280585 /usr/local/include/glm/detail/_noise.hpp
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../common.hpp"
+
+1420280585 /usr/local/include/glm/gtc/noise.inl
+
+1420841663 /usr/local/include/glm/gtc/packing.hpp
+	"type_precision.hpp"
+	"packing.inl"
+
+1420280585 /usr/local/include/glm/gtc/type_precision.hpp
+	"../gtc/quaternion.hpp"
+	"../gtc/vec1.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"type_precision.inl"
+
+1420280585 /usr/local/include/glm/gtc/vec1.hpp
+	"../glm.hpp"
+	"../detail/type_vec1.hpp"
+	"vec1.inl"
+
+1420280585 /usr/local/include/glm/glm.hpp
+	"detail/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cassert>
+	"fwd.hpp"
+	"vec2.hpp"
+	"vec3.hpp"
+	"vec4.hpp"
+	"mat2x2.hpp"
+	"mat2x3.hpp"
+	"mat2x4.hpp"
+	"mat3x2.hpp"
+	"mat3x3.hpp"
+	"mat3x4.hpp"
+	"mat4x2.hpp"
+	"mat4x3.hpp"
+	"mat4x4.hpp"
+	"trigonometric.hpp"
+	"exponential.hpp"
+	"common.hpp"
+	"packing.hpp"
+	"geometric.hpp"
+	"matrix.hpp"
+	"vector_relational.hpp"
+	"integer.hpp"
+
+1420280585 /usr/local/include/glm/packing.hpp
+	"detail/func_packing.hpp"
+
+1423516826 /usr/local/include/glm/detail/func_packing.hpp
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"func_packing.inl"
+
+1423516826 /usr/local/include/glm/detail/func_packing.inl
+	"func_common.hpp"
+	"type_half.hpp"
+	"../fwd.hpp"
+
+1420280585 /usr/local/include/glm/detail/type_half.hpp
+	"setup.hpp"
+	"type_half.inl"
+
+1420280585 /usr/local/include/glm/detail/type_half.inl
+
+1420280585 /usr/local/include/glm/integer.hpp
+	"detail/func_integer.hpp"
+
+1420280585 /usr/local/include/glm/gtc/vec1.inl
+
+1420280585 /usr/local/include/glm/gtc/type_precision.inl
+
+1423516826 /usr/local/include/glm/gtc/packing.inl
+	"../common.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../detail/type_half.hpp"
+	<cstring>
+
+1420280585 /usr/local/include/glm/gtc/random.hpp
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"random.inl"
+
+1420280585 /usr/local/include/glm/gtc/random.inl
+	"../geometric.hpp"
+	"../exponential.hpp"
+	<cstdlib>
+	<ctime>
+	<cassert>
+
+1420280585 /usr/local/include/glm/gtc/reciprocal.hpp
+	"../detail/setup.hpp"
+	"reciprocal.inl"
+
+1420280585 /usr/local/include/glm/gtc/reciprocal.inl
+	"../trigonometric.hpp"
+	<limits>
+
+1420280585 /usr/local/include/glm/gtc/round.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/_vectorize.hpp"
+	"../vector_relational.hpp"
+	"../common.hpp"
+	<limits>
+	"round.inl"
+
+1420280585 /usr/local/include/glm/gtc/round.inl
+
+1420280585 /usr/local/include/glm/gtc/ulp.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"../detail/type_int.hpp"
+	"ulp.inl"
+
+1420280585 /usr/local/include/glm/gtc/ulp.inl
+	"../detail/type_int.hpp"
+	<cmath>
+	<cfloat>
+	<limits>
+
+1420280585 /usr/local/include/glm/gtx/associated_min_max.hpp
+	"../glm.hpp"
+	"associated_min_max.inl"
+
+1420280585 /usr/local/include/glm/gtx/associated_min_max.inl
+
+1420280585 /usr/local/include/glm/gtx/bit.hpp
+	"../gtc/bitfield.hpp"
+	"bit.inl"
+
+1420280585 /usr/local/include/glm/gtx/bit.inl
+
+1420280585 /usr/local/include/glm/gtx/closest_point.hpp
+	"../glm.hpp"
+	"closest_point.inl"
+
+1420280585 /usr/local/include/glm/gtx/closest_point.inl
+
+1420280585 /usr/local/include/glm/gtx/color_space.hpp
+	"../glm.hpp"
+	"color_space.inl"
+
+1420280585 /usr/local/include/glm/gtx/color_space.inl
+
+1420280585 /usr/local/include/glm/gtx/color_space_YCoCg.hpp
+	"../glm.hpp"
+	"color_space_YCoCg.inl"
+
+1424001528 /usr/local/include/glm/gtx/color_space_YCoCg.inl
+
+1420280585 /usr/local/include/glm/gtx/compatibility.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	<cfloat>
+	<cmath>
+	"compatibility.inl"
+
+1420280585 /usr/local/include/glm/gtx/compatibility.inl
+	<limits>
+
+1420280585 /usr/local/include/glm/gtx/component_wise.hpp
+	"../detail/setup.hpp"
+	"../detail/precision.hpp"
+	"component_wise.inl"
+
+1420280585 /usr/local/include/glm/gtx/component_wise.inl
+
+1424001528 /usr/local/include/glm/gtx/dual_quaternion.hpp
+	"../glm.hpp"
+	"../gtc/constants.hpp"
+	"../gtc/quaternion.hpp"
+	"dual_quaternion.inl"
+
+1424001528 /usr/local/include/glm/gtx/dual_quaternion.inl
+	"../geometric.hpp"
+	<limits>
+
+1420280585 /usr/local/include/glm/gtx/euler_angles.hpp
+	"../glm.hpp"
+	"euler_angles.inl"
+
+1420280585 /usr/local/include/glm/gtx/euler_angles.inl
+
+1420280585 /usr/local/include/glm/gtx/extend.hpp
+	"../glm.hpp"
+	"extend.inl"
+
+1420280585 /usr/local/include/glm/gtx/extend.inl
+
+1420280585 /usr/local/include/glm/gtx/extented_min_max.hpp
+	"../glm.hpp"
+	"extented_min_max.inl"
+
+1420280585 /usr/local/include/glm/gtx/extented_min_max.inl
+
+1420280585 /usr/local/include/glm/gtx/fast_exponential.hpp
+	"../glm.hpp"
+	"fast_exponential.inl"
+
+1420280585 /usr/local/include/glm/gtx/fast_exponential.inl
+
+1420280585 /usr/local/include/glm/gtx/fast_square_root.hpp
+	"../common.hpp"
+	"../exponential.hpp"
+	"../geometric.hpp"
+	"fast_square_root.inl"
+
+1420280585 /usr/local/include/glm/gtx/fast_square_root.inl
+
+1420280585 /usr/local/include/glm/gtx/fast_trigonometry.hpp
+	"../gtc/constants.hpp"
+	"fast_trigonometry.inl"
+
+1420280585 /usr/local/include/glm/gtx/fast_trigonometry.inl
+
+1420280585 /usr/local/include/glm/gtx/gradient_paint.hpp
+	"../glm.hpp"
+	"../gtx/optimum_pow.hpp"
+	"gradient_paint.inl"
+
+1420280585 /usr/local/include/glm/gtx/optimum_pow.hpp
+	"../glm.hpp"
+	"optimum_pow.inl"
+
+1420280585 /usr/local/include/glm/gtx/optimum_pow.inl
+
+1420280585 /usr/local/include/glm/gtx/gradient_paint.inl
+
+1420280585 /usr/local/include/glm/gtx/handed_coordinate_space.hpp
+	"../glm.hpp"
+	"handed_coordinate_space.inl"
+
+1420280585 /usr/local/include/glm/gtx/handed_coordinate_space.inl
+
+1420280585 /usr/local/include/glm/gtx/integer.hpp
+	"../glm.hpp"
+	"../gtc/integer.hpp"
+	"integer.inl"
+
+1420280585 /usr/local/include/glm/gtx/integer.inl
+
+1420280585 /usr/local/include/glm/gtx/intersect.hpp
+	"../glm.hpp"
+	"../gtx/closest_point.hpp"
+	"intersect.inl"
+
+1420280585 /usr/local/include/glm/gtx/intersect.inl
+	"../geometric.hpp"
+	<cfloat>
+	<limits>
+
+1420280585 /usr/local/include/glm/gtx/log_base.hpp
+	"../glm.hpp"
+	"log_base.inl"
+
+1420280585 /usr/local/include/glm/gtx/log_base.inl
+
+1420280585 /usr/local/include/glm/gtx/matrix_cross_product.hpp
+	"../glm.hpp"
+	"matrix_cross_product.inl"
+
+1420280585 /usr/local/include/glm/gtx/matrix_cross_product.inl
+
+1420280585 /usr/local/include/glm/gtx/matrix_interpolation.hpp
+	"../glm.hpp"
+	"matrix_interpolation.inl"
+
+1420280585 /usr/local/include/glm/gtx/matrix_interpolation.inl
+
+1420280585 /usr/local/include/glm/gtx/matrix_major_storage.hpp
+	"../glm.hpp"
+	"matrix_major_storage.inl"
+
+1420280585 /usr/local/include/glm/gtx/matrix_major_storage.inl
+
+1420280585 /usr/local/include/glm/gtx/matrix_operation.hpp
+	"../glm.hpp"
+	"matrix_operation.inl"
+
+1420280585 /usr/local/include/glm/gtx/matrix_operation.inl
+
+1420280585 /usr/local/include/glm/gtx/matrix_query.hpp
+	"../glm.hpp"
+	"../gtx/vector_query.hpp"
+	<limits>
+	"matrix_query.inl"
+
+1420280585 /usr/local/include/glm/gtx/vector_query.hpp
+	"../glm.hpp"
+	<cfloat>
+	<limits>
+	"vector_query.inl"
+
+1420280585 /usr/local/include/glm/gtx/vector_query.inl
+	<cassert>
+
+1420280585 /usr/local/include/glm/gtx/matrix_query.inl
+
+1420280585 /usr/local/include/glm/gtx/mixed_product.hpp
+	"../glm.hpp"
+	"mixed_product.inl"
+
+1420280585 /usr/local/include/glm/gtx/mixed_product.inl
+
+1420280585 /usr/local/include/glm/gtx/norm.hpp
+	"../glm.hpp"
+	"../gtx/quaternion.hpp"
+	"norm.inl"
+
+1420280585 /usr/local/include/glm/gtx/quaternion.hpp
+	"../glm.hpp"
+	"../gtc/constants.hpp"
+	"../gtc/quaternion.hpp"
+	"../gtx/norm.hpp"
+	"quaternion.inl"
+
+1420280585 /usr/local/include/glm/gtx/quaternion.inl
+	<limits>
+	"../gtc/constants.hpp"
+
+1420280585 /usr/local/include/glm/gtx/norm.inl
+
+1420280585 /usr/local/include/glm/gtx/normal.hpp
+	"../glm.hpp"
+	"normal.inl"
+
+1420280585 /usr/local/include/glm/gtx/normal.inl
+
+1420280585 /usr/local/include/glm/gtx/normalize_dot.hpp
+	"../gtx/fast_square_root.hpp"
+	"normalize_dot.inl"
+
+1420280585 /usr/local/include/glm/gtx/normalize_dot.inl
+
+1420280585 /usr/local/include/glm/gtx/number_precision.hpp
+	"../glm.hpp"
+	"../gtc/type_precision.hpp"
+	"number_precision.inl"
+
+1420280585 /usr/local/include/glm/gtx/number_precision.inl
+
+1420280585 /usr/local/include/glm/gtx/orthonormalize.hpp
+	"../vec3.hpp"
+	"../mat3x3.hpp"
+	"../geometric.hpp"
+	"orthonormalize.inl"
+
+1420280585 /usr/local/include/glm/gtx/orthonormalize.inl
+
+1420280585 /usr/local/include/glm/gtx/perpendicular.hpp
+	"../glm.hpp"
+	"../gtx/projection.hpp"
+	"perpendicular.inl"
+
+1420280585 /usr/local/include/glm/gtx/projection.hpp
+	"../geometric.hpp"
+	"projection.inl"
+
+1420280585 /usr/local/include/glm/gtx/projection.inl
+
+1420280585 /usr/local/include/glm/gtx/perpendicular.inl
+
+1420280585 /usr/local/include/glm/gtx/polar_coordinates.hpp
+	"../glm.hpp"
+	"polar_coordinates.inl"
+
+1420280585 /usr/local/include/glm/gtx/polar_coordinates.inl
+
+1420280585 /usr/local/include/glm/gtx/raw_data.hpp
+	"../detail/setup.hpp"
+	"../detail/type_int.hpp"
+	"raw_data.inl"
+
+1420280585 /usr/local/include/glm/gtx/raw_data.inl
+
+1420280585 /usr/local/include/glm/gtx/rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1420280585 /usr/local/include/glm/gtx/transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1420280585 /usr/local/include/glm/gtx/transform.inl
+
+1420280585 /usr/local/include/glm/gtx/rotate_vector.inl
+
+1420280585 /usr/local/include/glm/gtx/spline.hpp
+	"../glm.hpp"
+	"../gtx/optimum_pow.hpp"
+	"spline.inl"
+
+1420280585 /usr/local/include/glm/gtx/spline.inl
+
+1420280585 /usr/local/include/glm/gtx/std_based_type.hpp
+	"../glm.hpp"
+	<cstdlib>
+	"std_based_type.inl"
+
+1420280585 /usr/local/include/glm/gtx/std_based_type.inl
+
+1420280585 /usr/local/include/glm/gtx/string_cast.hpp
+	"../glm.hpp"
+	"../gtc/type_precision.hpp"
+	<string>
+	"string_cast.inl"
+
+1420829641 /usr/local/include/glm/gtx/string_cast.inl
+	<cstdarg>
+	<cstdio>
+
+1420280585 /usr/local/include/glm/gtx/transform2.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"transform2.inl"
+
+1420280585 /usr/local/include/glm/gtx/transform2.inl
+
+1420280585 /usr/local/include/glm/gtx/type_aligned.hpp
+	"../gtc/type_precision.hpp"
+	"type_aligned.inl"
+
+1420280585 /usr/local/include/glm/gtx/type_aligned.inl
+
+1420280585 /usr/local/include/glm/gtx/vector_angle.hpp
+	"../glm.hpp"
+	"../gtc/epsilon.hpp"
+	"../gtx/quaternion.hpp"
+	"../gtx/rotate_vector.hpp"
+	"vector_angle.inl"
+
+1420280585 /usr/local/include/glm/gtx/vector_angle.inl
+
+1420280585 /usr/local/include/glm/gtx/wrap.hpp
+	"../glm.hpp"
+	"wrap.inl"
+
+1420280585 /usr/local/include/glm/gtx/wrap.inl
+
+1423516826 /usr/local/include/glm/gtx/scalar_multiplication.hpp
+	"../detail/setup.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	<type_traits>
+
+1420280585 /usr/local/include/glm/gtx/range.hpp
+	"../detail/setup.hpp"
+	"../gtc/type_ptr.hpp"
+
+1420280585 /usr/local/include/glm/gtx/simd_vec4.hpp
+	"../glm.hpp"
+	"../detail/intrinsic_common.hpp"
+	"../detail/intrinsic_geometric.hpp"
+	"../detail/intrinsic_integer.hpp"
+	"simd_vec4.inl"
+
+1420280585 /usr/local/include/glm/detail/intrinsic_common.hpp
+	"setup.hpp"
+	"intrinsic_common.inl"
+
+1423871488 /usr/local/include/glm/detail/intrinsic_common.inl
+
+1420280585 /usr/local/include/glm/detail/intrinsic_geometric.hpp
+	"setup.hpp"
+	"intrinsic_common.hpp"
+	"intrinsic_geometric.inl"
+
+1420280585 /usr/local/include/glm/detail/intrinsic_geometric.inl
+
+1420280585 /usr/local/include/glm/detail/intrinsic_integer.hpp
+	"glm/glm.hpp"
+	"intrinsic_integer.inl"
+
+1420280585 /usr/local/include/glm/detail/intrinsic_integer.inl
+
+1420280585 /usr/local/include/glm/gtx/simd_vec4.inl
+
+1420280585 /usr/local/include/glm/gtx/simd_mat4.hpp
+	"../detail/setup.hpp"
+	"../detail/intrinsic_matrix.hpp"
+	"../gtx/simd_vec4.hpp"
+	"simd_mat4.inl"
+
+1420280585 /usr/local/include/glm/detail/intrinsic_matrix.hpp
+	"setup.hpp"
+	"intrinsic_geometric.hpp"
+	"intrinsic_matrix.inl"
+
+1420280585 /usr/local/include/glm/detail/intrinsic_matrix.inl
+
+1420280585 /usr/local/include/glm/gtx/simd_mat4.inl
 

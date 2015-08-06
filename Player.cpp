@@ -50,7 +50,6 @@ glm::mat4 updatePlayerView(float timeLapsed) {
         }
     }
 
-
     glm::mat4 view = glm::rotate(IDENTITY_MATRIX, angle.y, glm::vec3(-1, 0, 0));
     view = glm::rotate(view, angle.x, glm::vec3(0, 1, 0));
     view = glm::translate(view, worldShift);

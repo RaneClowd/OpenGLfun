@@ -121,10 +121,10 @@ void initShaders() {
 }*/
 
 void freeResources(void) {
-    glDetachShader(shaderIds[0], shaderIds[1]);
-    glDetachShader(shaderIds[0], shaderIds[2]);
-    glDeleteShader(shaderIds[1]);
-    glDeleteShader(shaderIds[2]);
+    glDetachShader(shaderIds[0], vertexShader.getShaderID());
+    glDetachShader(shaderIds[0], fragmentShader.getShaderID());
+    glDeleteShader(vertexShader.getShaderID());
+    glDeleteShader(fragmentShader.getShaderID());
     glDeleteProgram(shaderIds[0]);
     exitOnGLError("ERROR: Could not destroy the shaders");
 
@@ -138,7 +138,7 @@ void clearGraphics(void) {
 
 void render(float timeLapsed) {
     glm::mat4 vpMat = projectionMatrix * viewMatrix;
-    Cube::viewProjectionMatrix = &vpMat;
+    Cube::viewProjectionMatrix = vpMat;
 
     clearGraphics();
 

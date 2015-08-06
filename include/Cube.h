@@ -15,7 +15,7 @@ class Cube
 
         void drawToGL(void);
 
-        static glm::mat4 *viewProjectionMatrix;
+        static glm::mat4 viewProjectionMatrix;
 
         static GLuint mvpUniformLocation;
         static GLuint colorUniformLocation;

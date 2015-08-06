@@ -2,7 +2,7 @@
 
 int Cube::numIndices = 36;
 
-glm::mat4 *Cube::viewProjectionMatrix = 0;
+glm::mat4 Cube::viewProjectionMatrix = IDENTITY_MATRIX;
 
 GLuint Cube::mvpUniformLocation = 0;
 GLuint Cube::colorUniformLocation = 0;
@@ -13,7 +13,11 @@ GLuint Cube::indexBufferID = 0;
 
 
 Cube::Cube() {
-    this->modelMatrix = IDENTITY_MATRIX;
+    this->modelMatrix = glm::mat4(
+                              1, 0, 0, 0,
+                              0, 1, 0, 0,
+                              0, 0, 1, 0,
+                              0, 0, 0, 1);;
     this->color = {1, 0, 0};
 }
 
@@ -61,12 +65,12 @@ void Cube::initGLResources(void) {
     VERTICES[23] = { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } };
 
     const GLuint INDICES[Cube::numIndices] = {
-        4, 9, 1,  1, 9, 6,      // front
-        0,17, 3, 17, 0,14,      // bottom
-        2,20,13, 20, 2, 7,      // left side
-        8,10,22,  8,22,19,      // top
-        16,11, 5, 16,23,11,     // right side
-        15,12,18, 15,18,21,     // back
+        4, 1, 9,  1, 6, 9,  // Red
+        0, 3,17, 17,14, 0,  // Blue
+        2,13,20, 20, 7, 2,  // Green
+        8,22,10,  8,19,22,  // Cyan
+       16, 5,11, 16,11,23,  // Yellow
+       15,18,12, 15,21,18,  // Purple
     };
 
     glGenBuffers(1, &Cube::vertexBufferID);
@@ -99,7 +103,7 @@ void Cube::freeGLResources(void) {
 }
 
 void Cube::drawToGL(void) {
-    glm::mat4 mvpMatrix = *Cube::viewProjectionMatrix * this->modelMatrix;
+    glm::mat4 mvpMatrix = Cube::viewProjectionMatrix * this->modelMatrix;
     glUniformMatrix4fv(Cube::mvpUniformLocation, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
 
     glUniform3fv(Cube::colorUniformLocation, 1, glm::value_ptr(this->color));

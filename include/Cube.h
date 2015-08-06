@@ -13,12 +13,15 @@ class Cube
 
         glm::vec3 color;
 
-        void drawToGL(void);
-
         static glm::mat4 viewProjectionMatrix;
 
         static GLuint mvpUniformLocation;
         static GLuint colorUniformLocation;
+
+        void translateCube(glm::vec3);
+        void rotateCube(glm::vec3);
+
+        void drawToGL(void);
 
         static void initGLResources(void);
         static void freeGLResources(void);
@@ -33,6 +36,10 @@ class Cube
         static int numIndices;
 
         glm::mat4 modelMatrix;
+
+        glm::vec3 translationVec;
+        glm::vec3 rotationVec;
+        void recreateModelMatrix(void);
 };
 
 #endif // CUBE_H

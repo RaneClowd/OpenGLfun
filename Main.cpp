@@ -19,13 +19,14 @@ GLuint
 SDL_Window *window;
 SDL_GLContext glContext;
 
-Cube myCube;
+const int numCubes = 100;
+Cube myCubes[numCubes];
 
 GLShader vertexShader, fragmentShader;
 
 glm::mat4 viewMatrix, projectionMatrix;
 
-float cubeRotation = 0;
+float cubeRotation = 10;
 clock_t lastTime = 0;
 
 void initSDLWithOpenGL (void) {
@@ -74,7 +75,7 @@ void initGlew(void)
 
     glGetError();
 
-    glClearColor(0.0f, 0.6f, 0.8f, 0.0f);
+    glClearColor(0.0f, 0.2f, 0.4f, 0.0f);
 
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
@@ -143,7 +144,9 @@ void render(float timeLapsed) {
     clearGraphics();
 
     exitOnGLError("error before scene render");
-    myCube.drawToGL();
+    for (int i = 0; i < numCubes; i++) {
+        myCubes[i].drawToGL();
+    }
     exitOnGLError("error after scene render");
 
     SDL_GL_SwapWindow(window);
@@ -167,6 +170,13 @@ int main(int argc, char* argv[]) {
     initPlayerInput();
     exitOnGLError("error before while");
 
+    int sqrtCubes = sqrt(numCubes);
+    for (int i = 0; i < sqrtCubes; i++) {
+        for (int j = 0; j < sqrtCubes; j++) {
+            myCubes[i*sqrtCubes + j].translateCube(glm::vec3(i*2, 0, j*2));
+        }
+    }
+
     printf("starting run loop\n");
     while (!userQuit()) {
 
@@ -175,6 +185,10 @@ int main(int argc, char* argv[]) {
         if (lastTime == 0) lastTime = now;
         float timeLapsed = ((float)(now - lastTime) / CLOCKS_PER_SEC);
         lastTime = now;
+
+        for (int i = 0; i < numCubes; i++) {
+            myCubes[i].rotateCube(glm::vec3(cubeRotation*timeLapsed, cubeRotation*timeLapsed, cubeRotation*timeLapsed));
+        }
 
         exitOnGLError("error before player input proccessed");
         checkForPlayerInput();

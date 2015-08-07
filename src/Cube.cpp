@@ -24,44 +24,44 @@ void Cube::initGLResources(void) {
     Vertex VERTICES[36];
 
     // Lower front left
-    VERTICES[0] = { { -.5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } };
-    VERTICES[1] = { { -.5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } };
-    VERTICES[2] = { { -.5f, -.5f, -.5f, 1 }, { 0, 1, 0, 1 } };
+    VERTICES[0] = { { -.5f, -.5f, -.5f }, { 0, 0, 1 } };
+    VERTICES[1] = { { -.5f, -.5f, -.5f }, { 1, 0, 0 } };
+    VERTICES[2] = { { -.5f, -.5f, -.5f }, { 0, 1, 0 } };
 
     // Lower front right
-    VERTICES[3] = { {  .5f, -.5f, -.5f, 1 }, { 0, 0, 1, 1 } };
-    VERTICES[4] = { {  .5f, -.5f, -.5f, 1 }, { 1, 0, 0, 1 } };
-    VERTICES[5] = { {  .5f, -.5f, -.5f, 1 }, { 1, 1, 0, 1 } };
+    VERTICES[3] = { {  .5f, -.5f, -.5f }, { 0, 0, 1 } };
+    VERTICES[4] = { {  .5f, -.5f, -.5f }, { 1, 0, 0 } };
+    VERTICES[5] = { {  .5f, -.5f, -.5f }, { 1, 1, 0 } };
 
     // Upper front left
-    VERTICES[6] = { { -.5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } };
-    VERTICES[7] = { { -.5f,  .5f, -.5f, 1 }, { 0, 1, 0, 1 } };
-    VERTICES[8] = { { -.5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } };
+    VERTICES[6] = { { -.5f,  .5f, -.5f }, { 1, 0, 0 } };
+    VERTICES[7] = { { -.5f,  .5f, -.5f }, { 0, 1, 0 } };
+    VERTICES[8] = { { -.5f,  .5f, -.5f }, { 0, 0, 0 } };
 
     // Upper front right
-    VERTICES[9] = { {  .5f,  .5f, -.5f, 1 }, { 1, 0, 0, 1 } };
-    VERTICES[10] = { {  .5f,  .5f, -.5f, 1 }, { 0, 0, 0, 1 } };
-    VERTICES[11] = { {  .5f,  .5f, -.5f, 1 }, { 1, 1, 0, 1 } };
+    VERTICES[9] = { {  .5f,  .5f, -.5f }, { 1, 0, 0 } };
+    VERTICES[10] = { {  .5f,  .5f, -.5f }, { 0, 0, 0 } };
+    VERTICES[11] = { {  .5f,  .5f, -.5f }, { 1, 1, 0 } };
 
     // Lower back left
-    VERTICES[12] = { { -.5f, -.5f,  .5f, 1 }, { 1, 0, 1, 1 } };
-    VERTICES[13] = { { -.5f, -.5f,  .5f, 1 }, { 0, 1, 0, 1 } };
-    VERTICES[14] = { { -.5f, -.5f,  .5f, 1 }, { 0, 0, 1, 1 } };
+    VERTICES[12] = { { -.5f, -.5f,  .5f }, { 1, 0, 1 } };
+    VERTICES[13] = { { -.5f, -.5f,  .5f }, { 0, 1, 0 } };
+    VERTICES[14] = { { -.5f, -.5f,  .5f }, { 0, 0, 1 } };
 
     // Lower back right
-    VERTICES[15] = { {  .5f, -.5f,  .5f, 1 }, { 1, 0, 1, 1 } };
-    VERTICES[16] = { {  .5f, -.5f,  .5f, 1 }, { 1, 1, 0, 1 } };
-    VERTICES[17] = { {  .5f, -.5f,  .5f, 1 }, { 0, 0, 1, 1 } };
+    VERTICES[15] = { {  .5f, -.5f,  .5f }, { 1, 0, 1 } };
+    VERTICES[16] = { {  .5f, -.5f,  .5f }, { 1, 1, 0 } };
+    VERTICES[17] = { {  .5f, -.5f,  .5f }, { 0, 0, 1 } };
 
     // Upper back left
-    VERTICES[18] = { { -.5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } };
-    VERTICES[19] = { { -.5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } };
-    VERTICES[20] = { { -.5f,  .5f,  .5f, 1 }, { 0, 1, 0, 1 } };
+    VERTICES[18] = { { -.5f,  .5f,  .5f }, { 1, 0, 1 } };
+    VERTICES[19] = { { -.5f,  .5f,  .5f }, { 0, 0, 0 } };
+    VERTICES[20] = { { -.5f,  .5f,  .5f }, { 0, 1, 0 } };
 
     // Upper back right
-    VERTICES[21] = { {  .5f,  .5f,  .5f, 1 }, { 1, 0, 1, 1 } };
-    VERTICES[22] = { {  .5f,  .5f,  .5f, 1 }, { 0, 0, 0, 1 } };
-    VERTICES[23] = { {  .5f,  .5f,  .5f, 1 }, { 1, 1, 0, 1 } };
+    VERTICES[21] = { {  .5f,  .5f,  .5f }, { 1, 0, 1 } };
+    VERTICES[22] = { {  .5f,  .5f,  .5f }, { 0, 0, 0 } };
+    VERTICES[23] = { {  .5f,  .5f,  .5f }, { 1, 1, 0 } };
 
     const GLuint INDICES[Cube::numIndices] = {
         4, 1, 9,  1, 6, 9,
@@ -81,11 +81,13 @@ void Cube::initGLResources(void) {
 
     // Set up vertex data
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, Cube::vertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(VERTICES), VERTICES, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(VERTICES[0]), NULL);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VERTICES[0]), NULL);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(VERTICES[0]), (GLvoid*)sizeof(VERTICES[0].Position));
 
 
     // Set up index data

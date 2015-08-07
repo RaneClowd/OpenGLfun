@@ -1,13 +1,19 @@
 #version 330
 
-layout(location=0) in vec4 in_position;
-
-out vec4 ex_color;
-
 uniform mat4 mvp;
 uniform vec3 color;
 
+layout(location=0) in vec3 vert;
+layout(location=1) in vec3 vertNormal;
+
+out vec3 fragVert;
+out vec4 fragColor;
+out vec3 fragNormal;
+
 void main(void) {
-    gl_Position = mvp * vec4(in_position.xyz, 1);
-    ex_color = vec4(color.xyz, 1);
+    fragColor = vec4(color.xyz, 1);
+    fragNormal = vertNormal;
+    fragVert = vert;
+
+    gl_Position = mvp * vec4(vert.xyz, 1);
 }

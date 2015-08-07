@@ -18,9 +18,15 @@ static const double PI = 3.14159265358979323846;
 
 typedef struct Vertex
 {
-  glm::vec4 Position;
-  glm::vec4 Color;
+  glm::vec3 Position;
+  glm::vec3 Normal;
 } Vertex;
+
+typedef struct Light
+{
+    glm::vec3 position;
+    glm::vec3 intensities;
+} Light;
 
 typedef enum {
     NONE = 0,

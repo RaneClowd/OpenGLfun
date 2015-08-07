@@ -19,12 +19,16 @@ GLuint
 SDL_Window *window;
 SDL_GLContext glContext;
 
+Light myLight;
+
 const int numCubes = 100;
 Cube myCubes[numCubes];
 
 GLShader vertexShader, fragmentShader;
 
 glm::mat4 viewMatrix, projectionMatrix;
+
+GLuint lightPositionUniform, lightColorUniform;
 
 float cubeRotation = 10;
 clock_t lastTime = 0;
@@ -103,6 +107,10 @@ void initShaders() {
     exitOnGLError("ERROR: Problem using compiled program");
     Cube::mvpUniformLocation = glGetUniformLocation(shaderIds[0], "mvp");
     Cube::colorUniformLocation = glGetUniformLocation(shaderIds[0], "color");
+
+    lightPositionUniform = glGetUniformLocation(shaderIds[0], "light.position");
+    lightColorUniform = glGetUniformLocation(shaderIds[0], "light.intensities");
+
     exitOnGLError("ERROR: Could not get the shader uniform locations");
 
     glGenVertexArrays(1, &bufferIds[0]);
@@ -176,6 +184,12 @@ int main(int argc, char* argv[]) {
             myCubes[i*sqrtCubes + j].translateCube(glm::vec3(i*2, 0, j*2));
         }
     }
+
+    myLight.position = glm::vec3(0, 5, 0);
+    myLight.intensities = glm::vec3(1, 1, 1);
+
+    glUniform3fv(lightPositionUniform, 1, glm::value_ptr(myLight.position));
+    glUniform3fv(lightColorUniform, 1, glm::value_ptr(myLight.intensities));
 
     printf("starting run loop\n");
     while (!userQuit()) {

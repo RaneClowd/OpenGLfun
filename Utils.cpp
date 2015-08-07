@@ -27,24 +27,24 @@ void verticesForSphere(int granularity, Vertex** vertexArray, int* indexArray) {
     int numVertices = 4 * 3; // 3 rectangles to make icosahedron
     Vertex* vArray = (Vertex*)malloc(sizeof(Vertex) * numVertices);
 
-    for (int index = 0; index < numVertices; index++) {
+    /*for (int index = 0; index < numVertices; index++) {
         vArray[index].Color = glm::vec4(0, 1, 1, 1);
-    }
+    }*/
 
-    vArray[ 0].Position = glm::vec4(-1,  t,  0, 1);
-    vArray[ 1].Position = glm::vec4( 1,  t,  0, 1);
-    vArray[ 2].Position = glm::vec4(-1, -t,  0, 1);
-    vArray[ 3].Position = glm::vec4( 1, -t,  0, 1);
+    vArray[ 0].Position = glm::vec3(-1,  t,  0);
+    vArray[ 1].Position = glm::vec3( 1,  t,  0);
+    vArray[ 2].Position = glm::vec3(-1, -t,  0);
+    vArray[ 3].Position = glm::vec3( 1, -t,  0);
 
-    vArray[ 4].Position = glm::vec4( 0, -1,  t, 1);
-    vArray[ 5].Position = glm::vec4( 0,  1,  t, 1);
-    vArray[ 6].Position = glm::vec4( 0, -1, -t, 1);
-    vArray[ 7].Position = glm::vec4( 0,  1, -t, 1);
+    vArray[ 4].Position = glm::vec3( 0, -1,  t);
+    vArray[ 5].Position = glm::vec3( 0,  1,  t);
+    vArray[ 6].Position = glm::vec3( 0, -1, -t);
+    vArray[ 7].Position = glm::vec3( 0,  1, -t);
 
-    vArray[ 8].Position = glm::vec4( t,  0, -1, 1);
-    vArray[ 9].Position = glm::vec4( t,  0,  1, 1);
-    vArray[10].Position = glm::vec4(-t,  0, -1, 1);
-    vArray[11].Position = glm::vec4(-t,  0,  1, 1);
+    vArray[ 8].Position = glm::vec3( t,  0, -1);
+    vArray[ 9].Position = glm::vec3( t,  0,  1);
+    vArray[10].Position = glm::vec3(-t,  0, -1);
+    vArray[11].Position = glm::vec3(-t,  0,  1);
 
 
     indexArray[ 0]= 0; indexArray[ 1]=11, indexArray[ 2]= 5;

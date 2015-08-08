@@ -16,6 +16,7 @@ GLuint Cube::indexBufferID = 0;
 Cube::Cube() {
     this->translationVec = glm::vec3(0, 0, 0);
     this->rotationVec = glm::vec3(0, 0, 0);
+    this->scaleVec = glm::vec3(1,1,1);
     this->recreateModelMatrix();
 
     this->color = {1, 0, 0};
@@ -70,7 +71,7 @@ void Cube::initGLResources(void) {
         2,13,20, 20, 7, 2,      // left
         8,22,10,  8,19,22,      // top
        16, 5,11, 16,11,23,      // right
-       15,12,18, 15,18,21,      // back
+       15,18,12, 15,21,18,      // back
     };
 
     glGenBuffers(1, &Cube::vertexBufferID);
@@ -118,6 +119,13 @@ void Cube::rotateCube(glm::vec3 vec) {
     this->recreateModelMatrix();
 }
 
+void Cube::scaleCube(glm::vec3 vec) {
+    this->scaleVec.x *= vec.x;
+    this->scaleVec.y *= vec.y;
+    this->scaleVec.z *= vec.z;
+    this->recreateModelMatrix();
+}
+
 void Cube::recreateModelMatrix(void) {
     this->modelMatrix = glm::mat4(
                               1, 0, 0, 0,
@@ -130,6 +138,8 @@ void Cube::recreateModelMatrix(void) {
     this->modelMatrix = glm::rotate(this->modelMatrix, this->rotationVec.x, glm::vec3(1, 0, 0));
     this->modelMatrix = glm::rotate(this->modelMatrix, this->rotationVec.y, glm::vec3(0, 1, 0));
     this->modelMatrix = glm::rotate(this->modelMatrix, this->rotationVec.z, glm::vec3(0, 0, 1));
+
+    this->modelMatrix = glm::scale(this->modelMatrix, this->scaleVec);
 }
 
 void Cube::drawToGL(void) {

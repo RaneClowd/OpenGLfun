@@ -20,6 +20,7 @@ class Cube
         static GLuint modelUniformLocation;
 
         void translateCube(glm::vec3);
+        void scaleCube(glm::vec3);
         void rotateCube(glm::vec3);
 
         void drawToGL(void);
@@ -39,6 +40,7 @@ class Cube
         glm::mat4 modelMatrix;
 
         glm::vec3 translationVec;
+        glm::vec3 scaleVec;
         glm::vec3 rotationVec;
         void recreateModelMatrix(void);
 };

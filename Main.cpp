@@ -20,8 +20,12 @@ SDL_Window *window;
 SDL_GLContext glContext;
 
 Light myLight;
+Cube lightCube;
 
-const int numCubes = 100;
+Cube bigCube;
+Cube floorCube;
+
+const int numCubes = 4;
 Cube myCubes[numCubes];
 
 GLShader vertexShader, fragmentShader;
@@ -156,6 +160,9 @@ void render(float timeLapsed) {
     for (int i = 0; i < numCubes; i++) {
         myCubes[i].drawToGL();
     }
+    lightCube.drawToGL();
+    bigCube.drawToGL();
+    floorCube.drawToGL();
     exitOnGLError("error after scene render");
 
     SDL_GL_SwapWindow(window);
@@ -186,8 +193,18 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    myLight.position = glm::vec3(0, 5, 0);
+    myLight.position = glm::vec3(0, 2, 0);
     myLight.intensities = glm::vec3(1, 1, 1);
+    lightCube.translateCube(glm::vec3(0,2,0));
+    lightCube.scaleCube(glm::vec3(.1, .1, .1));
+
+    bigCube.scaleCube(glm::vec3(.3, 15, 30));
+    bigCube.translateCube(glm::vec3(-5, 0, 0));
+    bigCube.color = glm::vec3(0, 1, 0);
+
+    floorCube.scaleCube(glm::vec3(40, 1, 40));
+    floorCube.translateCube(glm::vec3(0, -3, 0));
+    floorCube.color = glm::vec3(0, 0, 1);
 
     glUniform3fv(lightPositionUniform, 1, glm::value_ptr(myLight.position));
     glUniform3fv(lightColorUniform, 1, glm::value_ptr(myLight.intensities));

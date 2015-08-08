@@ -107,6 +107,7 @@ void initShaders() {
     exitOnGLError("ERROR: Problem using compiled program");
     Cube::mvpUniformLocation = glGetUniformLocation(shaderIds[0], "mvp");
     Cube::colorUniformLocation = glGetUniformLocation(shaderIds[0], "color");
+    Cube::modelUniformLocation = glGetUniformLocation(shaderIds[0], "modelMatrix");
 
     lightPositionUniform = glGetUniformLocation(shaderIds[0], "light.position");
     lightColorUniform = glGetUniformLocation(shaderIds[0], "light.intensities");

@@ -17,6 +17,7 @@ class Cube
 
         static GLuint mvpUniformLocation;
         static GLuint colorUniformLocation;
+        static GLuint modelUniformLocation;
 
         void translateCube(glm::vec3);
         void rotateCube(glm::vec3);

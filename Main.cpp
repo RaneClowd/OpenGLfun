@@ -6,8 +6,7 @@
 
 
 int winWidth = 800, winHeight = 800;
-
-unsigned frameCount = 0;
+Uint32 msPerFrame = 17; // roughly 60 frames every 1000 milliseconds
 
 GLuint
     mvpUniform,
@@ -25,7 +24,7 @@ Cube lightCube;
 Cube bigCube;
 Cube floorCube;
 
-const int numCubes = 4;
+const int numCubes = 100;
 Cube myCubes[numCubes];
 
 GLShader vertexShader, fragmentShader;
@@ -34,8 +33,8 @@ glm::mat4 viewMatrix, projectionMatrix;
 
 GLuint lightPositionUniform, lightColorUniform;
 
-float cubeRotation = 10;
-clock_t lastTime = 0;
+float cubeRotation = .001;
+Uint32 lastTime = 0;
 
 void initSDLWithOpenGL (void) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -168,6 +167,8 @@ void render(float timeLapsed) {
     SDL_GL_SwapWindow(window);
 }
 
+float lowestDelay = 20;
+int printCount = 0;
 int main(int argc, char* argv[]) {
     printWorkingDirectory();
 
@@ -213,26 +214,33 @@ int main(int argc, char* argv[]) {
     while (!userQuit()) {
 
         exitOnGLError("error before time check");
-        clock_t now = clock();
+        Uint32 now = SDL_GetTicks();
+
         if (lastTime == 0) lastTime = now;
-        float timeLapsed = ((float)(now - lastTime) / CLOCKS_PER_SEC);
+        Uint32 msLapsed = now - lastTime;
         lastTime = now;
 
         for (int i = 0; i < numCubes; i++) {
-            myCubes[i].rotateCube(glm::vec3(cubeRotation*timeLapsed, cubeRotation*timeLapsed, cubeRotation*timeLapsed));
+            myCubes[i].rotateCube(glm::vec3(cubeRotation*msLapsed));
         }
 
         exitOnGLError("error before player input proccessed");
         checkForPlayerInput();
-        viewMatrix = updatePlayerView(timeLapsed);
+        viewMatrix = updatePlayerView(msLapsed);
 
         SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
 
         exitOnGLError("error before render");
-        render(timeLapsed);
+        render(msLapsed);
         exitOnGLError("error after render");
 
-        SDL_Delay(20 - (timeLapsed * 1000));
+        Uint32 msUsed = SDL_GetTicks() - now;
+        if (msUsed < 0) {
+            printf("ERROR: frame rate dropping");
+            msUsed = 0;
+        }
+
+        SDL_Delay(msPerFrame - msUsed);
     }
 
     freeResources();

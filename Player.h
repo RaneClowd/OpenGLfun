@@ -5,7 +5,7 @@
 
 void initPlayerInput(void);
 
-glm::mat4 updatePlayerView(float timeLapsed);
+glm::mat4 updatePlayerView(Uint32 msLapsed);
 
 void checkForPlayerInput(void);
 char userQuit(void);

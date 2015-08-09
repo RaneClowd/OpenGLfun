@@ -2,7 +2,7 @@
 
 
 const int INITIAL_HEIGHT = 2;
-const float MOVE_SPEED = .1f, LOOK_SPEED = .01f, GRAVITY_FORCE = -25.8;
+const float MOVE_SPEED = .01f, LOOK_SPEED = .01f, GRAVITY_FORCE = -.00005;
 
 unsigned char walkDirection = NONE;
 glm::vec3 worldShift = glm::vec3(0, -INITIAL_HEIGHT, -4); // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
@@ -20,29 +20,29 @@ void initPlayerInput(void) {
     }
 }
 
-glm::mat4 updatePlayerView(float timeLapsed) {
+glm::mat4 updatePlayerView(Uint32 msLapsed) {
     if (walkDirection & FORWARD) {
-        worldShift.z += cosf(angle.x) * MOVE_SPEED;
-        worldShift.x -= sinf(angle.x) * MOVE_SPEED;
+        worldShift.z += cosf(angle.x) * MOVE_SPEED * msLapsed;
+        worldShift.x -= sinf(angle.x) * MOVE_SPEED * msLapsed;
     }
     if (walkDirection & BACKWARD) {
-        worldShift.z -= cosf(angle.x) * MOVE_SPEED;
-        worldShift.x += sinf(angle.x) * MOVE_SPEED;
+        worldShift.z -= cosf(angle.x) * MOVE_SPEED * msLapsed;
+        worldShift.x += sinf(angle.x) * MOVE_SPEED * msLapsed;
     }
 
     if (walkDirection & LEFT) {
-        worldShift.x += cosf(angle.x) * MOVE_SPEED;
-        worldShift.z += sinf(angle.x) * MOVE_SPEED;
+        worldShift.x += cosf(angle.x) * MOVE_SPEED * msLapsed;
+        worldShift.z += sinf(angle.x) * MOVE_SPEED * msLapsed;
     }
     if (walkDirection & RIGHT) {
-        worldShift.x -= cosf(angle.x) * MOVE_SPEED;
-        worldShift.z -= sinf(angle.x) * MOVE_SPEED;
+        worldShift.x -= cosf(angle.x) * MOVE_SPEED * msLapsed;
+        worldShift.z -= sinf(angle.x) * MOVE_SPEED * msLapsed;
     }
 
-    if (timeLapsed != 0 && (jumpVelocity != 0 || worldShift.y != 0)) {
-        worldShift.y -= jumpVelocity;
+    if (msLapsed != 0 && (jumpVelocity != 0 || worldShift.y != 0)) {
+        worldShift.y -= jumpVelocity * msLapsed;
 
-        jumpVelocity += GRAVITY_FORCE * timeLapsed;
+        jumpVelocity += GRAVITY_FORCE * msLapsed;
 
         if (worldShift.y > -INITIAL_HEIGHT) {
             worldShift.y = -INITIAL_HEIGHT; // at rest, the world is pushed down by how tall you are. because zero is defined by where your eyes are
@@ -83,7 +83,7 @@ void checkForPlayerInput(void) {
                 }
                 case SDL_SCANCODE_SPACE: {
                     if (worldShift.y == -INITIAL_HEIGHT) {
-                        jumpVelocity = .3;
+                        jumpVelocity = .02;
                         jumpDetected = 1;
                     }
                     break;

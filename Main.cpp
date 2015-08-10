@@ -201,6 +201,7 @@ int main(int argc, char* argv[]) {
         exitOnGLError("error before player input proccessed");
         checkForPlayerInput();
         viewMatrix = updatePlayerView(msLapsed);
+        shaderProgram.loadToUniform("cameraPosition", getPlayerLocation());
 
         SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
 

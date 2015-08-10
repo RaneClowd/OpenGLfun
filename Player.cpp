@@ -5,8 +5,11 @@ const int INITIAL_HEIGHT = 2;
 const float MOVE_SPEED = .01f, LOOK_SPEED = .01f, GRAVITY_FORCE = -.00005;
 
 unsigned char walkDirection = NONE;
-//glm::vec3 worldShift = glm::vec3(0, -INITIAL_HEIGHT, -4); // "It came to me in a dream. The engines don't move the ship at all. The ship stays where it is, and the engines move the universe around it." -Professor Cubert J. Farnsworth
 glm::vec3 playerLocation = glm::vec3(0, INITIAL_HEIGHT, 4);
+
+glm::vec3 getPlayerLocation(void) {
+    return playerLocation;
+}
 
 glm::vec3 angle = glm::vec3(0, -0.5, 0);
 

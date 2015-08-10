@@ -10,4 +10,6 @@ glm::mat4 updatePlayerView(Uint32 msLapsed);
 void checkForPlayerInput(void);
 char userQuit(void);
 
+glm::vec3 getPlayerLocation(void);
+
 #endif // PLAYER_H_INCLUDED

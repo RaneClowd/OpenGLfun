@@ -183,6 +183,11 @@ int main(int argc, char* argv[]) {
 
     shaderProgram.loadToUniform("light.position", myLight.position);
     shaderProgram.loadToUniform("light.intensities", myLight.intensities);
+    shaderProgram.loadToUniform("light.attenuation", .2);
+    shaderProgram.loadToUniform("light.ambientCoefficient", .005);
+
+    shaderProgram.loadToUniform("shininess", 80);
+    shaderProgram.loadToUniform("specularColor", glm::vec3(1));
 
     printf("starting run loop\n");
     while (!userQuit()) {

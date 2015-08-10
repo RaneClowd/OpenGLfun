@@ -2779,11 +2779,12 @@
 1389483480 /usr/include/glm/gtc/type_ptr.inl
 	<cstring>
 
-1439160909 source:/home/mayken/Projects/OpenGLfun/Main.cpp
+1439174982 source:/home/mayken/Projects/OpenGLfun/Main.cpp
 	"GLHelpers/GLShader.h"
 	"Utils.h"
 	"Player.h"
 	"Cube.h"
+	"GLProgram.h"
 
 1439160969 /home/mayken/Projects/OpenGLfun/Player.h
 	"Utils.h"
@@ -2802,11 +2803,12 @@
 	"Utils.h"
 	<unistd.h>
 
-1439046627 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
+1439174993 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
 	"Cube.h"
 
-1439046451 /home/mayken/Projects/OpenGLfun/include/Cube.h
+1439174612 /home/mayken/Projects/OpenGLfun/include/Cube.h
 	"../Utils.h"
+	"../GLHelpers/GLProgram.h"
 
 1438340726 /home/mayken/Projects/OpenGLfun/include/Object.h
 	"../Utils.h"
@@ -3491,4 +3493,11 @@
 1420280585 /usr/local/include/glm/detail/intrinsic_matrix.inl
 
 1420280585 /usr/local/include/glm/gtx/simd_mat4.inl
+
+1439175039 /home/mayken/Projects/OpenGLfun/GLHelpers/GLProgram.h
+	"../Utils.h"
+	"GLShader.h"
+
+1439175052 source:/home/mayken/Projects/OpenGLfun/src/GLProgram.cpp
+	"GLProgram.h"
 

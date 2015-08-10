@@ -3,17 +3,11 @@
 #include "Utils.h"
 #include "Player.h"
 #include "Cube.h"
+#include "GLProgram.h"
 
 
 int winWidth = 800, winHeight = 800;
 Uint32 msPerFrame = 17; // roughly 60 frames every 1000 milliseconds
-
-GLuint
-    mvpUniform,
-    textureUniform,
-    bufferIds[3] = { 0 },
-    shaderIds[3] = { 0 },
-    texture;
 
 SDL_Window *window;
 SDL_GLContext glContext;
@@ -27,11 +21,9 @@ Cube floorCube;
 const int numCubes = 100;
 Cube myCubes[numCubes];
 
-GLShader vertexShader, fragmentShader;
+GLProgram shaderProgram;
 
 glm::mat4 viewMatrix, projectionMatrix;
-
-GLuint lightPositionUniform, lightColorUniform;
 
 float cubeRotation = .001;
 Uint32 lastTime = 0;
@@ -95,30 +87,9 @@ void initGlew(void)
 }
 
 void initShaders() {
-    shaderIds[0] = glCreateProgram();
-    exitOnGLError("ERROR: Could not create the shader program");
-
-    vertexShader.loadShader("SimpleShader.vertex.glsl", GL_VERTEX_SHADER);
-    fragmentShader.loadShader("SimpleShader.fragment.glsl", GL_FRAGMENT_SHADER);
-    glAttachShader(shaderIds[0], vertexShader.getShaderID());
-    glAttachShader(shaderIds[0], fragmentShader.getShaderID());
-
-    glLinkProgram(shaderIds[0]);
-    exitOnGLError("ERROR: Could not link the shader program");
-
-    glUseProgram(shaderIds[0]);
-    exitOnGLError("ERROR: Problem using compiled program");
-    Cube::mvpUniformLocation = glGetUniformLocation(shaderIds[0], "mvp");
-    Cube::colorUniformLocation = glGetUniformLocation(shaderIds[0], "color");
-    Cube::modelUniformLocation = glGetUniformLocation(shaderIds[0], "modelMatrix");
-
-    lightPositionUniform = glGetUniformLocation(shaderIds[0], "light.position");
-    lightColorUniform = glGetUniformLocation(shaderIds[0], "light.intensities");
-
-    exitOnGLError("ERROR: Could not get the shader uniform locations");
-
-    glGenVertexArrays(1, &bufferIds[0]);
-    glBindVertexArray(bufferIds[0]);
+    shaderProgram.loadShader("SimpleShader.vertex.glsl", GL_VERTEX_SHADER);
+    shaderProgram.loadShader("SimpleShader.fragment.glsl", GL_FRAGMENT_SHADER);
+    shaderProgram.linkAndUse();
 }
 
 /*void initTexture() {
@@ -134,12 +105,7 @@ void initShaders() {
 }*/
 
 void freeResources(void) {
-    glDetachShader(shaderIds[0], vertexShader.getShaderID());
-    glDetachShader(shaderIds[0], fragmentShader.getShaderID());
-    glDeleteShader(vertexShader.getShaderID());
-    glDeleteShader(fragmentShader.getShaderID());
-    glDeleteProgram(shaderIds[0]);
-    exitOnGLError("ERROR: Could not destroy the shaders");
+    shaderProgram.~GLProgram();
 
     Cube::freeGLResources();
     exitOnGLError("ERROR: Could not destroy the buffer objects");
@@ -187,10 +153,18 @@ int main(int argc, char* argv[]) {
     initPlayerInput();
     exitOnGLError("error before while");
 
+    Light myLight;
+    lightCube.shaderProgram = &shaderProgram;
+
+    bigCube.shaderProgram = &shaderProgram;
+    floorCube.shaderProgram = &shaderProgram;
+
+
     int sqrtCubes = sqrt(numCubes);
     for (int i = 0; i < sqrtCubes; i++) {
         for (int j = 0; j < sqrtCubes; j++) {
             myCubes[i*sqrtCubes + j].translateCube(glm::vec3(i*2, 0, j*2));
+            myCubes[i*sqrtCubes + j].shaderProgram = &shaderProgram;
         }
     }
 
@@ -207,8 +181,8 @@ int main(int argc, char* argv[]) {
     floorCube.translateCube(glm::vec3(0, -3, 0));
     floorCube.color = glm::vec3(0, 0, 1);
 
-    glUniform3fv(lightPositionUniform, 1, glm::value_ptr(myLight.position));
-    glUniform3fv(lightColorUniform, 1, glm::value_ptr(myLight.intensities));
+    shaderProgram.loadToUniform("light.position", myLight.position);
+    shaderProgram.loadToUniform("light.intensities", myLight.intensities);
 
     printf("starting run loop\n");
     while (!userQuit()) {

@@ -4,10 +4,6 @@ int Cube::numIndices = 36;
 
 glm::mat4 Cube::viewProjectionMatrix = IDENTITY_MATRIX;
 
-GLuint Cube::mvpUniformLocation = 0;
-GLuint Cube::colorUniformLocation = 0;
-GLuint Cube::modelUniformLocation = 0;
-
 GLuint Cube::vertexArrayObjectID = 0;
 GLuint Cube::vertexBufferID = 0;
 GLuint Cube::indexBufferID = 0;
@@ -144,10 +140,10 @@ void Cube::recreateModelMatrix(void) {
 
 void Cube::drawToGL(void) {
     glm::mat4 mvpMatrix = Cube::viewProjectionMatrix * this->modelMatrix;
-    glUniformMatrix4fv(Cube::mvpUniformLocation, 1, GL_FALSE, glm::value_ptr(mvpMatrix));
-    glUniformMatrix4fv(Cube::modelUniformLocation, 1, GL_FALSE, glm::value_ptr(this->modelMatrix));
+    this->shaderProgram->loadToUniform("mvp", mvpMatrix);
+    this->shaderProgram->loadToUniform("modelMatrix", this->modelMatrix);
 
-    glUniform3fv(Cube::colorUniformLocation, 1, glm::value_ptr(this->color));
+    this->shaderProgram->loadToUniform("color", this->color);
 
     glBindVertexArray(Cube::vertexArrayObjectID);
     glDrawElements(GL_TRIANGLES, Cube::numIndices, GL_UNSIGNED_INT, NULL);

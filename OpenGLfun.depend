@@ -2406,17 +2406,17 @@
 	<GL/glew.h>
 	<string>
 
-1430531445 source:/home/mayken/Projects/OpenGLfun/GLHelpers/GLShader.cpp
+1439598761 source:/home/mayken/Projects/OpenGLfun/GLHelpers/GLShader.cpp
 	"GLShader.h"
 	<stdio.h>
 	<vector>
 	"../Utils.h"
 
-1430531445 /home/mayken/Projects/OpenGLfun/GLHelpers/GLShader.h
+1439597741 /home/mayken/Projects/OpenGLfun/GLHelpers/GLShader.h
 	<GL/glew.h>
 	<string>
 
-1438902023 /home/mayken/Projects/OpenGLfun/Utils.h
+1439598483 /home/mayken/Projects/OpenGLfun/Utils.h
 	<stdlib.h>
 	<string.h>
 	<math.h>
@@ -2428,6 +2428,8 @@
 	<glm/mat4x4.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
+	<iostream>
+	<iterator>
 
 1389483480 /usr/include/glm/vec3.hpp
 	"detail/type_vec3.hpp"
@@ -2779,7 +2781,7 @@
 1389483480 /usr/include/glm/gtc/type_ptr.inl
 	<cstring>
 
-1439205306 source:/home/mayken/Projects/OpenGLfun/Main.cpp
+1439767699 source:/home/mayken/Projects/OpenGLfun/Main.cpp
 	"GLHelpers/GLShader.h"
 	"Utils.h"
 	"Player.h"
@@ -2803,14 +2805,15 @@
 	"Utils.h"
 	<unistd.h>
 
-1439174993 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
+1439767807 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
 	"Cube.h"
 
-1439174612 /home/mayken/Projects/OpenGLfun/include/Cube.h
+1439768005 /home/mayken/Projects/OpenGLfun/include/Cube.h
 	"../Utils.h"
 	"../GLHelpers/GLProgram.h"
+	"DrawableObject.h"
 
-1438340726 /home/mayken/Projects/OpenGLfun/include/Object.h
+1439767290 /home/mayken/Projects/OpenGLfun/include/Object.h
 	"../Utils.h"
 
 1420280585 /usr/local/include/glm/ext.hpp
@@ -3494,10 +3497,19 @@
 
 1420280585 /usr/local/include/glm/gtx/simd_mat4.inl
 
-1439204684 /home/mayken/Projects/OpenGLfun/GLHelpers/GLProgram.h
+1439599166 /home/mayken/Projects/OpenGLfun/GLHelpers/GLProgram.h
 	"../Utils.h"
 	"GLShader.h"
 
-1439204961 source:/home/mayken/Projects/OpenGLfun/src/GLProgram.cpp
+1439599201 source:/home/mayken/Projects/OpenGLfun/src/GLProgram.cpp
 	"GLProgram.h"
+
+1439768004 /home/mayken/Projects/OpenGLfun/include/DrawableObject.h
+	<Object.h>
+
+1439767336 source:/home/mayken/Projects/OpenGLfun/src/Object.cpp
+	"Object.h"
+
+1439766665 source:/home/mayken/Projects/OpenGLfun/src/DrawableObject.cpp
+	"DrawableObject.h"
 

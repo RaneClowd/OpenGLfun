@@ -39,11 +39,26 @@ bool GLShader::loadShader(std::string filePath, int shaderType) {
     int iCompilationStatus;
     glGetShaderiv(__shaderId, GL_COMPILE_STATUS, &iCompilationStatus);
 
-    if (iCompilationStatus == GL_FALSE) return false;
+    if (iCompilationStatus == GL_FALSE) {
+        std::cout << "error compiling shader at " << filePath << "\n";
+
+        this->printCompileError();
+        return false;
+    };
     __shaderType = shaderType;
     __loaded = true;
 
     return true;
+}
+
+void GLShader::printCompileError() {
+    GLint logSize = 0;
+    glGetShaderiv(__shaderId, GL_INFO_LOG_LENGTH, &logSize);
+
+    std::vector<GLchar> log(logSize);
+    glGetShaderInfoLog(__shaderId, logSize, NULL, &log[0]);
+
+    std::copy(log.begin(), log.end(), std::ostream_iterator<char>(std::cout));
 }
 
 void GLShader::deleteShader() {

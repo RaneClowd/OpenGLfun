@@ -15,7 +15,8 @@ class GLProgram
 
         void loadToUniform(const GLchar* uniformName, glm::vec3 uniformValue);
         void loadToUniform(const GLchar* uniformName, glm::mat4 uniformValue);
-        void loadToUniform(const GLchar* uniformName, float uniformValue);
+        void loadToUniformf(const GLchar* uniformName, float uniformValue);
+        void loadToUniformb(const GLchar* uniformName, bool uniformValue);
 
     protected:
     private:

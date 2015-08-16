@@ -19,6 +19,7 @@ class GLShader
         GLuint __shaderId;
         int __shaderType;
         bool __loaded;
+        void printCompileError();
 };
 
 #endif // GLSHADER_H

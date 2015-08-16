@@ -1,31 +1,22 @@
 #include "Object.h"
 
-Object::Object() {
-    defineShapeData();
+Object::Object()
+{
+    this->translationVec = glm::vec3(0);
+    this->rotationVec = glm::vec3(0);
 }
 
-Object::~Object() {
-    // clean up gl stuff here
+Object::~Object() { }
+
+
+void Object::translate(glm::vec3 vec) {
+    this->translationVec.x += vec.x;
+    this->translationVec.y += vec.y;
+    this->translationVec.z += vec.z;
 }
 
-void Object::drawToGL(void) {
-    glUniformMatrix4fv(modelMatrixUniformLocation, 1, GL_FALSE, modelMatrix);
-    // TODO: uniform in color value
-
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
-
-    glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_INT, NULL);
-
-    exitOnGLError("ERROR: Could not draw an object");
-}
-
-void Object::initGLBuffers(void) {
-    defineShapeData();
-    
-    glGenBuffers(1, )
-    glGenBuffers(1, &vertexBufferID);
-    glGenBuffers(1, &indexBufferID);
-    
-    
+void Object::rotate(glm::vec3 vec) {
+    this->rotationVec.x += vec.x;
+    this->rotationVec.y += vec.y;
+    this->rotationVec.z += vec.z;
 }

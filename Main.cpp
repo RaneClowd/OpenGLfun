@@ -9,6 +9,8 @@
 int winWidth = 800, winHeight = 800;
 Uint32 msPerFrame = 17; // roughly 60 frames every 1000 milliseconds
 
+GLint sdlWindowFrameBufferID = 0;
+
 SDL_Window *window;
 SDL_GLContext glContext;
 
@@ -56,6 +58,8 @@ void initSDLWithOpenGL (void) {
     }
 
     SDL_GL_MakeCurrent(window, glContext);
+
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &sdlWindowFrameBufferID);
 }
 
 void initGlew(void)
@@ -92,18 +96,6 @@ void initShaders() {
     shaderProgram.linkAndUse();
 }
 
-/*void initTexture() {
-    glActiveTexture(GL_TEXTURE0);
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textures.width, textures.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textures.pixel_data);
-
-    textureUniform = glGetUniformLocation(shaderIds[0], "texture");
-    glUniform1i(textureUniform, 0);
-}*/
-
 void freeResources(void) {
     shaderProgram.~GLProgram();
 
@@ -116,6 +108,8 @@ void clearGraphics(void) {
 }
 
 void render(float timeLapsed) {
+    glBindFramebuffer(GL_FRAMEBUFFER, sdlWindowFrameBufferID);
+
     glm::mat4 vpMat = projectionMatrix * viewMatrix;
     Cube::viewProjectionMatrix = vpMat;
 
@@ -132,6 +126,46 @@ void render(float timeLapsed) {
 
     SDL_GL_SwapWindow(window);
 }
+
+
+
+
+GLuint shadowMapTexID;
+
+void initShadowMapFrameBufferAndTexture(void) {
+    GLuint frameBufferID = 0;
+    glGenFramebuffers(1, &frameBufferID);
+    glBindFramebuffer(GL_FRAMEBUFFER, frameBufferID);
+
+    glGenTextures(1, &shadowMapTexID);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexID);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, winWidth, winHeight, 0, GL_DEPTH_COMPONENT,
+                    GL_FLOAT, NULL);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexID, 0);
+
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
+
+    exitOnGLError("problem with frame buffer configuration");
+    GLenum fbStatus = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (fbStatus != GL_FRAMEBUFFER_COMPLETE) {
+        printf("FRAME BUFFER ERROR: status: 0x%x\n", fbStatus);
+        exit(EXIT_FAILURE);
+    }
+}
+
+void bindTextureForReading() {
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexID);
+}
+
+
+
 
 float lowestDelay = 20;
 int printCount = 0;
@@ -163,30 +197,30 @@ int main(int argc, char* argv[]) {
     int sqrtCubes = sqrt(numCubes);
     for (int i = 0; i < sqrtCubes; i++) {
         for (int j = 0; j < sqrtCubes; j++) {
-            myCubes[i*sqrtCubes + j].translateCube(glm::vec3(i*2, 0, j*2));
+            myCubes[i*sqrtCubes + j].translate(glm::vec3(i*2, 0, j*2));
             myCubes[i*sqrtCubes + j].shaderProgram = &shaderProgram;
         }
     }
 
     myLight.position = glm::vec3(0, 2, 0);
     myLight.intensities = glm::vec3(1, 1, 1);
-    lightCube.translateCube(glm::vec3(0,2,0));
-    lightCube.scaleCube(glm::vec3(.1, .1, .1));
+    lightCube.translate(glm::vec3(0,2,0));
+    lightCube.scale(glm::vec3(.1, .1, .1));
 
-    bigCube.scaleCube(glm::vec3(.3, 15, 30));
-    bigCube.translateCube(glm::vec3(-5, 0, 0));
+    bigCube.scale(glm::vec3(.3, 15, 30));
+    bigCube.translate(glm::vec3(-5, 0, 0));
     bigCube.color = glm::vec3(0, 1, 0);
 
-    floorCube.scaleCube(glm::vec3(40, 1, 40));
-    floorCube.translateCube(glm::vec3(0, -3, 0));
+    floorCube.scale(glm::vec3(40, 1, 40));
+    floorCube.translate(glm::vec3(0, -3, 0));
     floorCube.color = glm::vec3(0, 0, 1);
 
     shaderProgram.loadToUniform("light.position", myLight.position);
     shaderProgram.loadToUniform("light.intensities", myLight.intensities);
-    shaderProgram.loadToUniform("light.attenuation", .2);
-    shaderProgram.loadToUniform("light.ambientCoefficient", .005);
+    shaderProgram.loadToUniformf("light.attenuation", .2);
+    shaderProgram.loadToUniformf("light.ambientCoefficient", .005);
 
-    shaderProgram.loadToUniform("shininess", 80);
+    shaderProgram.loadToUniformf("shininess", 80);
     shaderProgram.loadToUniform("specularColor", glm::vec3(1));
 
     printf("starting run loop\n");
@@ -200,7 +234,7 @@ int main(int argc, char* argv[]) {
         lastTime = now;
 
         for (int i = 0; i < numCubes; i++) {
-            myCubes[i].rotateCube(glm::vec3(cubeRotation*msLapsed));
+            myCubes[i].rotate(glm::vec3(cubeRotation*msLapsed));
         }
 
         exitOnGLError("error before player input proccessed");

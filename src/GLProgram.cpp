@@ -27,9 +27,14 @@ void GLProgram::loadToUniform(const GLchar* uniformName, glm::mat4 uniformValue)
     glUniformMatrix4fv(uniformLocation, 1, GL_FALSE, glm::value_ptr(uniformValue));
 }
 
-void GLProgram::loadToUniform(const GLchar* uniformName, float uniformValue) {
+void GLProgram::loadToUniformf(const GLchar* uniformName, float uniformValue) {
     GLuint uniformLocation = glGetUniformLocation(this->programID, uniformName);
     glUniform1f(uniformLocation, uniformValue);
+}
+
+void GLProgram::loadToUniformb(const GLchar* uniformName, bool uniformValue) {
+    GLuint uniformLocation = glGetUniformLocation(this->programID, uniformName);
+    glUniform1i(uniformLocation, (uniformValue ? 1 : 0));
 }
 
 bool GLProgram::loadShader(std::string shaderFile, GLuint shaderType) {

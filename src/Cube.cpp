@@ -2,16 +2,12 @@
 
 int Cube::numIndices = 36;
 
-glm::mat4 Cube::viewProjectionMatrix = IDENTITY_MATRIX;
-
 GLuint Cube::vertexArrayObjectID = 0;
 GLuint Cube::vertexBufferID = 0;
 GLuint Cube::indexBufferID = 0;
 
 
 Cube::Cube() {
-    this->translationVec = glm::vec3(0, 0, 0);
-    this->rotationVec = glm::vec3(0, 0, 0);
     this->scaleVec = glm::vec3(1,1,1);
     this->recreateModelMatrix();
 
@@ -101,49 +97,14 @@ void Cube::freeGLResources(void) {
     glDeleteVertexArrays(1, &Cube::vertexArrayObjectID);
 }
 
-void Cube::translateCube(glm::vec3 vec) {
-    this->translationVec.x += vec.x;
-    this->translationVec.y += vec.y;
-    this->translationVec.z += vec.z;
-    this->recreateModelMatrix();
-}
-
-void Cube::rotateCube(glm::vec3 vec) {
-    this->rotationVec.x += vec.x;
-    this->rotationVec.y += vec.y;
-    this->rotationVec.z += vec.z;
-    this->recreateModelMatrix();
-}
-
-void Cube::scaleCube(glm::vec3 vec) {
-    this->scaleVec.x *= vec.x;
-    this->scaleVec.y *= vec.y;
-    this->scaleVec.z *= vec.z;
-    this->recreateModelMatrix();
-}
-
-void Cube::recreateModelMatrix(void) {
-    this->modelMatrix = glm::mat4(
-                              1, 0, 0, 0,
-                              0, 1, 0, 0,
-                              0, 0, 1, 0,
-                              0, 0, 0, 1);
-
-    this->modelMatrix = glm::translate(this->modelMatrix, this->translationVec);
-
-    this->modelMatrix = glm::rotate(this->modelMatrix, this->rotationVec.x, glm::vec3(1, 0, 0));
-    this->modelMatrix = glm::rotate(this->modelMatrix, this->rotationVec.y, glm::vec3(0, 1, 0));
-    this->modelMatrix = glm::rotate(this->modelMatrix, this->rotationVec.z, glm::vec3(0, 0, 1));
-
-    this->modelMatrix = glm::scale(this->modelMatrix, this->scaleVec);
-}
-
 void Cube::drawToGL(void) {
     glm::mat4 mvpMatrix = Cube::viewProjectionMatrix * this->modelMatrix;
     this->shaderProgram->loadToUniform("mvp", mvpMatrix);
     this->shaderProgram->loadToUniform("modelMatrix", this->modelMatrix);
 
     this->shaderProgram->loadToUniform("color", this->color);
+
+    this->shaderProgram->loadToUniformb("useTexture", false);
 
     glBindVertexArray(Cube::vertexArrayObjectID);
     glDrawElements(GL_TRIANGLES, Cube::numIndices, GL_UNSIGNED_INT, NULL);

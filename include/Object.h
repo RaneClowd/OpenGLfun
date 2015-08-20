@@ -1,22 +1,23 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "../Utils.h"
+#include "DrawableObject.h"
 
-class Object
+template <class T>
+class Object : public T
 {
     public:
         Object();
         virtual ~Object();
 
-        virtual void translate(glm::vec3);
-        virtual void rotate(glm::vec3);
+        void translate(glm::vec3);
+        void rotate(glm::vec3);
 
     protected:
-        glm::vec3 translationVec;
-        glm::vec3 rotationVec;
 
     private:
 };
+
+template class Object< DrawableObject <Cube> >;
 
 #endif // OBJECT_H

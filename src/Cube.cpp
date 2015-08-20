@@ -1,21 +1,23 @@
 #include "Cube.h"
 
-int Cube::numIndices = 36;
+static const GLuint numCubeIndices = 36;
+static GLuint voaID = -1;
 
-GLuint Cube::vertexArrayObjectID = 0;
-GLuint Cube::vertexBufferID = 0;
-GLuint Cube::indexBufferID = 0;
+static GLuint vertexBufferID = -1;
+static GLuint indexBufferID = -1;
 
+Cube::Cube() { }
 
-Cube::Cube() {
-    this->scaleVec = glm::vec3(1,1,1);
-    this->recreateModelMatrix();
+void Cube::freeShapeResources() {
+    glDeleteBuffers(1, &vertexBufferID);
+    glDeleteBuffers(1, &indexBufferID);
+    glDeleteVertexArrays(1, &voaID);
 
-    this->color = {1, 0, 0};
+    printf("Cube shape data released\n");
 }
 
-void Cube::initGLResources(void) {
-    Vertex VERTICES[36];
+void Cube::defineData() {
+    Vertex VERTICES[numCubeIndices];
 
     // Lower front left
     VERTICES[ 0] = { { -.5f, -.5f, -.5f }, { 0,-1, 0 } };
@@ -57,7 +59,7 @@ void Cube::initGLResources(void) {
     VERTICES[22] = { {  .5f,  .5f,  .5f }, { 0, 1, 0 } };
     VERTICES[23] = { {  .5f,  .5f,  .5f }, { 1, 0, 0 } };
 
-    const GLuint INDICES[Cube::numIndices] = {
+    const GLuint INDICES[numCubeIndices] = {
         4, 1, 9,  1, 6, 9,      // front
         0, 3,17, 17,14, 0,      // bottom
         2,13,20, 20, 7, 2,      // left
@@ -66,18 +68,18 @@ void Cube::initGLResources(void) {
        15,18,12, 15,21,18,      // back
     };
 
-    glGenBuffers(1, &Cube::vertexBufferID);
-    glGenBuffers(1, &Cube::indexBufferID);
+    glGenBuffers(1, &vertexBufferID);
+    glGenBuffers(1, &indexBufferID);
 
-    glGenVertexArrays(1, &Cube::vertexArrayObjectID);
-    glBindVertexArray(Cube::vertexArrayObjectID);
+    glGenVertexArrays(1, &voaID);
+    glBindVertexArray(voaID);
 
 
     // Set up vertex data
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
 
-    glBindBuffer(GL_ARRAY_BUFFER, Cube::vertexBufferID);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferID);
     glBufferData(GL_ARRAY_BUFFER, sizeof(VERTICES), VERTICES, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VERTICES[0]), NULL);
@@ -85,29 +87,16 @@ void Cube::initGLResources(void) {
 
 
     // Set up index data
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Cube::indexBufferID);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(INDICES), INDICES, GL_STATIC_DRAW);
 
     glBindVertexArray(0);
 }
 
-void Cube::freeGLResources(void) {
-    glDeleteBuffers(1, &Cube::vertexBufferID);
-    glDeleteBuffers(1, &Cube::indexBufferID);
-    glDeleteVertexArrays(1, &Cube::vertexArrayObjectID);
+GLuint Cube::getVertexArrayObjectID() {
+    return voaID;
 }
 
-void Cube::drawToGL(void) {
-    glm::mat4 mvpMatrix = Cube::viewProjectionMatrix * this->modelMatrix;
-    this->shaderProgram->loadToUniform("mvp", mvpMatrix);
-    this->shaderProgram->loadToUniform("modelMatrix", this->modelMatrix);
-
-    this->shaderProgram->loadToUniform("color", this->color);
-
-    this->shaderProgram->loadToUniformb("useTexture", false);
-
-    glBindVertexArray(Cube::vertexArrayObjectID);
-    glDrawElements(GL_TRIANGLES, Cube::numIndices, GL_UNSIGNED_INT, NULL);
-
-    exitOnGLError("ERROR: Could not draw an object");
+GLuint Cube::getNumDataIndices() {
+    return numCubeIndices;
 }

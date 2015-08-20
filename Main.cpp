@@ -3,7 +3,10 @@
 #include "Utils.h"
 #include "Player.h"
 #include "Cube.h"
+#include "Object.h"
 #include "GLProgram.h"
+
+typedef Object< DrawableObject< Cube >  > MyCube;
 
 
 int winWidth = 800, winHeight = 800;
@@ -15,13 +18,13 @@ SDL_Window *window;
 SDL_GLContext glContext;
 
 Light myLight;
-Cube lightCube;
+MyCube lightCube;
 
-Cube bigCube;
-Cube floorCube;
+MyCube bigCube;
+MyCube floorCube;
 
 const int numCubes = 100;
-Cube myCubes[numCubes];
+MyCube myCubes[numCubes];
 
 GLProgram shaderProgram;
 
@@ -99,7 +102,7 @@ void initShaders() {
 void freeResources(void) {
     shaderProgram.~GLProgram();
 
-    Cube::freeGLResources();
+    MyCube::freeShapeResources();
     exitOnGLError("ERROR: Could not destroy the buffer objects");
 }
 
@@ -111,7 +114,7 @@ void render(float timeLapsed) {
     glBindFramebuffer(GL_FRAMEBUFFER, sdlWindowFrameBufferID);
 
     glm::mat4 vpMat = projectionMatrix * viewMatrix;
-    Cube::viewProjectionMatrix = vpMat;
+    MyCube::viewProjectionMatrix = vpMat;
 
     clearGraphics();
 
@@ -176,10 +179,6 @@ int main(int argc, char* argv[]) {
     initGlew();
     initShaders();
 
-    printf("getting cube ready\n");
-    Cube::initGLResources();
-    printf("cube ready\n");
-
     projectionMatrix = glm::perspective(45.0f, ((float)winWidth)/winHeight, .01f, 1000.0f);
 
     exitOnGLError("error after init");
@@ -197,14 +196,15 @@ int main(int argc, char* argv[]) {
     int sqrtCubes = sqrt(numCubes);
     for (int i = 0; i < sqrtCubes; i++) {
         for (int j = 0; j < sqrtCubes; j++) {
+            myCubes[i*sqrtCubes + j].color = glm::vec3(1, 0, 0);
             myCubes[i*sqrtCubes + j].translate(glm::vec3(i*2, 0, j*2));
             myCubes[i*sqrtCubes + j].shaderProgram = &shaderProgram;
         }
     }
 
-    myLight.position = glm::vec3(0, 2, 0);
+    myLight.position = glm::vec3(5, 2, 5);
     myLight.intensities = glm::vec3(1, 1, 1);
-    lightCube.translate(glm::vec3(0,2,0));
+    lightCube.translate(myLight.position);
     lightCube.scale(glm::vec3(.1, .1, .1));
 
     bigCube.scale(glm::vec3(.3, 15, 30));
@@ -254,6 +254,10 @@ int main(int argc, char* argv[]) {
             msUsed = 0;
         }
 
+        if (msUsed > msPerFrame) {
+            printf("WARNING: used %d ms\n", msUsed);
+            msUsed = msPerFrame;
+        }
         SDL_Delay(msPerFrame - msUsed);
     }
 

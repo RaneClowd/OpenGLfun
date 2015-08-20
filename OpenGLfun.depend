@@ -2781,11 +2781,12 @@
 1389483480 /usr/include/glm/gtc/type_ptr.inl
 	<cstring>
 
-1439767699 source:/home/mayken/Projects/OpenGLfun/Main.cpp
+1440069606 source:/home/mayken/Projects/OpenGLfun/Main.cpp
 	"GLHelpers/GLShader.h"
 	"Utils.h"
 	"Player.h"
 	"Cube.h"
+	"Object.h"
 	"GLProgram.h"
 
 1439176170 /home/mayken/Projects/OpenGLfun/Player.h
@@ -2805,16 +2806,15 @@
 	"Utils.h"
 	<unistd.h>
 
-1439767807 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
+1440069606 source:/home/mayken/Projects/OpenGLfun/src/Cube.cpp
 	"Cube.h"
 
-1439768005 /home/mayken/Projects/OpenGLfun/include/Cube.h
+1440069606 /home/mayken/Projects/OpenGLfun/include/Cube.h
 	"../Utils.h"
 	"../GLHelpers/GLProgram.h"
-	"DrawableObject.h"
 
-1439767290 /home/mayken/Projects/OpenGLfun/include/Object.h
-	"../Utils.h"
+1440069606 /home/mayken/Projects/OpenGLfun/include/Object.h
+	"DrawableObject.h"
 
 1420280585 /usr/local/include/glm/ext.hpp
 	"./gtc/bitfield.hpp"
@@ -3504,12 +3504,13 @@
 1439599201 source:/home/mayken/Projects/OpenGLfun/src/GLProgram.cpp
 	"GLProgram.h"
 
-1439768004 /home/mayken/Projects/OpenGLfun/include/DrawableObject.h
-	<Object.h>
+1440069606 /home/mayken/Projects/OpenGLfun/include/DrawableObject.h
+	"../GLHelpers/GLProgram.h"
+	"Cube.h"
 
-1439767336 source:/home/mayken/Projects/OpenGLfun/src/Object.cpp
+1440069606 source:/home/mayken/Projects/OpenGLfun/src/Object.cpp
 	"Object.h"
 
-1439766665 source:/home/mayken/Projects/OpenGLfun/src/DrawableObject.cpp
+1440070183 source:/home/mayken/Projects/OpenGLfun/src/DrawableObject.cpp
 	"DrawableObject.h"
 

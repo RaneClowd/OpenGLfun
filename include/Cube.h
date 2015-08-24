@@ -3,24 +3,29 @@
 
 #include "../Utils.h"
 #include "../GLHelpers/GLProgram.h"
+#include "DrawableObject.h"
 
 // static members are shared between parent and children classes
 
-class Cube
+class Cube : public DrawableObject
 {
     public:
         Cube();
-        //~Cube(); // virtual means that child classes should be checked for the method first when calling it on the base class
+        ~Cube();
 
-        // DrawableObject.h
-        static void freeShapeResources();
-        static void defineData();
-        static GLuint getVertexArrayObjectID();
-        static GLuint getNumDataIndices();
 
-    protected: // can be accessed by derived classes
+    protected:
+        GLuint getVertexArrayObjectID();
+        void defineData();
+        GLuint getNumDataIndices();
 
-    private: // can only be accessed by members of the same class or by 'friends'
+        void freeShapeResources();
+
+        uint getObjectCount();
+        void incrementObjectCount();
+        void decrementObjectCount();
+
+    friend DrawableObject;
 
 };
 

@@ -1,27 +1,30 @@
 #include "Object.h"
 
-template <class T>
-Object<T>::Object()
+Object::Object()
 {
-    this->translationVec = glm::vec3(0);
-    this->rotationVec = glm::vec3(0);
+    this->_translationVec = glm::vec3(0);
+    this->_rotationVec = glm::vec3(0);
 }
 
-template <class T>
-Object<T>::~Object() { }
+Object::~Object() { }
 
-template <class T>
-void Object<T>::translate(glm::vec3 vec) {
-    T::translationVec.x += vec.x;
-    T::translationVec.y += vec.y;
-    T::translationVec.z += vec.z;
-    T::translate(vec);
+
+glm::vec3 Object::getLocation() {
+    return _translationVec;
 }
 
-template <class T>
-void Object<T>::rotate(glm::vec3 vec) {
-    T::rotationVec.x += vec.x;
-    T::rotationVec.y += vec.y;
-    T::rotationVec.z += vec.z;
-    T::rotate(vec);
+glm::vec3 Object::getRotation() {
+    return _rotationVec;
+}
+
+void Object::translate(glm::vec3 vec) {
+    _translationVec.x += vec.x;
+    _translationVec.y += vec.y;
+    _translationVec.z += vec.z;
+}
+
+void Object::rotate(glm::vec3 vec) {
+    _rotationVec.x += vec.x;
+    _rotationVec.y += vec.y;
+    _rotationVec.z += vec.z;
 }

@@ -1,12 +1,17 @@
 #include "Cube.h"
 
 static const GLuint numCubeIndices = 36;
-static GLuint voaID = -1;
 
+static GLuint voaID = -1;
 static GLuint vertexBufferID = -1;
 static GLuint indexBufferID = -1;
 
+static uint cubeCount;
+
 Cube::Cube() { }
+
+Cube::~Cube() { }
+
 
 void Cube::freeShapeResources() {
     glDeleteBuffers(1, &vertexBufferID);
@@ -99,4 +104,15 @@ GLuint Cube::getVertexArrayObjectID() {
 
 GLuint Cube::getNumDataIndices() {
     return numCubeIndices;
+}
+
+void Cube::incrementObjectCount() {
+    cubeCount++;
+}
+
+void Cube::decrementObjectCount() {
+    cubeCount--;
+    if (cubeCount == 0) {
+        this->freeShapeResources();
+    }
 }

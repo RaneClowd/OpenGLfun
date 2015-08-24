@@ -3,11 +3,7 @@
 #include "Utils.h"
 #include "Player.h"
 #include "Cube.h"
-#include "Object.h"
 #include "GLProgram.h"
-
-typedef Object< DrawableObject< Cube >  > MyCube;
-
 
 int winWidth = 800, winHeight = 800;
 Uint32 msPerFrame = 17; // roughly 60 frames every 1000 milliseconds
@@ -18,13 +14,13 @@ SDL_Window *window;
 SDL_GLContext glContext;
 
 Light myLight;
-MyCube lightCube;
+Cube *lightCube = (Cube*)DrawableObject::cubeObject();
 
-MyCube bigCube;
-MyCube floorCube;
+Cube *bigCube = (Cube*)DrawableObject::cubeObject();
+Cube *floorCube = (Cube*)DrawableObject::cubeObject();
 
 const int numCubes = 100;
-MyCube myCubes[numCubes];
+Cube* myCubes[numCubes];
 
 GLProgram shaderProgram;
 
@@ -32,6 +28,8 @@ glm::mat4 viewMatrix, projectionMatrix;
 
 float cubeRotation = .001;
 Uint32 lastTime = 0;
+
+Player player;
 
 void initSDLWithOpenGL (void) {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -102,7 +100,12 @@ void initShaders() {
 void freeResources(void) {
     shaderProgram.~GLProgram();
 
-    MyCube::freeShapeResources();
+    DrawableObject::releaseDrawableObject(lightCube);
+    DrawableObject::releaseDrawableObject(bigCube);
+    DrawableObject::releaseDrawableObject(floorCube);
+
+    for (int i = 0; i < numCubes; i++) DrawableObject::releaseDrawableObject(myCubes[i]);
+
     exitOnGLError("ERROR: Could not destroy the buffer objects");
 }
 
@@ -114,17 +117,17 @@ void render(float timeLapsed) {
     glBindFramebuffer(GL_FRAMEBUFFER, sdlWindowFrameBufferID);
 
     glm::mat4 vpMat = projectionMatrix * viewMatrix;
-    MyCube::viewProjectionMatrix = vpMat;
+    DrawableObject::viewProjectionMatrix = vpMat;
 
     clearGraphics();
 
     exitOnGLError("error before scene render");
     for (int i = 0; i < numCubes; i++) {
-        myCubes[i].drawToGL();
+        myCubes[i]->drawToGL();
     }
-    lightCube.drawToGL();
-    bigCube.drawToGL();
-    floorCube.drawToGL();
+    lightCube->drawToGL();
+    bigCube->drawToGL();
+    floorCube->drawToGL();
     exitOnGLError("error after scene render");
 
     SDL_GL_SwapWindow(window);
@@ -183,37 +186,32 @@ int main(int argc, char* argv[]) {
 
     exitOnGLError("error after init");
 
-    initPlayerInput();
+    player.initPlayerInput();
     exitOnGLError("error before while");
 
-    Light myLight;
-    lightCube.shaderProgram = &shaderProgram;
-
-    bigCube.shaderProgram = &shaderProgram;
-    floorCube.shaderProgram = &shaderProgram;
-
+    DrawableObject::shaderProgram = &shaderProgram;
 
     int sqrtCubes = sqrt(numCubes);
     for (int i = 0; i < sqrtCubes; i++) {
         for (int j = 0; j < sqrtCubes; j++) {
-            myCubes[i*sqrtCubes + j].color = glm::vec3(1, 0, 0);
-            myCubes[i*sqrtCubes + j].translate(glm::vec3(i*2, 0, j*2));
-            myCubes[i*sqrtCubes + j].shaderProgram = &shaderProgram;
+            myCubes[i*sqrtCubes + j] = (Cube*)DrawableObject::cubeObject();
+            myCubes[i*sqrtCubes + j]->color = glm::vec3(1, 0, 0);
+            myCubes[i*sqrtCubes + j]->translate(glm::vec3(i*2, 0, j*2));
         }
     }
 
     myLight.position = glm::vec3(5, 2, 5);
     myLight.intensities = glm::vec3(1, 1, 1);
-    lightCube.translate(myLight.position);
-    lightCube.scale(glm::vec3(.1, .1, .1));
+    lightCube->translate(myLight.position);
+    lightCube->scale(glm::vec3(.1, .1, .1));
 
-    bigCube.scale(glm::vec3(.3, 15, 30));
-    bigCube.translate(glm::vec3(-5, 0, 0));
-    bigCube.color = glm::vec3(0, 1, 0);
+    bigCube->scale(glm::vec3(.3, 15, 30));
+    bigCube->translate(glm::vec3(-5, 0, 0));
+    bigCube->color = glm::vec3(0, 1, 0);
 
-    floorCube.scale(glm::vec3(40, 1, 40));
-    floorCube.translate(glm::vec3(0, -3, 0));
-    floorCube.color = glm::vec3(0, 0, 1);
+    floorCube->scale(glm::vec3(40, 1, 40));
+    floorCube->translate(glm::vec3(0, -3, 0));
+    floorCube->color = glm::vec3(0, 0, 1);
 
     shaderProgram.loadToUniform("light.position", myLight.position);
     shaderProgram.loadToUniform("light.intensities", myLight.intensities);
@@ -224,7 +222,7 @@ int main(int argc, char* argv[]) {
     shaderProgram.loadToUniform("specularColor", glm::vec3(1));
 
     printf("starting run loop\n");
-    while (!userQuit()) {
+    while (!player.userQuit()) {
 
         exitOnGLError("error before time check");
         Uint32 now = SDL_GetTicks();
@@ -234,13 +232,13 @@ int main(int argc, char* argv[]) {
         lastTime = now;
 
         for (int i = 0; i < numCubes; i++) {
-            myCubes[i].rotate(glm::vec3(cubeRotation*msLapsed));
+            myCubes[i]->rotate(glm::vec3(cubeRotation*msLapsed));
         }
 
         exitOnGLError("error before player input proccessed");
-        checkForPlayerInput();
-        viewMatrix = updatePlayerView(msLapsed);
-        shaderProgram.loadToUniform("cameraPosition", getPlayerLocation());
+        player.checkForPlayerInput();
+        viewMatrix = player.updatePlayerView(msLapsed);
+        shaderProgram.loadToUniform("cameraPosition", player.getLocation());
 
         SDL_WarpMouseInWindow(window, winWidth/2, winHeight/2);
 

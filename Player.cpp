@@ -7,10 +7,6 @@ const float MOVE_SPEED = .01f, LOOK_SPEED = .01f, GRAVITY_FORCE = -.00005;
 unsigned char walkDirection = NONE;
 glm::vec3 playerLocation = glm::vec3(0, INITIAL_HEIGHT, 4);
 
-glm::vec3 getPlayerLocation(void) {
-    return playerLocation;
-}
-
 glm::vec3 angle = glm::vec3(0, -0.5, 0);
 
 float jumpVelocity = 0.0f;
@@ -18,13 +14,18 @@ char jumpDetected = 0;
 
 char userQuitFlag = 0;
 
-void initPlayerInput(void) {
+Player::Player() { }
+
+Player::~Player() { }
+
+
+void Player::initPlayerInput(void) {
     if (SDL_SetRelativeMouseMode(SDL_TRUE)) {
         fprintf(stderr, "SDL unable to set relative mouse mode. ERROR: %s", SDL_GetError());
     }
 }
 
-glm::mat4 updatePlayerView(Uint32 msLapsed) {
+glm::mat4 Player::updatePlayerView(Uint32 msLapsed) {
     if (walkDirection & FORWARD) {
         playerLocation.z -= cosf(angle.x) * MOVE_SPEED * msLapsed;
         playerLocation.x += sinf(angle.x) * MOVE_SPEED * msLapsed;
@@ -62,7 +63,7 @@ glm::mat4 updatePlayerView(Uint32 msLapsed) {
     return view;
 }
 
-void checkForPlayerInput(void) {
+void Player::checkForPlayerInput(void) {
     SDL_Event event;
 
     while (SDL_PollEvent(&event)) {
@@ -126,6 +127,6 @@ void checkForPlayerInput(void) {
     }
 }
 
-char userQuit() {
+char Player::userQuit() {
     return userQuitFlag;
 }

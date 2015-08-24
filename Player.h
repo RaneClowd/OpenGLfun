@@ -2,14 +2,19 @@
 #define PLAYER_H_INCLUDED
 
 #include "Utils.h"
+#include "Object.h"
 
-void initPlayerInput(void);
+class Player : public Object
+{
+    public:
+        Player();
+        virtual ~Player();
 
-glm::mat4 updatePlayerView(Uint32 msLapsed);
+        void initPlayerInput();
+        glm::mat4 updatePlayerView(Uint32 msLapsed);
 
-void checkForPlayerInput(void);
-char userQuit(void);
-
-glm::vec3 getPlayerLocation(void);
+        void checkForPlayerInput();
+        char userQuit();
+};
 
 #endif // PLAYER_H_INCLUDED
